@@ -1,0 +1,23 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:upload="sap.m.upload" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<ColumnListItem type="Active">
+		<cells>
+			<ComboBox selectedKey="{oNPI>UOM}" items="{oGenericModel>/UOM}" width="100%" fieldGroupIds="ComboboxField" required="true" editable="true">
+				<core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}"/>
+			</ComboBox>
+			<Input value="{oNPI>UOM_NO_CONV}"/>
+			<Text text="EA"/>
+			<CheckBox selected="{oNPI>BUN}"/>
+			<CheckBox selected="{oNPI>OUN}"/>
+			<Input value="{oNPI>BARCODE}"/>
+			<Input value="{oNPI>WEIGHT}"/>
+			<Input value="{oNPI>NET_WEIGHT}"/>
+			<Input value="{oNPI>WT_UNIT}"/>
+			<Input value="{oNPI>DEPTH}"/>
+			<Input value="{oNPI>WIDTH}"/>
+			<Input value="{oNPI>HEIGHT}"/>
+			<Text text="{oNPI>Volume}"/>
+			<Button icon="sap-icon://delete" press="onDeletevariantUOM" visible="{oNPI>Button}"/>
+		</cells>
+	</ColumnListItem>
+</core:FragmentDefinition>

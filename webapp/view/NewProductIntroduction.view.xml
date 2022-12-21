@@ -1,0 +1,133 @@
+<mvc:View controllerName="productmaster.controller.NewProductIntroduction" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns:uxap="sap.uxap" xmlns:f="sap.f" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form">
+	<Page showHeader="false">
+		<content>
+			<l:ResponsiveSplitter defaultPane="default">
+				<l:PaneContainer>
+					<l:SplitPane id="default">
+						<l:layoutData>
+							<l:SplitterLayoutData size="{= ${device>/system/phone} ? '100%' : '100%'}"/>
+						</l:layoutData>
+						<uxap:ObjectPageLayout useTwoColumnsForLargeScreen="true" id="ObjectPageLayout" upperCaseAnchorBar="true" showHeaderContent="false">
+							<uxap:sections>
+								<uxap:ObjectPageSection title="{i18n>ProductData}">
+									<uxap:subSections>
+										<uxap:ObjectPageSubSection titleUppercase="true">
+											<uxap:blocks>
+												<core:Fragment fragmentName="productmaster.view.subView.NPI.ProductData" type="XML"/>
+											</uxap:blocks>
+										</uxap:ObjectPageSubSection>
+									</uxap:subSections>
+								</uxap:ObjectPageSection>
+								<uxap:ObjectPageSection title="{i18n>ProductImage}">
+									<uxap:subSections>
+										<uxap:ObjectPageSubSection titleUppercase="false">
+											<uxap:blocks>
+												<core:Fragment fragmentName="productmaster.view.subView.NPI.ProductImage" type="XML"/>
+											</uxap:blocks>
+										</uxap:ObjectPageSubSection>
+									</uxap:subSections>
+								</uxap:ObjectPageSection>
+								<uxap:ObjectPageSection title="{i18n>ProductVariant}">
+									<uxap:subSections>
+										<uxap:ObjectPageSubSection titleUppercase="false">
+											<uxap:blocks>
+												<core:Fragment fragmentName="productmaster.view.subView.NPI.ProductVariant" type="XML"/>
+											</uxap:blocks>
+										</uxap:ObjectPageSubSection>
+									</uxap:subSections>
+								</uxap:ObjectPageSection>
+								<uxap:ObjectPageSection title="{i18n>ProductAttributes}">
+									<uxap:subSections>
+										<uxap:ObjectPageSubSection titleUppercase="false">
+											<uxap:blocks>
+												<core:Fragment fragmentName="productmaster.view.subView.NPI.ProductAttributes" type="XML"/>
+											</uxap:blocks>
+										</uxap:ObjectPageSubSection>
+									</uxap:subSections>
+								</uxap:ObjectPageSection>
+								<uxap:ObjectPageSection title="{i18n>Uom}">
+									<uxap:subSections>
+										<uxap:ObjectPageSubSection titleUppercase="false">
+											<uxap:blocks>
+												<core:Fragment fragmentName="productmaster.view.subView.NPI.Uom" type="XML"/>
+											</uxap:blocks>
+										</uxap:ObjectPageSubSection>
+									</uxap:subSections>
+								</uxap:ObjectPageSection>
+								<uxap:ObjectPageSection title="{i18n>Pricing}">
+									<uxap:subSections>
+										<uxap:ObjectPageSubSection titleUppercase="false">
+											<uxap:blocks>
+												<core:Fragment fragmentName="productmaster.view.subView.NPI.Pricing" type="XML"/>
+											</uxap:blocks>
+										</uxap:ObjectPageSubSection>
+									</uxap:subSections>
+								</uxap:ObjectPageSection>
+								<uxap:ObjectPageSection title="{i18n>Marketing}">
+									<uxap:subSections>
+										<uxap:ObjectPageSubSection titleUppercase="false">
+											<uxap:blocks>
+												<core:Fragment fragmentName="productmaster.view.subView.NPI.Marketing" type="XML"/>
+											</uxap:blocks>
+										</uxap:ObjectPageSubSection>
+									</uxap:subSections>
+								</uxap:ObjectPageSection>
+								<uxap:ObjectPageSection title="{i18n>Forecast}">
+									<uxap:subSections>
+										<uxap:ObjectPageSubSection titleUppercase="false">
+											<uxap:blocks>
+												<core:Fragment fragmentName="productmaster.view.subView.NPI.Forecast" type="XML"/>
+											</uxap:blocks>
+										</uxap:ObjectPageSubSection>
+									</uxap:subSections>
+								</uxap:ObjectPageSection>
+								<uxap:ObjectPageSection title="{i18n>Attachment}">
+									<uxap:subSections>
+										<uxap:ObjectPageSubSection titleUppercase="false">
+											<uxap:blocks>
+												<core:Fragment fragmentName="productmaster.view.subView.NPI.Attachment" type="XML"/>
+											</uxap:blocks>
+										</uxap:ObjectPageSubSection>
+									</uxap:subSections>
+								</uxap:ObjectPageSection>
+								<uxap:ObjectPageSection title="{i18n>Reason_Remarks}">
+									<uxap:subSections>
+										<uxap:ObjectPageSubSection titleUppercase="false">
+											<uxap:blocks>
+												<core:Fragment fragmentName="productmaster.view.subView.NPI.ReasonRemarks" type="XML"/>
+											</uxap:blocks>
+										</uxap:ObjectPageSubSection>
+									</uxap:subSections>
+								</uxap:ObjectPageSection>
+							</uxap:sections>
+						</uxap:ObjectPageLayout>
+					</l:SplitPane>
+					<!-- <l:PaneContainer orientation="Vertical" resize=".onInnerContainerResize"> -->
+					<l:SplitPane>
+						<l:layoutData>
+							<l:SplitterLayoutData size="{= ${device>/system/phone} ? '0%' : '25%'}"/>
+						</l:layoutData>
+						<Panel headerText="{i18n>NpiSideContentPanelHeader}" class="sideContentForProductImagePanelHeader sideContentForProductImage">
+							<HeaderContainer class="sapUiMediumMarginTopBottom" scrollStep="500" id="container2" content="{oLanding>/sAvatar/content}">
+								<Image src="https://m.media-amazon.com/images/I/71gm8v4uPBL._SX679_.jpg" width="100%" height="100%" press="onPressImage" decorative="false"/>
+							</HeaderContainer>
+							<HeaderContainer scrollStep="500" id="container1" content="{oLanding>/sAvatar/content}">
+								<Image src="{oLanding>src}" width="40px" height="40px" press="onPressImage" decorative="false"/>
+							</HeaderContainer>
+						</Panel>
+					</l:SplitPane>
+					<!-- </l:PaneContainer> -->
+				</l:PaneContainer>
+			</l:ResponsiveSplitter>
+		</content>
+		<footer>
+			<OverflowToolbar>
+				<Button text="Cancel"/>
+				<ToolbarSpacer/>
+				<Button text="Save" type="Emphasized"/>
+				<Button text="Submit" type="Emphasized"/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

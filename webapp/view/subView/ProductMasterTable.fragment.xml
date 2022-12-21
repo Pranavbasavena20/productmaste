@@ -1,0 +1,59 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified">
+	<!-- <ScrollContainer height="{= ${device>/system/phone}?'300px':'700px'}" width="100%" horizontal="false" vertical="true"> -->
+	<Table id="tbUserTable" width="auto" mode="None" items="{path:'ProductMasterModel>/ProductData'}" sticky="HeaderToolbar,ColumnHeaders"
+		noDataText="{i18n>noData}" growing="true" growingScrollToLoad="true" growingThreshold="20" updateFinished="onUpdateFinished">
+		<headerToolbar>
+			<Toolbar>
+				<Title text="{worklistView>/worklistTableTitle}"/>
+				<ToolbarSpacer/>
+				<Button icon="sap-icon://create" text="{i18n>NewProductIntroduction}" type="Emphasized" press="onPressNewProductIntroduction"/>
+				<Button icon="sap-icon://download" text="{i18n>Download}" tooltip="Export Product List" type="Emphasized" press="onDownload"/>
+				<Button icon="sap-icon://sort" text="{i18n>Sort}" tooltip="Sort" type="Emphasized" press="onSort"/>
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="{i18n>ProductId}"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="{i18n>ProductDesc}"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="{i18n>PackSize}"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="{i18n>CountryOfOrigin}"/>
+			</Column>
+			<!--<Column minScreenWidth="Tablet" demandPopin="true">-->
+			<!--    <Text text="{i18n>Barcode}" />-->
+			<!--</Column>-->
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="{i18n>Brand}"/>
+			</Column>
+			<Column>
+				<Text text="{i18n>ProductStatus}"/>
+			</Column>
+			<Column width="10rem" hAlign="End" popinDisplay="Inline">
+				<Text/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem type="Active" press=".onPressAction($event,'display')" vAlign="Middle">
+				<cells>
+					<Text text="{ProductMasterModel>PRODUCT_ID}"/>
+					<Text text="{ProductMasterModel>PRODUCT_SHORT_DESC}"/>
+					<Text text="{ProductMasterModel>PACK_SIZE}"/>
+					<Text text="{ProductMasterModel>COUNTRY_OF_ORIGIN}"/>
+					<Text text="{ProductMasterModel>BARCODE}"/>
+					<Text text="{ProductMasterModel>BRAND_CODE}"/>
+					<Text text="{ProductMasterModel>PRODUCT_STATUS_DESC}"/>
+					<HBox wrap="Wrap" alignItems="End">
+						<Button tooltip="{i18n>Edit}" class="sapUiTinyMarginEnd" press=".onPressAction($event,'edit')" icon="sap-icon://edit" type="Transparent"/>
+						<Button tooltip="{i18n>Delete}" press="onDeleteBtnClk" icon="sap-icon://delete" type="Transparent" class="sapUiTinyMarginEnd"/>
+					</HBox>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+	<!-- </ScrollContainer> -->
+</core:FragmentDefinition>

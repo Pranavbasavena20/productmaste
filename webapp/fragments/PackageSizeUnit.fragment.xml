@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<SelectDialog id="idPacKageSizeUnitDialogF4" noDataText="No Package Size Unit Found" title="Select Package Size Unit"
+		search=".onPackageSizeUnitSearch" confirm=".onPackageSizeUnitDialogClose" cancel=".onPackageSizeUnitDialogClose" showClearButton="true"
+		items="{ path: 'oGenericModel>/PACK_SIZE_UNIT', sorter: { path: 'ID', descending: false } }">
+		<StandardListItem selected="{oGenericModel>SELECTED}" title="{oGenericModel>UOM_DESC}" description="{oGenericModel>UOM_CODE}" type="Active"/>
+	</SelectDialog>
+</core:FragmentDefinition>

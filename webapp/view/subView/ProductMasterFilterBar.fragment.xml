@@ -1,0 +1,61 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:filterbar="sap.ui.comp.filterbar">
+	<filterbar:FilterBar persistencyKey="myPersKey" useToolbar="false" showClearOnFB="true" clear="onFilterClear" search="onSearch"
+		reset="onReset">
+		<filterbar:filterGroupItems>
+			<filterbar:FilterGroupItem groupName="G1" name="EntityId" groupTitle="{i18n>LblFILTER}" label="{i18n>ProductId}"
+				labelTooltip="{i18n>ProductId}" visibleInFilterBar="true">
+				<filterbar:control>
+					<Input placeholder="Select Product Id" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+						suggestionItems="{/ProductCollection}">
+						<suggestionItems>
+							<core:Item text="{Name}"/>
+						</suggestionItems>
+					</Input>
+				</filterbar:control>
+			</filterbar:FilterGroupItem>
+			<filterbar:FilterGroupItem groupName="G1" name="RetailerId" groupTitle="{i18n>LblFILTER}" label="{i18n>SupplierCode}"
+				labelTooltip="{i18n>SupplierCode}" visibleInFilterBar="true">
+				<filterbar:control>
+					<Input placeholder="Select Supplier Code" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+						suggestionItems="{/ProductCollection}">
+						<suggestionItems>
+							<core:Item text="{Name}"/>
+						</suggestionItems>
+					</Input>
+				</filterbar:control>
+			</filterbar:FilterGroupItem>
+			<filterbar:FilterGroupItem groupName="G1" name="TableName" groupTitle="{i18n>LblFILTER}" label="{i18n>Barcode}"
+				labelTooltip="{i18n>Barcode}" visibleInFilterBar="true">
+				<filterbar:control>
+					<Input placeholder="Enter Barcode"/>
+				</filterbar:control>
+			</filterbar:FilterGroupItem>
+			<filterbar:FilterGroupItem groupName="G1" name="TemplateName" groupTitle="{i18n>LblFILTER}" label="{i18n>Brand}" labelTooltip="{i18n>Brand}"
+				visibleInFilterBar="true">
+				<filterbar:control>
+					<Input placeholder="Select Brand" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+						suggestionItems="{/ProductCollection}">
+						<suggestionItems>
+							<core:Item text="{Name}"/>
+						</suggestionItems>
+					</Input>
+				</filterbar:control>
+			</filterbar:FilterGroupItem>
+			<filterbar:FilterGroupItem groupName="G1" name="RoleName" groupTitle="{i18n>LblFILTER}" label="{i18n>Status}" labelTooltip="{i18n>Status}"
+				visibleInFilterBar="true">
+				<filterbar:control>
+					<MultiComboBox placeholder="Select Product Status" items="{oFilterValueModel>/RoleNameList}" valueStateText="{i18n>VstROLE_NAME}"
+						selectedKeys="{oFilterModel>/ROLE_NAME}">
+						<core:Item key="{oFilterValueModel>roleId}" text="{oFilterValueModel>codeDesc}"/>
+					</MultiComboBox>
+				</filterbar:control>
+			</filterbar:FilterGroupItem>
+			<filterbar:FilterGroupItem groupName="G1" name="SubmittedOn" groupTitle="{i18n>LblFILTER}" label="{i18n>SubmiitedOn}"
+				labelTooltip="{i18n>SubmiitedOn}" visibleInFilterBar="false">
+				<filterbar:control>
+					<DateRangeSelection change="handleChange"/>
+				</filterbar:control>
+			</filterbar:FilterGroupItem>
+		</filterbar:filterGroupItems>
+	</filterbar:FilterBar>
+</core:FragmentDefinition>

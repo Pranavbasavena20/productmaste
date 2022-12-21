@@ -1,0 +1,8 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<SelectDialog id="idProductFormatDialogF4" noDataText="No Product Format Found" title="Select Product Format"
+		search=".onProductFormatSearch" confirm=".onProductFormatDialogClose" cancel=".onProductFormatDialogClose" showClearButton="true"
+		items="{ path: 'oGenericModel>/FORMAT', sorter: { path: 'OBJECT_CODE', descending: false } }">
+		<StandardListItem selected="{oGenericModel>SELECTED}" title="{oGenericModel>LABEL_CODE}" description="{oGenericModel>CODE_DESC}"
+			type="Active"/>
+	</SelectDialog>
+</core:FragmentDefinition>

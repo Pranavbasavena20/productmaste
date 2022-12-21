@@ -1,0 +1,97 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:micro="sap.suite.ui.commons" xmlns:core="sap.ui.core">
+    <form:SimpleForm width="100%" layout="ResponsiveGridLayout" labelSpanXL="8" labelSpanL="8" labelSpanM="12" columnsXL="1" columnsL="1" columnsM="1" editable="true" adjustLabelSpan="true" singleContainerFullSize="false">
+        <form:content>
+            <VBox width="100%">
+                <Table class="columnTable" id="idNPIProductAttr" width="100%" inset="false" mode="MultiSelect" items="{oNPI>/PRODUCT_ATTRIBUTE_LIST}">
+                    <headerToolbar>
+                        <OverflowToolbar>
+                            <content>
+                                <Title text="{i18n>ProductAtrributes}" />
+                                <ToolbarSpacer />
+                                <Button text="{i18n>btnAdd}" press="AddProductAtt" type="Emphasized" />
+                            </content>
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column>
+                            <Text text="{i18n>ForecastAttributeCode}" />
+                        </Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true">
+                            <Text text="{i18n>ForecastAttributeValue}" />
+                        </Column>
+                        <Column hAlign="End">
+                            <Text text="" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Input value="{oNPI>LABEL_CODE}" />
+                                <Input value="{oNPI>LABEL_CODE_VALUE}" />
+                                <Button icon="sap-icon://delete" press="onDeleteProductAttTable" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M12 S12" linebreak="true" />
+                </layoutData>
+            </VBox>
+            <core:Title text="{i18n>ProductQuality}" />
+            <VBox>
+                <Label text="{i18n>ProductTrend}" design="Bold" labelFor="taProductTrend" wrapping="true" />
+                <TextArea value="{oNPI>/PRODUCT_DATA/PRODUCT_TREND}" id="taProductTrend" fieldGroupIds="InputField" required="true" editable="true" width="100%" />
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M12 S12" linebreak="true" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>ProductOriginality}" design="Bold" labelFor="taProductOriginality" wrapping="true" />
+                <TextArea value="{oNPI>/PRODUCT_DATA/PRODUCT_ORIGINALITY}" id="taProductOriginality" required="true" editable="true" width="100%" />
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M12 S12" linebreak="true" />
+                </layoutData>
+            </VBox>
+            <VBox width="100%">
+                <Table class="columnTable" id="idNPIProductAtt3" width="100%" inset="false" mode="MultiSelect" items="{oNPI>/PRODUCT_COMPARISION}">
+                    <headerToolbar>
+                        <OverflowToolbar>
+                            <content>
+                                <Title text="{i18n>ProductComp}" />
+                                <ToolbarSpacer />
+                                <Button text="{i18n>btnAdd}" type="Emphasized" press="AddComparsion" visible="{NPIView>/bComparsion}" />
+                            </content>
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column>
+                            <Text text="{i18n>BrandName}" />
+                        </Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true">
+                            <Text text="{i18n>Packaging}" />
+                        </Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true">
+                            <Text text="{i18n>RSP}" />
+                        </Column>
+                        <Column hAlign="End">
+                            <Text text="" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <ComboBox selectedKey="{oNPI>BRAND_DESC}" />
+                                <Input value="{oNPI>PACKAGING}" />
+                                <Input value="{oNPI>SELLING_PRICE}" />
+                                <Button icon="sap-icon://delete" press="onDeleteComparsion" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M12 S12" linebreak="true" />
+                </layoutData>
+            </VBox>
+        </form:content>
+    </form:SimpleForm>
+</core:FragmentDefinition>
