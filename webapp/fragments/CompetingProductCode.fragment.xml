@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<SelectDialog id="idCompetingProductCodeDialogF4" noDataText="No Competing Product Code Found" title="SelectCompeting Product Code"
+		search=".onCompetingProductCodeSearch" confirm=".onCompetingProductCodeDialogClose" cancel=".onCompetingProductCodeDialogClose"
+		showClearButton="false" items="{ path: 'oGenericModel>/COMPETING_PRODUCT', sorter: { path: 'PRODUCT_ID', descending: false } }">
+		<StandardListItem title="{oGenericModel>PRODUCT_SHORT_DESC}" description="{oGenericModel>PRODUCT_ID}" type="Active"/>
+	</SelectDialog>
+</core:FragmentDefinition>

@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
 	<SelectDialog id="idDepartMentCodeDialogF4" noDataText="No Department Code Found" title="Select Department Code"
-		search=".onDepartMentCodeSearch" confirm=".onDepartMentCodeDialogClose" cancel=".onDepartMentCodeDialogClose" showClearButton="true"
+		search=".onDepartMentCodeSearch" confirm=".onDepartMentCodeDialogClose" cancel=".onDepartMentCodeDialogClose" showClearButton="false"
 		items="{ path: 'oGenericModel>/MCH_DEPARTMENT', sorter: { path: 'RETAILER_ID', descending: false } }">
 		<StandardListItem title="{oGenericModel>MCH_MAIN_KEY_DESC}" description="{oGenericModel>MCH_DEPT_LABEL_CODE}" type="Active"/>
 	</SelectDialog>

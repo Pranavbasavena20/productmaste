@@ -130,21 +130,6 @@
 				</layoutData>
 			</VBox>
 			<VBox>
-				<Label text="{i18n>ProductListingNotice}" design="Bold" wrapping="true" labelFor="ipProductListingNotice"/>
-				<Input value="{oNPI>/PRODUCT_DATA/PRODUCT_LISTING_NOTICE}" id="ipProductListingNotice" fieldGroupIds="InputField" required="true"
-					editable="true"/>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="true"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>ShelfLife}" design="Bold" wrapping="true" labelFor="ipShelfLife"/>
-				<Input value="{oNPI>/PRODUCT_DATA/COUNTRY_OF_ORIGIN}" id="ipShelfLife" fieldGroupIds="InputField" required="true" editable="true"/>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="false"/>
-				</layoutData>
-			</VBox>
-			<VBox>
 				<Label text="{i18n>PrivateProduct}" design="Bold" labelFor="rbPrivateProduct" wrapping="true"/>
 				<RadioButtonGroup columns="2" width="100%" id="rbPrivateProduct" fieldGroupIds="RadioButtonGroup" editable="true">
 					<RadioButton text="{i18n>Yes}"/>
@@ -327,6 +312,21 @@
 				<Input value="{oNPI>/PRODUCT_DATA/TAX_CODE}" id="ipTaxCode" fieldGroupIds="InputField" required="true" editable="true"/>
 				<layoutData>
 					<layout:GridData span="XL12 L12 M6 S12" linebreak="true"/>
+				</layoutData>
+			</VBox>
+			<VBox>
+				<Label text="{i18n>ProductListingNotice}" design="Bold" wrapping="true" labelFor="ipProductListingNotice"/>
+				<Input value="{oNPI>/PRODUCT_DATA/PRODUCT_LISTING_NOTICE}" id="ipProductListingNotice" fieldGroupIds="InputField" required="true"
+					editable="true"/>
+				<layoutData>
+					<layout:GridData span="XL12 L12 M6 S12" linebreak="true"/>
+				</layoutData>
+			</VBox>
+			<VBox>
+				<Label text="{i18n>ShelfLife}" design="Bold" wrapping="true" labelFor="ipShelfLife"/>
+				<Input value="{oNPI>/PRODUCT_DATA/COUNTRY_OF_ORIGIN}" id="ipShelfLife" fieldGroupIds="InputField" required="true" editable="true"/>
+				<layoutData>
+					<layout:GridData span="XL12 L12 M6 S12" linebreak="false"/>
 				</layoutData>
 			</VBox>
 		</form:content>

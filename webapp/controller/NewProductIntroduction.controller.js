@@ -822,7 +822,44 @@ sap.ui.define([
 					that._oClassCodeF4 = undefined;
 				}
 			},
-			// DepartMent Code Valuehelp End block
+			// Class Code Valuehelp End block
+
+			// Competing Product Code ValueHelp block
+			OnCompetingProductCodeF4: function (oEvent) {
+				var that = this;
+				that.oInput = oEvent.getSource();
+				if (!that._oCompetingProductCodeF4) {
+					that._CompetingProductCodeDialog = sap.ui.core.Fragment.load({
+						id: that.createId("_CompetingProductCodeF4"),
+						name: "productmaster.fragments.CompetingProductCode",
+						controller: that
+					}).then(function (oDialog) {
+						that._oCompetingProductCodeF4 = oDialog;
+						oDialog.setMultiSelect(false);
+						that.getView().addDependent(that._oCompetingProductCodeF4);
+					});
+				}
+				that._CompetingProductCodeDialog.then(function (oDialog) {
+					that._oCompetingProductCodeF4.open();
+				}.bind(that));
+
+			},
+			onCompetingProductCodeSearch: function (oEvent) {
+				var sValue = oEvent.getParameter("value");
+				var oFilter = new Filter("PRODUCT_SHORT_DESC", FilterOperator.Contains, sValue);
+				this._getFragmentText("_CompetingProductCodeF4", "idCompetingProductCodeDialogF4").getBinding("items").filter([oFilter]);
+			},
+			onCompetingProductCodeDialogClose: function (oEvent) {
+				var that = this;
+				if (oEvent.getParameter("selectedItem") !== undefined) {
+					that.oInput.setValue(oEvent.getParameter("selectedItem").getTitle());
+				}
+				if (that._oCompetingProductCodeF4) {
+					that._oCompetingProductCodeF4.destroy();
+					that._oCompetingProductCodeF4 = undefined;
+				}
+			},
+			//Competing Product Code Valuehelp End block
 		});
 
 	});

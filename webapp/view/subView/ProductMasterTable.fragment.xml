@@ -12,25 +12,25 @@
 			</Toolbar>
 		</headerToolbar>
 		<columns>
-			<Column>
+			<Column hAlign="Center">
 				<Text text="{i18n>ProductId}"/>
 			</Column>
-			<Column minScreenWidth="Tablet" demandPopin="true">
+			<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
 				<Text text="{i18n>ProductDesc}"/>
 			</Column>
-			<Column minScreenWidth="Tablet" demandPopin="true">
+			<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
 				<Text text="{i18n>PackSize}"/>
 			</Column>
-			<Column minScreenWidth="Tablet" demandPopin="true">
+			<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
 				<Text text="{i18n>CountryOfOrigin}"/>
 			</Column>
 			<!--<Column minScreenWidth="Tablet" demandPopin="true">-->
 			<!--    <Text text="{i18n>Barcode}" />-->
 			<!--</Column>-->
-			<Column minScreenWidth="Tablet" demandPopin="true">
+			<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
 				<Text text="{i18n>Brand}"/>
 			</Column>
-			<Column>
+			<Column hAlign="Center">
 				<Text text="{i18n>ProductStatus}"/>
 			</Column>
 			<Column width="10rem" hAlign="End" popinDisplay="Inline">

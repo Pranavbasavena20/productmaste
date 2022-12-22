@@ -11,22 +11,22 @@
 					</OverflowToolbar>
 				</headerToolbar>
 				<columns>
-					<Column >
+					<Column hAlign="Center">
 						<Text text="{i18n>S_NO}" wrapping="true"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
 						<Text text="{i18n>FULL_VARIANT_DESC}" wrapping="true"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
 						<Text text="{i18n>SHORT_VARIANT_DESC}" wrapping="true"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
 						<Text text="{i18n>PACK_SIZE}" wrapping="true"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
 						<Text text="{i18n>PACK_SIZE_UOM}" wrapping="true"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
 						<Text text="{i18n>COUNTRY_CODE}" wrapping="true"/>
 					</Column>
 					<Column hAlign="End">
@@ -62,43 +62,43 @@
 								</OverflowToolbar>
 							</headerToolbar>
 							<columns>
-								<Column >
+								<Column hAlign="Center">
 									<Text text="{i18n>Uom}" wrapping="true"/>
 								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '5rem'}">
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
 									<Text text="{i18n>UoMQuantity}" wrapping="true"/>
 								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '5rem'}">
+								<Column minScreenWidth="Tablet" hAlign="Center" demandPopin="true" width="{= ${device>/system/phone} ? '' : '5rem'}">
 									<Text text="{i18n>LowerUnit}" wrapping="true"/>
 								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '5rem'}">
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
 									<Text text="{i18n>BaseUnit}" wrapping="true"/>
 								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '5rem'}">
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
 									<Text text="{i18n>OrderUnit}" wrapping="true"/>
 								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '5rem'}">
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
 									<Text text="{i18n>Barcode}" wrapping="true"/>
 								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '5rem'}">
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
 									<Text text=" {i18n>GrossWeight}" wrapping="true"/>
 								</Column>
 								<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '5rem'}">
 									<Text text="{i18n>NetWeight}" wrapping="true"/>
 								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '5rem'}">
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
 									<Text text="{i18n>NetWeightUnit}" wrapping="true"/>
 								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '5rem'}">
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
 									<Text text="{i18n>Depth}" wrapping="true"/>
 								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '5rem'}">
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
 									<Text text="{i18n>Width}" wrapping="true"/>
 								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '5rem'}">
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
 									<Text text="{i18n>Height}" wrapping="true"/>
 								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '5rem'}">
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
 									<Text text="{i18n>Volume}" wrapping="true"/>
 								</Column>
 								<Column hAlign="End" width="{= ${device>/system/phone} ? '' : '3rem'}">
@@ -121,34 +121,34 @@
 								</OverflowToolbar>
 							</headerToolbar>
 							<columns>
-								<Column width="{= ${device>/system/phone} ? '' : '6rem'}">
+								<Column width="{= ${device>/system/phone} ? '' : '6rem'}" hAlign="Center">
 									<Text text="{i18n>SalesOrg}" wrapping="true"/>
 								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '6rem'}">
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '6rem'}">
 									<Text text="{i18n>DistributionChannel}" wrapping="true"/>
 								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '6rem'}">
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '6rem'}">
 									<Text text="{i18n>PriceType}" wrapping="true"/>
 								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '6rem'}">
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '6rem'}">
 									<Text text="{i18n>CostPrice}" wrapping="true"/>
 								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '6rem'}">
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '6rem'}">
 									<Text text="{i18n>CostPriceCurrency}" wrapping="true"/>
 								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '6rem'}">
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '6rem'}">
 									<Text text="{i18n>RSP_W_GST}" wrapping="true"/>
 								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '6rem'}">
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '6rem'}">
 									<Text text=" {i18n>RSP_No_GST}" wrapping="true"/>
 								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '6rem'}">
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '6rem'}">
 									<Text text="{i18n>GP}" wrapping="true"/>
 								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '6rem'}">
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '6rem'}">
 									<Text text="{i18n>GPPercentage}" wrapping="true"/>
 								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '6rem'}">
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '6rem'}">
 									<Text text="{i18n>BaseUnitRSP}" wrapping="true"/>
 								</Column>
 								<Column hAlign="End" width="{= ${device>/system/phone} ? '' : '6rem'}">

@@ -1,102 +1,132 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:micro="sap.suite.ui.commons" xmlns:core="sap.ui.core">
-    <form:SimpleForm width="100%" layout="ResponsiveGridLayout" labelSpanXL="8" labelSpanL="8" labelSpanM="12" columnsXL="1" columnsL="1" columnsM="1" editable="true" adjustLabelSpan="true" singleContainerFullSize="false">
-        <form:content>
-            <VBox width="100%">
-                <Table class="columnTable" id="idNPIForcast" width="100%" inset="false" mode="MultiSelect" items="{oNPI>/PRODUCT_FORECAST/FORECAST_ATTIBUTES}">
-                    <headerToolbar>
-                        <OverflowToolbar>
-                            <content>
-                                <Title text="{i18n>Attribute}" />
-                                <ToolbarSpacer />
-                                <Button text="{i18n>btnAdd}" type="Emphasized" press="AddAttribute" visible="{NPIView>/bForCastAdd}" />
-                            </content>
-                        </OverflowToolbar>
-                    </headerToolbar>
-                    <columns>
-                        <Column>
-                            <Text text="{i18n>ForecastAttributeCode}" />
-                        </Column>
-                        <Column minScreenWidth="Tablet" demandPopin="true">
-                            <Text text="{i18n>ForecastAttributeValue}" />
-                        </Column>
-                        <Column hAlign="End">
-                            <Text text="" />
-                        </Column>
-                    </columns>
-                    <items>
-                        <ColumnListItem>
-                            <cells>
-                                <Input value="{oNPI>FORECAST_ATTRIBUTE_NAME}" fieldGroupIds="InputField" required="true" editable="true" width="100%" />
-                                <Input value="{oNPI>FORECAST_ATTRIBUTE_VALUE}" fieldGroupIds="InputField" required="true" editable="true" width="100%" />
-                                <Button icon="sap-icon://delete" press="onDeleteForcastTable" />
-                            </cells>
-                        </ColumnListItem>
-                    </items>
-                </Table>
-                <layoutData>
-                    <layout:GridData span="XL12 L12 M12 S12" linebreak="true" />
-                </layoutData>
-            </VBox>
-            <VBox width="100%">
-                <Table class="columnTable" id="idNPIForcast2" width="100%" inset="false" mode="MultiSelect" items="{oNPI>/PRODUCT_FORECAST/FORECAST_MONTHS}">
-                    <headerToolbar>
-                        <OverflowToolbar>
-                            <content>
-                                <Title text="{i18n>ForecastMonth}" />
-                                <ToolbarSpacer />
-                                <Button text="{i18n>btnAdd}" press="AddForeCast" type="Emphasized" visible="{NPIView>/bForcastMonthAdd}" />
-                            </content>
-                        </OverflowToolbar>
-                    </headerToolbar>
-                    <columns>
-                        <Column>
-                            <Text text="{i18n>MonthName}" />
-                        </Column>
-                        <Column minScreenWidth="Tablet" demandPopin="true">
-                            <Text text="{i18n>MonthValue}" />
-                        </Column>
-                        <Column hAlign="End">
-                            <Text text="" />
-                        </Column>
-                    </columns>
-                    <items>
-                        <ColumnListItem>
-                            <cells>
-                                <ComboBox selectedKey="{oNPI>MONTH_NAME}" items="{oMainModel>/department}" width="100%" fieldGroupIds="ComboboxField" required="true" editable="true">
-                                    <core:Item key="{oMainModel>DEPT_CODE}" text="{oMainModel>DEPT_DESC}" />
-                                </ComboBox>
-                                <Input value="{oNPI>MONTH_VALUE}" fieldGroupIds="InputField" required="true" editable="true" width="100%" />
-                                <Button icon="sap-icon://delete" press="onDeleteForeCastTable" />
-                            </cells>
-                        </ColumnListItem>
-                    </items>
-                </Table>
-                <layoutData>
-                    <layout:GridData span="XL12 L12 M12 S12" linebreak="true" />
-                </layoutData>
-            </VBox>
-            <core:Title text="{i18n>CompetingProduct}" />
-            <VBox>
-                <Label text="{i18n>CompetingProductCode1}" design="Bold" labelFor="ipProductcode1" wrapping="true" />
-                <Input value="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRSEQID_1}" showValueHelp="true" description="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRSEQID_1_DESC}" id="ipProductcode1" fieldGroupIds="InputField" required="true" editable="true" width="100%" />
-                <layoutData>
-                    <layout:GridData span="XL6 L6 M6 S12" linebreak="false" />
-                </layoutData>
-            </VBox>
-            <VBox>
-                <Label text="{i18n>CompetingProductCode2}" design="Bold" labelFor="ipProductcode2" wrapping="true" />
-                <Input value="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_2}" id="ipProductcode2" showValueHelp="true" description="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_2_DESC}" fieldGroupIds="InputField" required="true" editable="true" width="100%" />
-                <layoutData>
-                    <layout:GridData span="XL6 L6 M6 S12" linebreak="false" />
-                </layoutData>
-            </VBox>
-            <VBox>
-                <Label text="{i18n>CompetingProductCode3}" design="Bold" labelFor="ipProductcode3" wrapping="true" />
-                <Input value="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_3}" showValueHelp="true" description="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_3_DESC}" id="ipProductcode3" fieldGroupIds="InputField" required="true" editable="true" width="100%" />
-                <layoutData>
-                    <layout:GridData span="XL6 L6 M6 S12" linebreak="true" />
-                </layoutData>
-            </VBox>
-        </form:content>
-    </form:SimpleForm>
+<core:FragmentDefinition xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:micro="sap.suite.ui.commons"
+	xmlns:core="sap.ui.core">
+	<form:SimpleForm width="100%" layout="ResponsiveGridLayout" labelSpanXL="8" labelSpanL="8" labelSpanM="12" columnsXL="1" columnsL="1"
+		columnsM="1" editable="true" adjustLabelSpan="true" singleContainerFullSize="false">
+		<form:content>
+			<VBox width="100%">
+				<Table class="columnTable" id="idNPIForcast" width="100%" inset="false" mode="MultiSelect"
+					items="{oNPI>/PRODUCT_FORECAST/FORECAST_ATTIBUTES}">
+					<headerToolbar>
+						<OverflowToolbar>
+							<content>
+								<Title text="{i18n>Attribute}"/>
+								<ToolbarSpacer/>
+								<Button text="{i18n>btnAdd}" type="Emphasized" press="AddAttribute" visible="{NPIView>/bForCastAdd}"/>
+							</content>
+						</OverflowToolbar>
+					</headerToolbar>
+					<columns>
+						<Column hAlign="Center">
+							<Text text="{i18n>ForecastAttributeCode}"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+							<Text text="{i18n>ForecastAttributeValue}"/>
+						</Column>
+						<Column hAlign="End">
+							<Text text=""/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Input value="{oNPI>FORECAST_ATTRIBUTE_NAME}" fieldGroupIds="InputField" required="true" editable="true" width="100%"/>
+								<Input value="{oNPI>FORECAST_ATTRIBUTE_VALUE}" fieldGroupIds="InputField" required="true" editable="true" width="100%"/>
+								<Button icon="sap-icon://delete" press="onDeleteForcastTable"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+				<layoutData>
+					<layout:GridData span="XL12 L12 M12 S12" linebreak="true"/>
+				</layoutData>
+			</VBox>
+			<VBox width="100%">
+				<Table class="columnTable" id="idNPIForcast2" width="100%" inset="false" mode="MultiSelect" items="{oNPI>/PRODUCT_FORECAST/FORECAST_MONTHS}">
+					<headerToolbar>
+						<OverflowToolbar>
+							<content>
+								<Title text="{i18n>ForecastMonth}"/>
+								<ToolbarSpacer/>
+								<Button text="{i18n>btnAdd}" press="AddForeCast" type="Emphasized" visible="{NPIView>/bForcastMonthAdd}"/>
+							</content>
+						</OverflowToolbar>
+					</headerToolbar>
+					<columns>
+						<Column hAlign="Center">
+							<Text text="{i18n>MonthName}"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+							<Text text="{i18n>MonthValue}"/>
+						</Column>
+						<Column hAlign="End">
+							<Text text=""/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<ComboBox selectedKey="{oNPI>MONTH_NAME}" items="{oMainModel>/department}" width="100%" fieldGroupIds="ComboboxField" required="true"
+									editable="true">
+									<core:Item key="{oMainModel>DEPT_CODE}" text="{oMainModel>DEPT_DESC}"/>
+								</ComboBox>
+								<Input value="{oNPI>MONTH_VALUE}" fieldGroupIds="InputField" required="true" editable="true" width="100%"/>
+								<Button icon="sap-icon://delete" press="onDeleteForeCastTable"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+				<layoutData>
+					<layout:GridData span="XL12 L12 M12 S12" linebreak="true"/>
+				</layoutData>
+			</VBox>
+			<core:Title text="{i18n>CompetingProduct}"/>
+			<VBox>
+				<Label text="{i18n>CompetingProductCode1}" design="Bold" labelFor="ipProductcode1" wrapping="true"/>
+				<!--<Input value="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRSEQID_1}" showValueHelp="true"-->
+				<!--	description="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRSEQID_1_DESC}" id="ipProductcode1" fieldGroupIds="InputField" required="true"-->
+				<!--	editable="true" width="100%"/>-->
+				<Input value="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRSEQID_1}" description="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRSEQID_1_DESC}"
+					showValueHelp="true" id="ipProductcode1" fieldGroupIds="InputField" required="true" editable="true"
+					suggestionItems="{oGenericModel>/COMPETING_PRODUCT}" valueHelpRequest="OnCompetingProductCodeF4" showSuggestion="true">
+					<suggestionItems>
+						<core:Item key="{oGenericModel>PRODUCT_ID}" text="{oGenericModel>PRODUCT_SHORT_DESC}"/>
+					</suggestionItems>
+				</Input>
+				<layoutData>
+					<layout:GridData span="XL6 L6 M6 S12" linebreak="false"/>
+				</layoutData>
+			</VBox>
+			<VBox>
+				<Label text="{i18n>CompetingProductCode2}" design="Bold" labelFor="ipProductcode2" wrapping="true"/>
+				<!--<Input value="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_2}" id="ipProductcode2" showValueHelp="true"-->
+				<!--	description="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_2_DESC}" fieldGroupIds="InputField" required="true" editable="true" width="100%"/>-->
+				<Input value="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_2}" description="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_2_DESC}"
+					showValueHelp="true" id="ipProductcode2" fieldGroupIds="InputField" required="true" editable="true"
+					suggestionItems="{oGenericModel>/COMPETING_PRODUCT}" valueHelpRequest="OnCompetingProductCodeF4" showSuggestion="true">
+					<suggestionItems>
+						<core:Item key="{oGenericModel>PRODUCT_ID}" text="{oGenericModel>PRODUCT_SHORT_DESC}"/>
+					</suggestionItems>
+				</Input>
+				<layoutData>
+					<layout:GridData span="XL6 L6 M6 S12" linebreak="false"/>
+				</layoutData>
+			</VBox>
+			<VBox>
+				<Label text="{i18n>CompetingProductCode3}" design="Bold" labelFor="ipProductcode3" wrapping="true"/>
+				<!--<Input value="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_3}" showValueHelp="true"-->
+				<!--	description="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_3_DESC}" id="ipProductcode3" fieldGroupIds="InputField" required="true"-->
+				<!--	editable="true" width="100%"/>-->
+				<Input value="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_3}" description="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_3_DESC}"
+					showValueHelp="true" id="ipProductcode3" fieldGroupIds="InputField" required="true" editable="true"
+					suggestionItems="{oGenericModel>/COMPETING_PRODUCT}" valueHelpRequest="OnCompetingProductCodeF4" showSuggestion="true">
+					<suggestionItems>
+						<core:Item key="{oGenericModel>PRODUCT_ID}" text="{oGenericModel>PRODUCT_SHORT_DESC}"/>
+					</suggestionItems>
+				</Input>
+				<layoutData>
+					<layout:GridData span="XL6 L6 M6 S12" linebreak="true"/>
+				</layoutData>
+			</VBox>
+		</form:content>
+	</form:SimpleForm>
 </core:FragmentDefinition>
