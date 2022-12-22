@@ -6,11 +6,12 @@ sap.ui.define([
 		"sap/ui/core/Fragment",
 		"sap/ui/model/Filter",
 		"sap/ui/model/FilterOperator",
+		"sap/m/MessageBox",
 	],
 	/**
 	 * @param {typeof sap.ui.core.mvc.Controller} Controller
 	 */
-	function (Controller, JSONModel, dataUtil, UIComponent, Fragment, Filter, FilterOperator) {
+	function (Controller, JSONModel, dataUtil, UIComponent, Fragment, Filter, FilterOperator, MessageBox) {
 		"use strict";
 
 		return Controller.extend("productmaster.controller.NewProductIntroduction", {
@@ -27,7 +28,9 @@ sap.ui.define([
 				var oViewModel = new sap.ui.model.json.JSONModel({
 					bForCastAdd: true,
 					bForcastMonthAdd: true,
-					bComparsion: true
+					bComparsion: true,
+					bProductVarainat: false,
+					bMerchandise: false
 				});
 				this.getOwnerComponent().setModel(oViewModel, "NPIView");
 				var oModelSizes = new sap.ui.model.json.JSONModel({
@@ -147,6 +150,14 @@ sap.ui.define([
 
 				this.getView().setModel(oModel, "oLanding");
 
+			},
+			onChangeProductCat: function (oEvent) {
+
+				if (oEvent.getSource().getSelectedKey() === "Product With Variant") {
+					this.getView().getModel("NPIView").setProperty("/bProductVarainat", true);
+				} else {
+					this.getView().getModel("NPIView").setProperty("/bProductVarainat", false);
+				}
 			},
 			onGetVolume: function (oEvent) {
 				var oObject = oEvent.getSource().getBindingContext("oNPI").getObject(),
@@ -607,6 +618,7 @@ sap.ui.define([
 			// Package Size Unit ValueHelp block
 			OnPackageSizeUnitF4: function (oEvent) {
 				var that = this;
+				that.oPackageInput = oEvent.getSource();
 				if (!that._oPacKageSizeUnitF4) {
 					that._PacKageSizeUnitDialog = sap.ui.core.Fragment.load({
 						id: that.createId("_PacKageSizeUnitF4"),
@@ -646,7 +658,7 @@ sap.ui.define([
 			onPackageSizeUnitDialogClose: function (oEvent) {
 				var that = this;
 				if (oEvent.getParameter("selectedItem") !== undefined) {
-					this.getView().byId("ipPackSizeUnit").setValue(oEvent.getParameter("selectedItem").getTitle());
+					that.oPackageInput.setValue(oEvent.getParameter("selectedItem").getTitle());
 				}
 				if (that._oPacKageSizeUnitF4) {
 					that._oPacKageSizeUnitF4.destroy();
@@ -721,6 +733,7 @@ sap.ui.define([
 			// Main Key ValueHelp block
 			OnMainKeyF4: function (oEvent) {
 				var that = this;
+				that.oMainKey = oEvent.getSource();
 				if (!that._oMainKeyF4) {
 					that._MainKeyDialog = sap.ui.core.Fragment.load({
 						id: that.createId("_MainKeyF4"),
@@ -745,7 +758,7 @@ sap.ui.define([
 			onMainKeyDialogClose: function (oEvent) {
 				var that = this;
 				if (oEvent.getParameter("selectedItem") !== undefined) {
-					this.getView().byId("ipMainKey").setValue(oEvent.getParameter("selectedItem").getTitle());
+					that.oMainKey.setValue(oEvent.getParameter("selectedItem").getTitle());
 				}
 				if (that._oMainKeyF4) {
 					that._oMainKeyF4.destroy();
@@ -756,6 +769,7 @@ sap.ui.define([
 			// DepartMent Code ValueHelp block
 			OnDepartMentCodeF4: function (oEvent) {
 				var that = this;
+				that.oDepartment = oEvent.getSource();
 				if (!that._oDepartMentCodeF4) {
 					that._DepartMentDialog = sap.ui.core.Fragment.load({
 						id: that.createId("_DepartMentCodeF4"),
@@ -780,7 +794,7 @@ sap.ui.define([
 			onDepartMentCodeDialogClose: function (oEvent) {
 				var that = this;
 				if (oEvent.getParameter("selectedItem") !== undefined) {
-					this.getView().byId("ipDepartmentCode").setValue(oEvent.getParameter("selectedItem").getTitle());
+					that.oDepartment.setValue(oEvent.getParameter("selectedItem").getTitle());
 				}
 				if (that._oDepartMentCodeF4) {
 					that._oDepartMentCodeF4.destroy();
@@ -791,6 +805,7 @@ sap.ui.define([
 			// Class Node ValueHelp block
 			OnClassNodeF4: function (oEvent) {
 				var that = this;
+				that.oClassCode = oEvent.getSource();
 				if (!that._oClassCodeF4) {
 					that._ClassCodeDialog = sap.ui.core.Fragment.load({
 						id: that.createId("_ClassCodeF4"),
@@ -815,7 +830,7 @@ sap.ui.define([
 			onClassCodeDialogClose: function (oEvent) {
 				var that = this;
 				if (oEvent.getParameter("selectedItem") !== undefined) {
-					this.getView().byId("ipClassCode").setValue(oEvent.getParameter("selectedItem").getTitle());
+					that.oClassCode.setValue(oEvent.getParameter("selectedItem").getTitle());
 				}
 				if (that._oClassCodeF4) {
 					that._oClassCodeF4.destroy();
@@ -932,6 +947,89 @@ sap.ui.define([
 				}
 			},
 			//Weight Unit  Valuehelp End block
+			// Country ValueHelp block
+			OnCountryF4: function (oEvent) {
+				var that = this;
+				that.oInput = oEvent.getSource();
+				if (!that._oCountryF4) {
+					that._CountryDialog = sap.ui.core.Fragment.load({
+						id: that.createId("_CountryF4"),
+						name: "productmaster.fragments.Country",
+						controller: that
+					}).then(function (oDialog) {
+						that._oCountryF4 = oDialog;
+						oDialog.setMultiSelect(false);
+						that.getView().addDependent(that._oCountryF4);
+					});
+				}
+				that._CountryDialog.then(function (oDialog) {
+					that._oCountryF4.open();
+				}.bind(that));
+
+			},
+			onCountrySearch: function (oEvent) {
+				var sValue = oEvent.getParameter("value");
+				var oFilter = new Filter("COUNTRY_NAME", FilterOperator.Contains, sValue);
+				this._getFragmentText("_CountryF4", "idCountryDialogF4").getBinding("items").filter([oFilter]);
+			},
+			onCountryDialogClose: function (oEvent) {
+				var that = this;
+				if (oEvent.getParameter("selectedItem") !== undefined) {
+					that.oInput.setValue(oEvent.getParameter("selectedItem").getTitle());
+				}
+				if (that._oCountryF4) {
+					that._oCountryF4.destroy();
+					that._oCountryF4 = undefined;
+				}
+			},
+			//Country  Valuehelp End block
+			// Currency ValueHelp block
+			OnCurrencyF4: function (oEvent) {
+				var that = this;
+				that.oInput = oEvent.getSource();
+				if (!that._oCurrencyF4) {
+					that._CurrencyDialog = sap.ui.core.Fragment.load({
+						id: that.createId("_CurrencyF4"),
+						name: "productmaster.fragments.Currency",
+						controller: that
+					}).then(function (oDialog) {
+						that._oCurrencyF4 = oDialog;
+						oDialog.setMultiSelect(false);
+						that.getView().addDependent(that._oCurrencyF4);
+					});
+				}
+				that._CurrencyDialog.then(function (oDialog) {
+					that._oCurrencyF4.open();
+				}.bind(that));
+
+			},
+			onCurrencySearch: function (oEvent) {
+				var sValue = oEvent.getParameter("value");
+				var oFilter = new Filter("CURRENCY_DESC", FilterOperator.Contains, sValue);
+				this._getFragmentText("_CurrencyF4", "idCurrencyDialogF4").getBinding("items").filter([oFilter]);
+			},
+			onCurrencyDialogClose: function (oEvent) {
+				var that = this;
+				if (oEvent.getParameter("selectedItem") !== undefined) {
+					that.oInput.setValue(oEvent.getParameter("selectedItem").getTitle());
+				}
+				if (that._oCurrencyF4) {
+					that._oCurrencyF4.destroy();
+					that._oCurrencyF4 = undefined;
+				}
+			},
+			//Currency  Valuehelp End block
+			onCancel: function (oEvent) {
+				history.go(-1);
+			},
+			onSave: function (oEvent) {
+				MessageBox.success("Saved Successfully!");
+				console.log(this.getView().getModel("oNPI").getData());
+			},
+			onSubmit: function (oEvent) {
+				MessageBox.success("Submitted Successfully!");
+				console.log(this.getView().getModel("oNPI").getData());
+			},
 		});
 
 	});

@@ -10,7 +10,7 @@
 							<content>
 								<Title text="{i18n>ProductAtrributes}"/>
 								<ToolbarSpacer/>
-								<Button text="{i18n>btnAdd}" press="AddProductAtt" type="Emphasized"/>
+								<Button icon="sap-icon://add" text="{i18n>btnAdd}" press="AddProductAtt" type="Emphasized"/>
 							</content>
 						</OverflowToolbar>
 					</headerToolbar>
@@ -62,7 +62,7 @@
 							<content>
 								<Title text="{i18n>ProductComp}"/>
 								<ToolbarSpacer/>
-								<Button text="{i18n>btnAdd}" type="Emphasized" press="AddComparsion" visible="{NPIView>/bComparsion}"/>
+								<Button icon="sap-icon://add" text="{i18n>btnAdd}" type="Emphasized" press="AddComparsion" visible="{NPIView>/bComparsion}"/>
 							</content>
 						</OverflowToolbar>
 					</headerToolbar>

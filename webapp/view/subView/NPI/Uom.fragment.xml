@@ -15,7 +15,7 @@
                 </OverflowToolbar>
             </headerToolbar> -->
 				<columns>
-					<Column width="{= ${device>/system/phone} ? '' : '6rem'}" hAlign="Center">
+					<Column hAlign="Center">
 						<Text text="{i18n>Uom}" wrapping="true"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '5rem'}" hAlign="Center">

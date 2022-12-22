@@ -19,6 +19,15 @@
 										</uxap:ObjectPageSubSection>
 									</uxap:subSections>
 								</uxap:ObjectPageSection>
+								<uxap:ObjectPageSection title="{i18n>MerchandiseCategoryHierarchy}" visible="{NPIView>/bMerchandise}">
+									<uxap:subSections>
+										<uxap:ObjectPageSubSection titleUppercase="true">
+											<uxap:blocks>
+												<core:Fragment fragmentName="productmaster.view.subView.NPI.MerchandiseCategoryHierarchy" type="XML"/>
+											</uxap:blocks>
+										</uxap:ObjectPageSubSection>
+									</uxap:subSections>
+								</uxap:ObjectPageSection>
 								<uxap:ObjectPageSection title="{i18n>ProductImage}">
 									<uxap:subSections>
 										<uxap:ObjectPageSubSection titleUppercase="false">
@@ -28,7 +37,7 @@
 										</uxap:ObjectPageSubSection>
 									</uxap:subSections>
 								</uxap:ObjectPageSection>
-								<uxap:ObjectPageSection title="{i18n>ProductVariant}">
+								<uxap:ObjectPageSection title="{i18n>ProductVariant}" visible="{NPIView>/bProductVarainat}">
 									<uxap:subSections>
 										<uxap:ObjectPageSubSection titleUppercase="false">
 											<uxap:blocks>
@@ -123,10 +132,10 @@
 		</content>
 		<footer>
 			<OverflowToolbar>
-				<Button text="Cancel"/>
+				<Button text="Cancel" press="onCancel"/>
 				<ToolbarSpacer/>
-				<Button text="Save" type="Emphasized"/>
-				<Button text="Submit" type="Emphasized"/>
+				<Button text="Save" type="Emphasized" press="onSave"/>
+				<Button text="Submit" type="Emphasized" press="onSubmit"/>
 			</OverflowToolbar>
 		</footer>
 	</Page>

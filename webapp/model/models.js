@@ -28,6 +28,66 @@ sap.ui.define([
 						"PRODUCT_STATUS": "2",
 						"PRODUCT_STATUS_DESC": "SUBMIT"
 					}],
+					"MONTH": [{
+						"MONTH_ID": 0,
+						"MONTH_NAME": "JAN"
+					}, {
+						"MONTH_ID": 1,
+						"MONTH_NAME": "FEB"
+					}, {
+						"MONTH_ID": 3,
+						"MONTH_NAME": "MAR"
+					}, {
+						"MONTH_ID": 4,
+						"MONTH_NAME": "APR"
+					}, {
+						"MONTH_ID": 5,
+						"MONTH_NAME": "MAY"
+					}],
+					"CURRENCY": [{
+						"RETAILER_ID": 1,
+						"CURRENCY_CODE": "INR",
+						"CURRENCY_NAME": "Indian Rupee",
+						"CURRENCY_DESC": "Indian Currency",
+						"ACTIVE": true
+					}, {
+						"RETAILER_ID": 1,
+						"CURRENCY_CODE": "SGD",
+						"CURRENCY_NAME": "Singapore Dollar",
+						"CURRENCY_DESC": "Singapore Dollar Currency",
+						"ACTIVE": true
+					}],
+					"MEDIA_TYPE": [{
+						"OBJECT_ID": 40,
+						"RETAILER_ID": 1,
+						"OBJECT_TYPE": "MEDIA_TYPE",
+						"OBJECT_CODE": 1,
+						"PH_TYPE": "",
+						"LABEL_CODE": "RAD",
+						"CODE_DESC": "Radio",
+						"VALID_FROM": "2022-11-12",
+						"VALID_TO": "9999-12-31"
+					}, {
+						"OBJECT_ID": 41,
+						"RETAILER_ID": 1,
+						"OBJECT_TYPE": "MEDIA_TYPE",
+						"OBJECT_CODE": 2,
+						"PH_TYPE": "",
+						"LABEL_CODE": "TV",
+						"CODE_DESC": "Television",
+						"VALID_FROM": "2022-11-12",
+						"VALID_TO": "9999-12-31"
+					}, {
+						"OBJECT_ID": 42,
+						"RETAILER_ID": 1,
+						"OBJECT_TYPE": "MEDIA_TYPE",
+						"OBJECT_CODE": 3,
+						"PH_TYPE": "",
+						"LABEL_CODE": "NWP",
+						"CODE_DESC": "News Paper",
+						"VALID_FROM": "2022-11-12",
+						"VALID_TO": "9999-12-31"
+					}],
 					"PRODUCT_CATEGORY": [{
 						"OBJECT_ID": 1,
 						"RETAILER_ID": 1,

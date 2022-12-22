@@ -11,7 +11,7 @@
 							<content>
 								<Title text="{i18n>Attribute}"/>
 								<ToolbarSpacer/>
-								<Button text="{i18n>btnAdd}" type="Emphasized" press="AddAttribute" visible="{NPIView>/bForCastAdd}"/>
+								<Button icon="sap-icon://add" text="{i18n>btnAdd}" type="Emphasized" press="AddAttribute" visible="{NPIView>/bForCastAdd}"/>
 							</content>
 						</OverflowToolbar>
 					</headerToolbar>
@@ -47,7 +47,7 @@
 							<content>
 								<Title text="{i18n>ForecastMonth}"/>
 								<ToolbarSpacer/>
-								<Button text="{i18n>btnAdd}" press="AddForeCast" type="Emphasized" visible="{NPIView>/bForcastMonthAdd}"/>
+								<Button icon="sap-icon://add" text="{i18n>btnAdd}" press="AddForeCast" type="Emphasized" visible="{NPIView>/bForcastMonthAdd}"/>
 							</content>
 						</OverflowToolbar>
 					</headerToolbar>
@@ -65,9 +65,9 @@
 					<items>
 						<ColumnListItem>
 							<cells>
-								<ComboBox selectedKey="{oNPI>MONTH_NAME}" items="{oMainModel>/department}" width="100%" fieldGroupIds="ComboboxField" required="true"
+								<ComboBox selectedKey="{oNPI>MONTH_NAME}" items="{oGenericModel>/MONTH}" width="100%" fieldGroupIds="ComboboxField" required="true"
 									editable="true">
-									<core:Item key="{oMainModel>DEPT_CODE}" text="{oMainModel>DEPT_DESC}"/>
+									<core:Item key="{oGenericModel>MONTH_ID}" text="{oGenericModel>MONTH_NAME}"/>
 								</ComboBox>
 								<Input value="{oNPI>MONTH_VALUE}" fieldGroupIds="InputField" required="true" editable="true" width="100%"/>
 								<Button icon="sap-icon://delete" press="onDeleteForeCastTable"/>

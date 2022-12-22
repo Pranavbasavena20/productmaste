@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<SelectDialog id="idCurrencyDialogF4" noDataText="No Currency Found" title="Select Currency" search=".onCurrencySearch"
+		confirm=".onCurrencyDialogClose" cancel=".onCurrencyDialogClose" showClearButton="false"
+		items="{ path: 'oGenericModel>/CURRENCY', sorter: { path: 'COUNTRY_CODE', descending: false } }">
+		<StandardListItem title="{oGenericModel>CURRENCY_DESC}" description="{oGenericModel>CURRENCY_CODE}" type="Active"/>
+	</SelectDialog>
+</core:FragmentDefinition>

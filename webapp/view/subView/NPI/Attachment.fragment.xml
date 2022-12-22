@@ -5,9 +5,9 @@
 		<form:content>
 			<VBox>
 				<Label text="{i18n>AttachmentType}" design="Bold" labelFor="ipAttType" wrapping="true"/>
-				<ComboBox selectedKey="{oNPI>/PRODUCT_ATTACHMENT_FORM/ATTACHMENT_TYPE}" items="{oMainModel>/businessCode}" width="100%" id="ipAttType"
+				<ComboBox selectedKey="{oNPI>/PRODUCT_ATTACHMENT_FORM/ATTACHMENT_TYPE}" items="{oGenericModel>/ATTACHMENT_TYPE}" width="100%" id="ipAttType"
 					fieldGroupIds="ComboboxField" required="true" editable="true">
-					<core:Item key="{oMainModel>BUS_CODE}" text="{oMainModel>CODE_DESC}"/>
+					<core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}"/>
 				</ComboBox>
 				<layoutData>
 					<layout:GridData span="XL6 L6 M6 S12" linebreak="false"/>
@@ -30,7 +30,7 @@
 				</layoutData>
 			</VBox>
 			<VBox>
-				<upload:UploadSet class="button1 header2"/>
+				<upload:UploadSet class="button1 header2" multiple="true"/>
 				<layoutData>
 					<layout:GridData span="XL12 L12 M12 S12" linebreak="false"/>
 				</layoutData>

@@ -30,7 +30,7 @@
 						<OverflowToolbar>
 							<content>
 								<ToolbarSpacer/>
-								<Button text="{i18n>btnAdd}" type="Emphasized" press="AddMarketing"/>
+								<Button icon="sap-icon://add" text="{i18n>btnAdd}" type="Emphasized" press="AddMarketing"/>
 							</content>
 						</OverflowToolbar>
 					</headerToolbar>
@@ -57,9 +57,9 @@
 					<items>
 						<ColumnListItem>
 							<cells>
-								<ComboBox selectedKey="{oNPI>MEDIA_TYPE}" items="{oMainModel>/businessCode}" width="100%" fieldGroupIds="ComboboxField" required="true"
+								<ComboBox selectedKey="{oNPI>MEDIA_TYPE}" items="{oGenericModel>/businessCode}" width="100%" fieldGroupIds="ComboboxField" required="true"
 									editable="true">
-									<core:Item key="{oMainModel>BUS_CODE}" text="{oMainModel>CODE_DESC}"/>
+									<core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}"/>
 								</ComboBox>
 								<Input value="{oNPI>AMOUNT}" fieldGroupIds="InputField" required="true" editable="true" width="100%"/>
 								<Input value="{oNPI>FREQUENCY}" fieldGroupIds="InputField" required="true" editable="true" width="100%"/>
@@ -81,7 +81,7 @@
 							<content>
 								<Title text="{i18n>ProductListingWithOtherRetailer}" level="H2"/>
 								<ToolbarSpacer/>
-								<Button text="{i18n>btnAdd}" type="Emphasized" press="AddProposedListing"/>
+								<Button icon="sap-icon://add" text="{i18n>btnAdd}" type="Emphasized" press="AddProposedListing"/>
 							</content>
 						</OverflowToolbar>
 					</headerToolbar>

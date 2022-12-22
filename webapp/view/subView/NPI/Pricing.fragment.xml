@@ -68,7 +68,13 @@
 							</ComboBox>
 							<!--<ComboBox selectedKey="{oNPI>PRICE_TYPE}"/>-->
 							<Input value="{oNPI>UNIT_COST_PRICE}"/>
-							<Input value="{oNPI>CP_CURRENCY}" showValueHelp="true"/>
+							<!--<Input value="{oNPI>CP_CURRENCY}" showValueHelp="true"/>-->
+							<Input value="{oNPI>CP_CURRENCY}" showValueHelp="true" fieldGroupIds="InputField" required="true" editable="true"
+								suggestionItems="{oGenericModel>/CURRENCY}" valueHelpRequest="OnCurrencyF4" showSuggestion="true">
+								<suggestionItems>
+									<core:Item key="{oGenericModel>CURRENCY_CODE}" text="{oGenericModel>CURRENCY_DESC}"/>
+								</suggestionItems>
+							</Input>
 							<Input value="{oNPI>SP_W_GST}"/>
 							<Text text="{oNPI>SP_NO_GST}"/>
 							<Text text="{oNPI>GP}"/>
