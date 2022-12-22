@@ -860,6 +860,78 @@ sap.ui.define([
 				}
 			},
 			//Competing Product Code Valuehelp End block
+			// Brand Code ValueHelp block
+			OnBrandCodeF4: function (oEvent) {
+				var that = this;
+				that.oInput = oEvent.getSource();
+				if (!that._oBrandCodeF4) {
+					that._BrandCodeDialog = sap.ui.core.Fragment.load({
+						id: that.createId("_BrandCodeF4"),
+						name: "productmaster.fragments.BrandCode",
+						controller: that
+					}).then(function (oDialog) {
+						that._oBrandCodeF4 = oDialog;
+						oDialog.setMultiSelect(false);
+						that.getView().addDependent(that._oBrandCodeF4);
+					});
+				}
+				that._BrandCodeDialog.then(function (oDialog) {
+					that._oBrandCodeF4.open();
+				}.bind(that));
+
+			},
+			onBrandCodeSearch: function (oEvent) {
+				var sValue = oEvent.getParameter("value");
+				var oFilter = new Filter("BRAND_GROUP_DESC", FilterOperator.Contains, sValue);
+				this._getFragmentText("_BrandCodeF4", "idBrandCodeDialogF4").getBinding("items").filter([oFilter]);
+			},
+			onBrandCodeDialogClose: function (oEvent) {
+				var that = this;
+				if (oEvent.getParameter("selectedItem") !== undefined) {
+					that.oInput.setValue(oEvent.getParameter("selectedItem").getTitle());
+				}
+				if (that._oBrandCodeF4) {
+					that._oBrandCodeF4.destroy();
+					that._oBrandCodeF4 = undefined;
+				}
+			},
+			//Brand Product Code Valuehelp End block
+			// Weight Unit ValueHelp block
+			OnWeightUnitF4: function (oEvent) {
+				var that = this;
+				that.oInput = oEvent.getSource();
+				if (!that._oWeightUnitF4) {
+					that._WeightunitDialog = sap.ui.core.Fragment.load({
+						id: that.createId("_WeightUnitF4"),
+						name: "productmaster.fragments.WeightUnit",
+						controller: that
+					}).then(function (oDialog) {
+						that._oWeightUnitF4 = oDialog;
+						oDialog.setMultiSelect(false);
+						that.getView().addDependent(that._oWeightUnitF4);
+					});
+				}
+				that._WeightunitDialog.then(function (oDialog) {
+					that._oWeightUnitF4.open();
+				}.bind(that));
+
+			},
+			onWeightUnitSearch: function (oEvent) {
+				var sValue = oEvent.getParameter("value");
+				var oFilter = new Filter("CODE_DESC", FilterOperator.Contains, sValue);
+				this._getFragmentText("_WeightUnitF4", "idWeightUnitDialogF4").getBinding("items").filter([oFilter]);
+			},
+			onWeightUnitDialogClose: function (oEvent) {
+				var that = this;
+				if (oEvent.getParameter("selectedItem") !== undefined) {
+					that.oInput.setValue(oEvent.getParameter("selectedItem").getTitle());
+				}
+				if (that._oWeightUnitF4) {
+					that._oWeightUnitF4.destroy();
+					that._oWeightUnitF4 = undefined;
+				}
+			},
+			//Weight Unit  Valuehelp End block
 		});
 
 	});

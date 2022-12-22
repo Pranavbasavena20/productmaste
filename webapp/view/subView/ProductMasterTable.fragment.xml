@@ -44,7 +44,7 @@
 					<Text text="{ProductMasterModel>PRODUCT_SHORT_DESC}"/>
 					<Text text="{ProductMasterModel>PACK_SIZE}"/>
 					<Text text="{ProductMasterModel>COUNTRY_OF_ORIGIN}"/>
-					<Text text="{ProductMasterModel>BARCODE}"/>
+					<!--<Text text="{ProductMasterModel>BARCODE}"/>-->
 					<Text text="{ProductMasterModel>BRAND_CODE}"/>
 					<Text text="{ProductMasterModel>PRODUCT_STATUS_DESC}"/>
 					<HBox wrap="Wrap" alignItems="End">

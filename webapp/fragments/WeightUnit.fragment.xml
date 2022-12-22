@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<SelectDialog id="idWeightUnitDialogF4" noDataText="No Weight Unit Found" title="Select Weight Unit" search=".onWeightUnitSearch"
+		confirm=".onWeightUnitDialogClose" cancel=".onWeightUnitDialogClose" showClearButton="false"
+		items="{ path: 'oGenericModel>/WEIGHT_UNIT', sorter: { path: 'RETAILER_ID', descending: false } }">
+		<StandardListItem title="{oGenericModel>CODE_DESC}" description="{oGenericModel>LABEL_CODE}" type="Active"/>
+	</SelectDialog>
+</core:FragmentDefinition>

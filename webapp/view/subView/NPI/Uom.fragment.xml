@@ -72,7 +72,13 @@
 							<Input value="{oNPI>BARCODE}"/>
 							<Input value="{oNPI>WEIGHT}"/>
 							<Input value="{oNPI>NET_WEIGHT}"/>
-							<Input value="{oNPI>WT_UNIT}"/>
+							<!--<Input value="{oNPI>WT_UNIT}"/>-->
+							<Input value="{oNPI>WT_UNIT}" showValueHelp="true" fieldGroupIds="InputField" required="true" editable="true"
+								suggestionItems="{oGenericModel>/WEIGHT_UNIT}" valueHelpRequest="OnWeightUnitF4" showSuggestion="true">
+								<suggestionItems>
+									<core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}"/>
+								</suggestionItems>
+							</Input>
 							<Input value="{oNPI>DEPTH}"/>
 							<Input value="{oNPI>WIDTH}"/>
 							<Input value="{oNPI>HEIGHT}"/>

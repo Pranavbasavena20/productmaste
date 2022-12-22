@@ -83,7 +83,14 @@
 					<items>
 						<ColumnListItem>
 							<cells>
-								<ComboBox selectedKey="{oNPI>BRAND_DESC}"/>
+								<!--<ComboBox selectedKey="{oNPI>BRAND_DESC}"/>-->
+								<!--<Input value="{oNPI>BRAND_DESC}"/>-->
+								<Input value="{oNPI>BRAND_DESC}" showValueHelp="true" fieldGroupIds="InputField" required="true" editable="true"
+									suggestionItems="{oGenericModel>/BRAND_GROUP}" valueHelpRequest="OnBrandCodeF4" showSuggestion="true">
+									<suggestionItems>
+										<core:Item key="{oGenericModel>BRAND_GROUP_LABEL_CODE}" text="{oGenericModel>BRAND_GROUP_DESC}"/>
+									</suggestionItems>
+								</Input>
 								<Input value="{oNPI>PACKAGING}"/>
 								<Input value="{oNPI>SELLING_PRICE}"/>
 								<Button icon="sap-icon://delete" press="onDeleteComparsion"/>

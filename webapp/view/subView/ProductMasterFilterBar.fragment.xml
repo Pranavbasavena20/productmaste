@@ -1,6 +1,5 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:filterbar="sap.ui.comp.filterbar">
-	<filterbar:FilterBar persistencyKey="myPersKey" useToolbar="false" showClearOnFB="true" clear="onFilterClear" search="onSearch"
-		reset="onReset">
+	<filterbar:FilterBar persistencyKey="myPersKey" useToolbar="false" showClearOnFB="true" clear="onFilterClear" search="onSearchTable">
 		<filterbar:filterGroupItems>
 			<filterbar:FilterGroupItem groupName="G1" name="EntityId" groupTitle="{i18n>LblFILTER}" label="{i18n>ProductId}"
 				labelTooltip="{i18n>ProductId}" visibleInFilterBar="true">
@@ -44,9 +43,9 @@
 			<filterbar:FilterGroupItem groupName="G1" name="RoleName" groupTitle="{i18n>LblFILTER}" label="{i18n>Status}" labelTooltip="{i18n>Status}"
 				visibleInFilterBar="true">
 				<filterbar:control>
-					<MultiComboBox placeholder="Select Product Status" items="{oFilterValueModel>/RoleNameList}" valueStateText="{i18n>VstROLE_NAME}"
-						selectedKeys="{oFilterModel>/ROLE_NAME}">
-						<core:Item key="{oFilterValueModel>roleId}" text="{oFilterValueModel>codeDesc}"/>
+					<MultiComboBox id="idProductStatus" placeholder="Select Product Status" items="{oGenericModel>/STATUS}"
+						selectedKeys="{worklistView>/Status}">
+						<core:Item key="{oGenericModel>PRODUCT_STATUS}" text="{oGenericModel>PRODUCT_STATUS_DESC}"/>
 					</MultiComboBox>
 				</filterbar:control>
 			</filterbar:FilterGroupItem>

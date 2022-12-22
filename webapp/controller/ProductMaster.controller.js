@@ -21,6 +21,28 @@ sap.ui.define([
 				var oModel = new JSONModel();
 				oModel.loadData("./model/ProductData.json", null, false);
 				this.getView().setModel(oModel, "ProductMasterModel");
+				var oViewModel = new JSONModel({
+					worklistTableTitle: this.getResourceBundle().getText("worklistTableTitle"),
+					tableNoDataText: this.getResourceBundle().getText("tableNoDataText"),
+					Status: "1"
+				});
+				this.getOwnerComponent().setModel(oViewModel, "worklistView");
+				this.onSearchTable("onInit");
+			},
+			onUpdateFinished: function (oEvent) {
+				var that = this,
+					// update the worklist's object counter after the table update
+					sTitle,
+					oTable = oEvent.getSource(),
+					iTotalItems = oEvent.getParameter("total");
+				// only update the counter if the length is final and
+				// the table is not empty
+				if (iTotalItems && oTable.getBinding("items").isLengthFinal()) {
+					sTitle = that.getResourceBundle().getText("worklistTableTitleCount", [iTotalItems]);
+				} else {
+					sTitle = that.getResourceBundle().getText("worklistTableTitle");
+				}
+				that.getOwnerComponent().getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
 			},
 			onDownload: function (oEvent) {
 				var aCols, aProducts, oSettings, oSheet;
@@ -81,5 +103,41 @@ sap.ui.define([
 			getRouter: function () {
 				return UIComponent.getRouterFor(this);
 			},
+			getResourceBundle: function () {
+				return this.getOwnerComponent().getModel("i18n").getResourceBundle();
+			},
+			onSearchTable: function (oEvent) {
+				if (oEvent === "onInit") {
+					this.getView().byId("idProductStatus").setSelectedKeys(["1"]);
+				}
+				var that = this,
+					oView = that.getView(),
+					oViewModel = this.getOwnerComponent().getModel("worklistView"),
+					aStatus = this.getView().byId("idProductStatus").getSelectedKeys();
+				var aTableSearchState = [],
+					aStatusFilter = [];
+				if (aStatus && aStatus.length > 0) {
+					for (var i = 0; i < aStatus.length; i++) {
+						aStatusFilter.push(new Filter("PRODUCT_STATUS", FilterOperator.EQ, aStatus[i]));
+					}
+					aTableSearchState.push(new Filter(aStatusFilter, false));
+				}
+				that._applySearch(aTableSearchState);
+
+			},
+			_applySearch: function (aTableSearchState) {
+				var that = this;
+				var oTable = that.getView().byId("tbUserTable"),
+					oViewModel = that.getOwnerComponent().getModel("worklistView");
+				oTable.getBinding("items").filter(aTableSearchState, "Application");
+				// changes the noDataText of the list in case there are no filter results
+				if (aTableSearchState.length !== 0) {
+					oViewModel.setProperty("/tableNoDataText", that.getResourceBundle().getText("worklistNoDataWithSearchText"));
+				}
+			},
+			onFilterClear: function (oEvent) {
+				this.getView().byId("idProductStatus").setSelectedKeys([]);
+				this.onSearchTable();
+			}
 		});
 	});

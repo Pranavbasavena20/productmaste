@@ -21,6 +21,13 @@ sap.ui.define([
 			},
 			fnGenericModel: function () {
 				var oGenericModel = new JSONModel({
+					"STATUS": [{
+						"PRODUCT_STATUS": "1",
+						"PRODUCT_STATUS_DESC": "DRAFT"
+					}, {
+						"PRODUCT_STATUS": "2",
+						"PRODUCT_STATUS_DESC": "SUBMIT"
+					}],
 					"PRODUCT_CATEGORY": [{
 						"OBJECT_ID": 1,
 						"RETAILER_ID": 1,
@@ -39,6 +46,37 @@ sap.ui.define([
 						"PH_TYPE": "",
 						"LABEL_CODE": "Product With Variant",
 						"CODE_DESC": "Product With Variant",
+						"VALID_FROM": "2022-11-12",
+						"VALID_TO": "9999-12-31"
+					}],
+					"WEIGHT_UNIT": [{
+						"OBJECT_ID": 30,
+						"RETAILER_ID": 1,
+						"OBJECT_TYPE": "UOMWEIGHT_UNIT",
+						"OBJECT_CODE": 1,
+						"PH_TYPE": "",
+						"LABEL_CODE": "KG",
+						"CODE_DESC": "Kilogram",
+						"VALID_FROM": "2022-11-12",
+						"VALID_TO": "9999-12-31"
+					}, {
+						"OBJECT_ID": 20,
+						"RETAILER_ID": 1,
+						"OBJECT_TYPE": "UOMWEIGHT_UNIT",
+						"OBJECT_CODE": 2,
+						"PH_TYPE": "",
+						"LABEL_CODE": "G",
+						"CODE_DESC": "Gram",
+						"VALID_FROM": "2022-11-12",
+						"VALID_TO": "9999-12-31"
+					}, {
+						"OBJECT_ID": 21,
+						"RETAILER_ID": 1,
+						"OBJECT_TYPE": "UOMWEIGHT_UNIT",
+						"OBJECT_CODE": 3,
+						"PH_TYPE": "",
+						"LABEL_CODE": "PD",
+						"CODE_DESC": "Pounds",
 						"VALID_FROM": "2022-11-12",
 						"VALID_TO": "9999-12-31"
 					}],
