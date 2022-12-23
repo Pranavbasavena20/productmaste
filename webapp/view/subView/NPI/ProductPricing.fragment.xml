@@ -2,11 +2,23 @@
 	xmlns:core="sap.ui.core">
 	<ColumnListItem type="Active">
 		<cells>
-			<ComboBox selectedKey="{oNPI>SALES_ORG}" value="{oNPI>SALES_ORG_DESC}"/>
-			<ComboBox selectedKey="{oNPI>DIST_CHANNEL}" value="{oNPI>DIST_CHANNEL_DESC}"/>
-			<ComboBox selectedKey="{oNPI>PRICE_TYPE}"/>
+			<ComboBox selectedKey="{oNPI>SALES_ORG}" value="{oNPI>SALES_ORG_DESC}" items="{oGenericModel>/SALES_ORG}" width="100%"
+				fieldGroupIds="ComboboxField" required="true" editable="true">
+				<core:Item key="{oGenericModel>SALES_ORG_ID}" text="{oGenericModel>SALES_ORG_DESC}"/>
+			</ComboBox>
+			<ComboBox selectedKey="{oNPI>DIST_CHANNEL}" value="{oNPI>DIST_CHANNEL_DESC}" items="{oGenericModel>/DC}" width="100%"
+				fieldGroupIds="ComboboxField" required="true" editable="true">
+				<core:Item key="{oGenericModel>DC_ID}" text="{oGenericModel>SALES_ORG_ID}"/>
+			</ComboBox>
+			<ComboBox selectedKey="{oNPI>PRICE_TYPE}" value="{oNPI>PRICE_TYPE_DESC}" items="{oGenericModel>/PRICE_TYPE}" width="100%"
+				fieldGroupIds="ComboboxField" required="true" editable="true">
+				<core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}"/>
+			</ComboBox>
 			<Input value="{oNPI>UNIT_COST_PRICE}"/>
-			<Input value="{oNPI>CP_CURRENCY}" showValueHelp="true"/>
+			<MultiInput fieldGroupIds="InputField" required="true" editable="true" suggestionItems="{oGenericModel>/CURRENCY}"
+				valueHelpRequest="OnCurrencyF4">
+				<core:Item key="{oGenericModel>CURRENCY_CODE}" text="{oGenericModel>CURRENCY_DESC}"/>
+			</MultiInput>
 			<Input value="{oNPI>SP_W_GST}"/>
 			<Text text="{oNPI>SP_NO_GST}"/>
 			<Text text="{oNPI>GP}"/>

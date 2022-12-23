@@ -8,12 +8,6 @@
 		<ScrollContainer height="100%" width="100%" vertical="true" focusable="true">
 			<Table id="tbUOM" items="{oNPI>/PRODUCT_UOM_LIST}" growing="true" growingThreshold="10" growingScrollToLoad="true"
 				noDataText="{i18n>TxtRemarkNoDataText}" updateFinished="onUpdateFinished">
-				<!-- <headerToolbar>
-                <OverflowToolbar>
-                    <ToolbarSpacer />
-                    <Button icon="sap-icon://add" text="{i18n>BtnUOM}" type="Emphasized" press="onUOM" />
-                </OverflowToolbar>
-            </headerToolbar> -->
 				<columns>
 					<Column hAlign="Center">
 						<Text text="{i18n>Uom}" wrapping="true"/>
@@ -61,8 +55,8 @@
 				<items>
 					<ColumnListItem type="Active">
 						<cells>
-							<!--<Input value="{oNPI>UOM}"/>-->
-							<ComboBox selectedKey="{oNPI>UOM}" items="{oGenericModel>/UOM}" width="100%" fieldGroupIds="ComboboxField" required="true" editable="true">
+							<ComboBox selectedKey="{oNPI>UOM}" value="{oNPI>UOM_DESC}" items="{oGenericModel>/UOM}" width="100%" fieldGroupIds="ComboboxField"
+								required="true" editable="true">
 								<core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}"/>
 							</ComboBox>
 							<Input value="{oNPI>UOM_NO_CONV}"/>
@@ -72,13 +66,10 @@
 							<Input value="{oNPI>BARCODE}"/>
 							<Input value="{oNPI>WEIGHT}"/>
 							<Input value="{oNPI>NET_WEIGHT}"/>
-							<!--<Input value="{oNPI>WT_UNIT}"/>-->
-							<Input value="{oNPI>WT_UNIT}" showValueHelp="true" fieldGroupIds="InputField" required="true" editable="true"
-								suggestionItems="{oGenericModel>/WEIGHT_UNIT}" valueHelpRequest="OnWeightUnitF4" showSuggestion="true">
-								<suggestionItems>
-									<core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}"/>
-								</suggestionItems>
-							</Input>
+							<MultiInput fieldGroupIds="InputField" required="true" editable="true" suggestionItems="{oGenericModel>/WEIGHT_UNIT}"
+								valueHelpRequest="OnWeightUnitF4">
+								<core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}"/>
+							</MultiInput>
 							<Input value="{oNPI>DEPTH}"/>
 							<Input value="{oNPI>WIDTH}"/>
 							<Input value="{oNPI>HEIGHT}"/>

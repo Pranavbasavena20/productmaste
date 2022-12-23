@@ -40,20 +40,20 @@
 							<Input value="{oNPI>FULL_VARIANT_DESC}"/>
 							<Input value="{oNPI>SHORT_VARIANT_DESC}"/>
 							<Input value="{oNPI>PACK_SIZE}"/>
-							<!--<Input value="{oNPI>PACK_SIZE_UOM}" showValueHelp="true"/>-->
-							<Input value="{oNPI>PACK_SIZE_UOM}" showValueHelp="true" fieldGroupIds="InputField" required="true" editable="true"
-								suggestionItems="{oGenericModel>/PACK_SIZE_UNIT}" valueHelpRequest="OnPackageSizeUnitF4" showSuggestion="true">
-								<suggestionItems>
-									<core:Item key="{oGenericModel>UOM_CODE}" text="{oGenericModel>UOM_DESC}"/>
-								</suggestionItems>
-							</Input>
-							<!--<Input value="{oNPI>COUNTRY_CODE}" description="{oNPI>COUNTRY_NAME}" showValueHelp="true"/>-->
-							<Input value="{oNPI>COUNTRY_CODE}" showValueHelp="true" fieldGroupIds="InputField" required="true" editable="true"
-								suggestionItems="{oGenericModel>/countryCode}" valueHelpRequest="OnCountryF4" showSuggestion="true">
-								<suggestionItems>
-									<core:Item key="{oGenericModel>COUNTRY_CODE}" text="{oGenericModel>COUNTRY_NAME}"/>
-								</suggestionItems>
-							</Input>
+							<MultiInput maxTokens="1" fieldGroupIds="InputField" required="true" editable="true" suggestionItems="{oGenericModel>/PACK_SIZE_UNIT}"
+								valueHelpRequest="OnPackageSizeUnitF4($event,'TableLevel')">
+								<core:Item key="{oGenericModel>UOM_CODE}" text="{oGenericModel>UOM_DESC}"/>
+							</MultiInput>
+							<!--<Input value="{oNPI>COUNTRY_CODE}" showValueHelp="true" fieldGroupIds="InputField" required="true" editable="true"-->
+							<!--	suggestionItems="{oGenericModel>/countryCode}" valueHelpRequest="OnCountryF4" showSuggestion="true">-->
+							<!--	<suggestionItems>-->
+							<!--		<core:Item key="{oGenericModel>COUNTRY_CODE}" text="{oGenericModel>COUNTRY_NAME}"/>-->
+							<!--	</suggestionItems>-->
+							<!--</Input>-->
+							<MultiInput maxTokens="1" fieldGroupIds="InputField" required="true" editable="true" suggestionItems="{oGenericModel>/countryCode}"
+								valueHelpRequest="OnCountryF4">
+								<core:Item key="{oGenericModel>COUNTRY_CODE}" text="{oGenericModel>COUNTRY_NAME}"/>
+							</MultiInput>
 							<OverflowToolbar >
 								<Button icon="sap-icon://display" press="onDisplayvariant"/>
 								<Button icon="sap-icon://delete" press="onDeleteVariant"/>

@@ -5,8 +5,8 @@
 		<form:content>
 			<VBox>
 				<Label text="{i18n>AttachmentType}" design="Bold" labelFor="ipAttType" wrapping="true"/>
-				<ComboBox selectedKey="{oNPI>/PRODUCT_ATTACHMENT_FORM/ATTACHMENT_TYPE}" items="{oGenericModel>/ATTACHMENT_TYPE}" width="100%" id="ipAttType"
-					fieldGroupIds="ComboboxField" required="true" editable="true">
+				<ComboBox selectedKey="{oNPI>/PRODUCT_ATTACHMENT_FORM/ATTACHMENT_TYPE}" value="{oNPI>/PRODUCT_ATTACHMENT_FORM/ATTACHMENT_TYPE_DESC}"
+					items="{oGenericModel>/ATTACHMENT_TYPE}" width="100%" id="ipAttType" fieldGroupIds="ComboboxField" required="true" editable="true">
 					<core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}"/>
 				</ComboBox>
 				<layoutData>

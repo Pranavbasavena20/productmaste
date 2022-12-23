@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<SelectDialog id="idFormIDDialogF4" noDataText="No Form ID Found" title="Select Form ID" search=".onFormIDSearch"
+		confirm=".onFormIDDialogClose" cancel=".onFormIDDialogClose" showClearButton="false"
+		items="{ path: 'ProductMasterModel>/Table', sorter: { path: 'REQUEST_ID', descending: false } }">
+		<StandardListItem title="{ProductMasterModel>PRODUCT_DATA/REQUEST_ID}" type="Active"/>
+	</SelectDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<SelectDialog id="idBrandGroupDialogF4" noDataText="No Brand Group Found" title="Select Brand Group" search=".onBrandGroupSearch"
+		confirm=".onBrandGroupDialogClose" cancel=".onBrandGroupDialogClose" showClearButton="false"
+		items="{ path: 'oGenericModel>/BRAND_GROUP', sorter: { path: 'RETAILER_ID', descending: false } }">
+		<StandardListItem title="{oGenericModel>BRAND_GROUP_DESC}" description="{oGenericModel>BRAND_GROUP_LABEL_CODE}" type="Active"/>
+	</SelectDialog>
+</core:FragmentDefinition>

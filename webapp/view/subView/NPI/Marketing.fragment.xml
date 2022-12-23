@@ -57,8 +57,8 @@
 					<items>
 						<ColumnListItem>
 							<cells>
-								<ComboBox selectedKey="{oNPI>MEDIA_TYPE}" items="{oGenericModel>/businessCode}" width="100%" fieldGroupIds="ComboboxField" required="true"
-									editable="true">
+								<ComboBox selectedKey="{oNPI>MEDIA_TYPE}" value="{oNPI>MEDIA_TYPE_DESC}" items="{oGenericModel>/MEDIA_TYPE}" width="100%"
+									fieldGroupIds="ComboboxField" required="true" editable="true">
 									<core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}"/>
 								</ComboBox>
 								<Input value="{oNPI>AMOUNT}" fieldGroupIds="InputField" required="true" editable="true" width="100%"/>
@@ -86,13 +86,13 @@
 						</OverflowToolbar>
 					</headerToolbar>
 					<columns>
-						<Column>
+						<Column hAlign="Center">
 							<Text text="{i18n>NameOfRetailer}"/>
 						</Column>
-						<Column minScreenWidth="Tablet" demandPopin="true">
+						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
 							<Text text="{i18n>RSP}"/>
 						</Column>
-						<Column minScreenWidth="Tablet" demandPopin="true">
+						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
 							<Text text="{i18n>StartDate}"/>
 						</Column>
 						<Column hAlign="End">

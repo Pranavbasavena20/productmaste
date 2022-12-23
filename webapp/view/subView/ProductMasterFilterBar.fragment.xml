@@ -4,38 +4,44 @@
 			<filterbar:FilterGroupItem groupName="G1" name="EntityId" groupTitle="{i18n>LblFILTER}" label="{i18n>ProductId}"
 				labelTooltip="{i18n>ProductId}" visibleInFilterBar="true">
 				<filterbar:control>
-					<Input placeholder="Select Product Id" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-						suggestionItems="{/ProductCollection}">
+					<Input placeholder="Select Form ID" value="{worklistView>/FormID}" showValueHelp="true" editable="true"
+						suggestionItems="{ProductMasterModel>/Table}" valueHelpRequest="onFormIDRequest" showSuggestion="true">
 						<suggestionItems>
-							<core:Item text="{Name}"/>
+							<core:Item key="{ProductMasterModel>PRODUCT_DATA/REQUEST_ID}" text="{ProductMasterModel>PRODUCT_DATA/REQUEST_ID}"/>
 						</suggestionItems>
 					</Input>
 				</filterbar:control>
 			</filterbar:FilterGroupItem>
-			<filterbar:FilterGroupItem groupName="G1" name="RetailerId" groupTitle="{i18n>LblFILTER}" label="{i18n>SupplierCode}"
-				labelTooltip="{i18n>SupplierCode}" visibleInFilterBar="true">
-				<filterbar:control>
-					<Input placeholder="Select Supplier Code" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-						suggestionItems="{/ProductCollection}">
-						<suggestionItems>
-							<core:Item text="{Name}"/>
-						</suggestionItems>
-					</Input>
-				</filterbar:control>
-			</filterbar:FilterGroupItem>
-			<filterbar:FilterGroupItem groupName="G1" name="TableName" groupTitle="{i18n>LblFILTER}" label="{i18n>Barcode}"
-				labelTooltip="{i18n>Barcode}" visibleInFilterBar="true">
-				<filterbar:control>
-					<Input placeholder="Enter Barcode"/>
-				</filterbar:control>
-			</filterbar:FilterGroupItem>
+			<!--<filterbar:FilterGroupItem groupName="G1" name="RetailerId" groupTitle="{i18n>LblFILTER}" label="{i18n>SupplierCode}"-->
+			<!--	labelTooltip="{i18n>SupplierCode}" visibleInFilterBar="true">-->
+			<!--	<filterbar:control>-->
+			<!--		<Input placeholder="Select Supplier Code" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"-->
+			<!--			suggestionItems="{/ProductCollection}">-->
+			<!--			<suggestionItems>-->
+			<!--				<core:Item text="{Name}"/>-->
+			<!--			</suggestionItems>-->
+			<!--		</Input>-->
+			<!--	</filterbar:control>-->
+			<!--</filterbar:FilterGroupItem>-->
+			<!--<filterbar:FilterGroupItem groupName="G1" name="TableName" groupTitle="{i18n>LblFILTER}" label="{i18n>Barcode}"-->
+			<!--	labelTooltip="{i18n>Barcode}" visibleInFilterBar="true">-->
+			<!--	<filterbar:control>-->
+			<!--		<Input placeholder="Enter Barcode"/>-->
+			<!--	</filterbar:control>-->
+			<!--</filterbar:FilterGroupItem>-->
 			<filterbar:FilterGroupItem groupName="G1" name="TemplateName" groupTitle="{i18n>LblFILTER}" label="{i18n>Brand}" labelTooltip="{i18n>Brand}"
 				visibleInFilterBar="true">
 				<filterbar:control>
-					<Input placeholder="Select Brand" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-						suggestionItems="{/ProductCollection}">
+					<!--<Input placeholder="Select Brand" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"-->
+					<!--	suggestionItems="{/ProductCollection}">-->
+					<!--	<suggestionItems>-->
+					<!--		<core:Item text="{Name}"/>-->
+					<!--	</suggestionItems>-->
+					<!--</Input>-->
+					<Input placeholder="Select Brand" value="{worklistView>/Brand}" showValueHelp="true" editable="true"
+						suggestionItems="{oGenericModel>/BRAND_GROUP}" valueHelpRequest="onBrandRequest" showSuggestion="true">
 						<suggestionItems>
-							<core:Item text="{Name}"/>
+							<core:Item key="{oGenericModel>BRAND_GROUP_CODE}" text="{oGenericModel>BRAND_GROUP_LABEL_CODE}"/>
 						</suggestionItems>
 					</Input>
 				</filterbar:control>

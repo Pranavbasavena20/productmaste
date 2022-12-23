@@ -7,11 +7,12 @@ sap.ui.define([
 		"sap/ui/model/Filter",
 		"sap/ui/model/FilterOperator",
 		"sap/m/MessageBox",
+		"productmaster/model/models"
 	],
 	/**
 	 * @param {typeof sap.ui.core.mvc.Controller} Controller
 	 */
-	function (Controller, JSONModel, dataUtil, UIComponent, Fragment, Filter, FilterOperator, MessageBox) {
+	function (Controller, JSONModel, dataUtil, UIComponent, Fragment, Filter, FilterOperator, MessageBox, models) {
 		"use strict";
 
 		return Controller.extend("productmaster.controller.NewProductIntroduction", {
@@ -24,6 +25,7 @@ sap.ui.define([
 			onPressImage: function () {
 				sap.m.MessageToast.show("I am pressed");
 			},
+
 			onInit: function () {
 				var oViewModel = new sap.ui.model.json.JSONModel({
 					bForCastAdd: true,
@@ -149,10 +151,18 @@ sap.ui.define([
 				});
 
 				this.getView().setModel(oModel, "oLanding");
+				this.getOwnerComponent().getRouter().getRoute("NewProductIntroduction").attachPatternMatched(this._onObjectMatched, this);
 
 			},
+			_onObjectMatched: function (oEvent) {
+				this.getOwnerComponent().setModel(models.fnNPI(), "oNPI");
+				if (oEvent.getParameter("arguments").Action !== "New") {
+					var sPath = this.getView().getModel("ProductMasterModel").getProperty("/Path");
+					var oData = this.getView().getModel("ProductMasterModel").getProperty(sPath);
+					this.getView().getModel("oNPI").setProperty("/", oData);
+				}
+			},
 			onChangeProductCat: function (oEvent) {
-
 				if (oEvent.getSource().getSelectedKey() === "Product With Variant") {
 					this.getView().getModel("NPIView").setProperty("/bProductVarainat", true);
 				} else {
@@ -174,6 +184,7 @@ sap.ui.define([
 					PRODUCT_ID: "",
 					VARIANT_ID: "",
 					UOM: "",
+					UOM_DESC: "",
 					UOM_NO_CONV: "",
 					UOM_UNIT: "",
 					EAN_CATEGORY: "",
@@ -190,6 +201,7 @@ sap.ui.define([
 					MN_GTIN: "",
 					NET_WEIGHT: "",
 					WT_UNIT: "",
+					WT_UNIT_DESC: "",
 					ADD_SALES_UNIT: "",
 					VALID_FROM: "",
 					VALID_TO: "",
@@ -210,6 +222,7 @@ sap.ui.define([
 				var object = {
 					ID: "",
 					PRODUCT_ID: "",
+					BRAND_CODE: "",
 					BRAND_DESC: "",
 					PACKAGING: "",
 					SELLING_PRICE: ""
@@ -251,6 +264,7 @@ sap.ui.define([
 					COST_PRICE_MISC: "",
 					MISC_UNIT_CP: "",
 					CP_CURRENCY: "",
+					CP_CURRENCY_DESC: "",
 					FOREIGN_UNIT_CP: "",
 					FOREIGN_CP: "",
 					UNIT_SALES_PRICE: "",
@@ -360,6 +374,7 @@ sap.ui.define([
 					PRODUCT_ID: "",
 					VENDOR_ID: "",
 					MEDIA_TYPE: "",
+					MEDIA_TYPE_DESC: "",
 					AMOUNT: "",
 					FREQUENCY: "",
 					PERIOD_START_DATE: "",
@@ -479,6 +494,7 @@ sap.ui.define([
 					PRODUCT_ID: "",
 					VARIANT_ID: "",
 					UOM: "",
+					UOM_DESC: "",
 					UOM_NO_CONV: "",
 					UOM_UNIT: "",
 					EAN_CATEGORY: "",
@@ -495,6 +511,7 @@ sap.ui.define([
 					MN_GTIN: "",
 					NET_WEIGHT: "",
 					WT_UNIT: "",
+					WT_UNIT_DESC: "",
 					ADD_SALES_UNIT: "",
 					VALID_FROM: "",
 					VALID_TO: "",
@@ -521,6 +538,7 @@ sap.ui.define([
 					COST_PRICE_MISC: "",
 					MISC_UNIT_CP: "",
 					CP_CURRENCY: "",
+					CP_CURRENCY_DESC: "",
 					FOREIGN_UNIT_CP: "",
 					FOREIGN_CP: "",
 					UNIT_SALES_PRICE: "",
@@ -544,6 +562,7 @@ sap.ui.define([
 					PRODUCT_ID: "",
 					VARIANT_ID: "",
 					UOM: "",
+					UOM_DESC: "",
 					UOM_NO_CONV: "",
 					UOM_UNIT: "",
 					EAN_CATEGORY: "",
@@ -616,9 +635,12 @@ sap.ui.define([
 			},
 
 			// Package Size Unit ValueHelp block
-			OnPackageSizeUnitF4: function (oEvent) {
+			OnPackageSizeUnitF4: function (oEvent, sControl) {
 				var that = this;
 				that.oPackageInput = oEvent.getSource();
+				if (sControl === "TableLevel") {
+					that.PackageSizePath = oEvent.getSource().getBindingContext("oNPI").getPath();
+				}
 				if (!that._oPacKageSizeUnitF4) {
 					that._PacKageSizeUnitDialog = sap.ui.core.Fragment.load({
 						id: that.createId("_PacKageSizeUnitF4"),
@@ -631,18 +653,6 @@ sap.ui.define([
 					});
 				}
 				that._PacKageSizeUnitDialog.then(function (oDialog) {
-					var oData = that._oPacKageSizeUnitF4.getModel("oGenericModel").getData().PACK_SIZE_UNIT;
-					var sTokens = that.getView().byId("ipPackSizeUnit").getValue();
-					for (var key in oData) {
-						if (oData[key].UOM_DESC === sTokens) {
-							oData[key]["SELECTED"] = true;
-							break;
-						} else {
-							oData[key]["SELECTED"] = false;
-						}
-
-					}
-					that._oPacKageSizeUnitF4.getModel("oGenericModel").updateBindings(true);
 					that._oPacKageSizeUnitF4.open();
 				}.bind(that));
 
@@ -657,9 +667,28 @@ sap.ui.define([
 			},
 			onPackageSizeUnitDialogClose: function (oEvent) {
 				var that = this;
+				var oModel = this.getView().getModel("oNPI");
 				if (oEvent.getParameter("selectedItem") !== undefined) {
-					that.oPackageInput.setValue(oEvent.getParameter("selectedItem").getTitle());
+					var sTitle = oEvent.getParameter("selectedItem").getTitle();
+					var sDescription = oEvent.getParameter("selectedItem").getDescription();
+					if (that.PackageSizePath !== undefined) {
+						oModel.setProperty(that.PackageSizePath + "/PACK_SIZE_UNIT_DESC", sTitle);
+						oModel.setProperty(that.PackageSizePath + "/PACK_SIZE_UNIT", sDescription);
+					} else {
+						oModel.setProperty("/PACK_SIZE_UNIT_DESC", sTitle);
+						oModel.setProperty("/PACK_SIZE_UNIT", sDescription);
+					}
+					var aSelectedItems = oEvent.getParameter("selectedItems");
+					if (aSelectedItems && aSelectedItems.length > 0) {
+						that.oPackageInput.setTokens([]);
+						// aSelectedItems.forEach(function (oItem) {
+						that.oPackageInput.addToken(new sap.m.Token({
+							text: sTitle
+						}));
+						// });
+					}
 				}
+
 				if (that._oPacKageSizeUnitF4) {
 					that._oPacKageSizeUnitF4.destroy();
 					that._oPacKageSizeUnitF4 = undefined;
@@ -706,8 +735,11 @@ sap.ui.define([
 			onProductFormatDialogClose: function (oEvent) {
 				var that = this;
 				var sVal = this.getView().getModel("oNPI").getData().PRODUCT_DATA.PRODUCT_FORMAT;
+				var sVal1 = this.getView().getModel("oNPI").getData().PRODUCT_DATA.PRODUCT_FORMAT_DESC;
 				var aFinalArray = [];
+				var aFinalArrayDesc = [];
 				var sFinaltext = "";
+				var sFinaltextDesc = "";
 				var aSelectedItems = oEvent.getParameter("selectedItems"),
 					oMultiInput = this.getView().byId("ipProductFormat");
 				if (aSelectedItems && aSelectedItems.length > 0) {
@@ -716,9 +748,12 @@ sap.ui.define([
 							text: oItem.getTitle()
 						}));
 						aFinalArray.push(oItem.getTitle());
+						aFinalArrayDesc.push(oItem.getDescription());
 					});
 					sFinaltext = aFinalArray.join();
+					sFinaltextDesc = aFinalArrayDesc.join();
 					sVal = sFinaltext;
+					sVal1 = sFinaltextDesc;
 					this.getView().getModel("oNPI").updateBindings(true);
 				}
 				if (aSelectedItems.length === 0) {
@@ -757,9 +792,23 @@ sap.ui.define([
 			},
 			onMainKeyDialogClose: function (oEvent) {
 				var that = this;
+				var oModel = this.getView().getModel("oNPI");
 				if (oEvent.getParameter("selectedItem") !== undefined) {
-					that.oMainKey.setValue(oEvent.getParameter("selectedItem").getTitle());
+					var sTitle = oEvent.getParameter("selectedItem").getTitle();
+					var sDescription = oEvent.getParameter("selectedItem").getDescription();
+					oModel.setProperty("/MCH_MAIN_KEY_DESC", sTitle);
+					oModel.setProperty("/MCH_MAIN_KEY", sDescription);
+					var aSelectedItems = oEvent.getParameter("selectedItems");
+					if (aSelectedItems && aSelectedItems.length > 0) {
+						// aSelectedItems.forEach(function (oItem) {
+						that.oMainKey.setTokens([]);
+						that.oMainKey.addToken(new sap.m.Token({
+							text: sTitle
+						}));
+						// });
+					}
 				}
+
 				if (that._oMainKeyF4) {
 					that._oMainKeyF4.destroy();
 					that._oMainKeyF4 = undefined;
@@ -793,9 +842,23 @@ sap.ui.define([
 			},
 			onDepartMentCodeDialogClose: function (oEvent) {
 				var that = this;
+				var oModel = this.getView().getModel("oNPI");
 				if (oEvent.getParameter("selectedItem") !== undefined) {
-					that.oDepartment.setValue(oEvent.getParameter("selectedItem").getTitle());
+					var sTitle = oEvent.getParameter("selectedItem").getTitle();
+					var sDescription = oEvent.getParameter("selectedItem").getDescription();
+					oModel.setProperty("/DEPARTMENT_CODE_DESC", sTitle);
+					oModel.setProperty("/DEPARTMENT_CODE", sDescription);
+					var aSelectedItems = oEvent.getParameter("selectedItems");
+					if (aSelectedItems && aSelectedItems.length > 0) {
+						// aSelectedItems.forEach(function (oItem) {
+						that.oDepartment.setTokens([]);
+						that.oDepartment.addToken(new sap.m.Token({
+							text: sTitle
+						}));
+						// });
+					}
 				}
+
 				if (that._oDepartMentCodeF4) {
 					that._oDepartMentCodeF4.destroy();
 					that._oDepartMentCodeF4 = undefined;
@@ -829,9 +892,23 @@ sap.ui.define([
 			},
 			onClassCodeDialogClose: function (oEvent) {
 				var that = this;
+				var oModel = this.getView().getModel("oNPI");
 				if (oEvent.getParameter("selectedItem") !== undefined) {
-					that.oClassCode.setValue(oEvent.getParameter("selectedItem").getTitle());
+					var sTitle = oEvent.getParameter("selectedItem").getTitle();
+					var sDescription = oEvent.getParameter("selectedItem").getDescription();
+					oModel.setProperty("/CLASS_CODE_DESCs", sTitle);
+					oModel.setProperty("/CLASS_CODE", sDescription);
+					var aSelectedItems = oEvent.getParameter("selectedItems");
+					if (aSelectedItems && aSelectedItems.length > 0) {
+						// aSelectedItems.forEach(function (oItem) {
+						that.oClassCode.setTokens([]);
+						that.oClassCode.addToken(new sap.m.Token({
+							text: sTitle
+						}));
+						// });
+					}
 				}
+
 				if (that._oClassCodeF4) {
 					that._oClassCodeF4.destroy();
 					that._oClassCodeF4 = undefined;
@@ -840,8 +917,9 @@ sap.ui.define([
 			// Class Code Valuehelp End block
 
 			// Competing Product Code ValueHelp block
-			OnCompetingProductCodeF4: function (oEvent) {
+			OnCompetingProductCodeF4: function (oEvent, sControl) {
 				var that = this;
+				that.oCompetingProduct = sControl;
 				that.oInput = oEvent.getSource();
 				if (!that._oCompetingProductCodeF4) {
 					that._CompetingProductCodeDialog = sap.ui.core.Fragment.load({
@@ -866,9 +944,37 @@ sap.ui.define([
 			},
 			onCompetingProductCodeDialogClose: function (oEvent) {
 				var that = this;
+				var oModel = this.getView().getModel("oNPI");
 				if (oEvent.getParameter("selectedItem") !== undefined) {
-					that.oInput.setValue(oEvent.getParameter("selectedItem").getTitle());
+					var sTitle = oEvent.getParameter("selectedItem").getTitle();
+					var sDescription = oEvent.getParameter("selectedItem").getDescription();
+					switch (that.oCompetingProduct) {
+					case "ipProductcode1":
+						oModel.setProperty("/PRODUCT_FORECAST/COMPETING_PRODMSTRSEQID_1_DESC", sTitle);
+						oModel.setProperty("/PRODUCT_FORECAST/COMPETING_PRODMSTRSEQID_1", sDescription);
+						break;
+					case "ipProductcode2":
+						oModel.setProperty("/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_2_DESC", sTitle);
+						oModel.setProperty("/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_2", sDescription);
+						break;
+					case "ipProductcode3":
+						oModel.setProperty("/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_3_DESC", sTitle);
+						oModel.setProperty("/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_3", sDescription);
+						break;
+					default:
+						break;
+					}
+					var aSelectedItems = oEvent.getParameter("selectedItems");
+					if (aSelectedItems && aSelectedItems.length > 0) {
+						// aSelectedItems.forEach(function (oItem) {
+						that.oInput.setTokens([]);
+						that.oInput.addToken(new sap.m.Token({
+							text: sTitle
+						}));
+						// });
+					}
 				}
+
 				if (that._oCompetingProductCodeF4) {
 					that._oCompetingProductCodeF4.destroy();
 					that._oCompetingProductCodeF4 = undefined;
@@ -876,9 +982,12 @@ sap.ui.define([
 			},
 			//Competing Product Code Valuehelp End block
 			// Brand Code ValueHelp block
-			OnBrandCodeF4: function (oEvent) {
+			OnBrandCodeF4: function (oEvent, sLevel) {
 				var that = this;
 				that.oInput = oEvent.getSource();
+				if (sLevel === "TableLevel") {
+					that.BrandCodePath = oEvent.getSource().getBindingContext("oNPI").getPath();
+				}
 				if (!that._oBrandCodeF4) {
 					that._BrandCodeDialog = sap.ui.core.Fragment.load({
 						id: that.createId("_BrandCodeF4"),
@@ -902,9 +1011,28 @@ sap.ui.define([
 			},
 			onBrandCodeDialogClose: function (oEvent) {
 				var that = this;
+				var oModel = this.getView().getModel("oNPI");
 				if (oEvent.getParameter("selectedItem") !== undefined) {
-					that.oInput.setValue(oEvent.getParameter("selectedItem").getTitle());
+					var sTitle = oEvent.getParameter("selectedItem").getTitle();
+					var sDescription = oEvent.getParameter("selectedItem").getDescription();
+					if (that.BrandCodePath === "TableLevel") {
+						oModel.setProperty(that.CurrencyPath + "/BRAND_DESC", sTitle);
+						oModel.setProperty(that.CurrencyPath + "/BRAND_CODE", sDescription);
+					} else if (that.BrandCodePath === "SectionLevel") {
+						oModel.setProperty("/PRODUCT_DATA/BRAND_DESC", sTitle);
+						oModel.setProperty("/PRODUCT_DATA/BRAND_CODE", sDescription);
+					}
+					var aSelectedItems = oEvent.getParameter("selectedItems");
+					if (aSelectedItems && aSelectedItems.length > 0) {
+						// aSelectedItems.forEach(function (oItem) {
+						that.oInput.setTokens([]);
+						that.oInput.addToken(new sap.m.Token({
+							text: sTitle
+						}));
+						// });
+					}
 				}
+
 				if (that._oBrandCodeF4) {
 					that._oBrandCodeF4.destroy();
 					that._oBrandCodeF4 = undefined;
@@ -915,6 +1043,7 @@ sap.ui.define([
 			OnWeightUnitF4: function (oEvent) {
 				var that = this;
 				that.oInput = oEvent.getSource();
+				that.WeightPath = oEvent.getSource().getBindingContext("oNPI").getPath();
 				if (!that._oWeightUnitF4) {
 					that._WeightunitDialog = sap.ui.core.Fragment.load({
 						id: that.createId("_WeightUnitF4"),
@@ -938,9 +1067,23 @@ sap.ui.define([
 			},
 			onWeightUnitDialogClose: function (oEvent) {
 				var that = this;
+				var oModel = this.getView().getModel("oNPI");
 				if (oEvent.getParameter("selectedItem") !== undefined) {
-					that.oInput.setValue(oEvent.getParameter("selectedItem").getTitle());
+					var sTitle = oEvent.getParameter("selectedItem").getTitle();
+					var sDescription = oEvent.getParameter("selectedItem").getDescription();
+					oModel.setProperty(that.WeightPath + "/WT_UNIT_DESC", sTitle);
+					oModel.setProperty(that.WeightPath + "/WT_UNIT", sDescription);
+					var aSelectedItems = oEvent.getParameter("selectedItems");
+					if (aSelectedItems && aSelectedItems.length > 0) {
+						// aSelectedItems.forEach(function (oItem) {
+						that.oInput.setTokens([]);
+						that.oInput.addToken(new sap.m.Token({
+							text: sTitle
+						}));
+						// });
+					}
 				}
+
 				if (that._oWeightUnitF4) {
 					that._oWeightUnitF4.destroy();
 					that._oWeightUnitF4 = undefined;
@@ -951,6 +1094,7 @@ sap.ui.define([
 			OnCountryF4: function (oEvent) {
 				var that = this;
 				that.oInput = oEvent.getSource();
+				that.CountryPath = oEvent.getSource().getBindingContext("oNPI").getPath();
 				if (!that._oCountryF4) {
 					that._CountryDialog = sap.ui.core.Fragment.load({
 						id: that.createId("_CountryF4"),
@@ -974,8 +1118,20 @@ sap.ui.define([
 			},
 			onCountryDialogClose: function (oEvent) {
 				var that = this;
+				var oModel = this.getView().getModel("oNPI");
 				if (oEvent.getParameter("selectedItem") !== undefined) {
-					that.oInput.setValue(oEvent.getParameter("selectedItem").getTitle());
+					var sTitle = oEvent.getParameter("selectedItem").getTitle();
+					var sDescription = oEvent.getParameter("selectedItem").getDescription();
+					oModel.setProperty(that.CountryPath + "/COUNTRY_CODE_DESC", sTitle);
+					oModel.setProperty(that.CountryPath + "/COUNTRY_CODE", sDescription);
+					var aSelectedItems = oEvent.getParameter("selectedItems");
+					if (aSelectedItems && aSelectedItems.length > 0) {
+						that.oInput.setTokens([]);
+						that.oInput.addToken(new sap.m.Token({
+							text: sTitle
+						}));
+
+					}
 				}
 				if (that._oCountryF4) {
 					that._oCountryF4.destroy();
@@ -987,6 +1143,7 @@ sap.ui.define([
 			OnCurrencyF4: function (oEvent) {
 				var that = this;
 				that.oInput = oEvent.getSource();
+				that.CurrencyPath = oEvent.getSource().getBindingContext("oNPI").getPath();
 				if (!that._oCurrencyF4) {
 					that._CurrencyDialog = sap.ui.core.Fragment.load({
 						id: that.createId("_CurrencyF4"),
@@ -1010,9 +1167,23 @@ sap.ui.define([
 			},
 			onCurrencyDialogClose: function (oEvent) {
 				var that = this;
+				var oModel = this.getView().getModel("oNPI");
 				if (oEvent.getParameter("selectedItem") !== undefined) {
-					that.oInput.setValue(oEvent.getParameter("selectedItem").getTitle());
+					var sTitle = oEvent.getParameter("selectedItem").getTitle();
+					var sDescription = oEvent.getParameter("selectedItem").getDescription();
+					oModel.setProperty(that.CurrencyPath + "/CP_CURRENCY_DESC", sTitle);
+					oModel.setProperty(that.CurrencyPath + "/CP_CURRENCY", sDescription);
+					var aSelectedItems = oEvent.getParameter("selectedItems");
+					if (aSelectedItems && aSelectedItems.length > 0) {
+						// aSelectedItems.forEach(function (oItem) {
+						that.oInput.setTokens([]);
+						that.oInput.addToken(new sap.m.Token({
+							text: sTitle
+						}));
+						// });
+					}
 				}
+
 				if (that._oCurrencyF4) {
 					that._oCurrencyF4.destroy();
 					that._oCurrencyF4 = undefined;
@@ -1023,12 +1194,42 @@ sap.ui.define([
 				history.go(-1);
 			},
 			onSave: function (oEvent) {
-				MessageBox.success("Saved Successfully!");
-				console.log(this.getView().getModel("oNPI").getData());
+				var that = this;
+				var oData = this.getView().getModel("oNPI").getData();
+				this.getView().getModel("oNPI").setProperty("/PRODUCT_DATA/PRODUCT_STATUS", "1");
+				var iLength = this.getView().getModel("ProductMasterModel").getData().Table.length;
+				this.getView().getModel("oNPI").setProperty("/PRODUCT_DATA/PRODUCT_STATUS_DESC", "DRAFT");
+				if (oData.PRODUCT_DATA.REQUEST_ID === "") {
+					this.getView().getModel("oNPI").setProperty("/PRODUCT_DATA/REQUEST_ID", iLength + 1);
+					this.getView().getModel("ProductMasterModel").getData().Table.push(oData);
+				}
+				MessageBox.success("Saved Successfully!", {
+					onClose: function (sAction) {
+						history.go(-1);
+						that.getView().getModel("ProductMasterModel").refresh(true);
+					}
+				});
+
 			},
 			onSubmit: function (oEvent) {
-				MessageBox.success("Submitted Successfully!");
-				console.log(this.getView().getModel("oNPI").getData());
+				var that = this;
+				var oData = this.getView().getModel("oNPI").getData();
+				this.getView().getModel("oNPI").setProperty("/PRODUCT_DATA/PRODUCT_STATUS", "2");
+				var iLength = this.getView().getModel("ProductMasterModel").getData().Table.length;
+				this.getView().getModel("oNPI").setProperty("/PRODUCT_DATA/PRODUCT_STATUS_DESC", "SUBMITTED");
+				if (oData.PRODUCT_DATA.REQUEST_ID === "") {
+					this.getView().getModel("oNPI").setProperty("/PRODUCT_DATA/REQUEST_ID", iLength + 1);
+					this.getView().getModel("ProductMasterModel").getData().Table.push(oData);
+				} else {
+
+				}
+				MessageBox.success("Submitted Successfully!", {
+					onClose: function (sAction) {
+						history.go(-1);
+						that.getView().getModel("ProductMasterModel").refresh(true);
+					}
+				});
+
 			},
 		});
 

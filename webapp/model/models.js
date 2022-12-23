@@ -26,7 +26,22 @@ sap.ui.define([
 						"PRODUCT_STATUS_DESC": "DRAFT"
 					}, {
 						"PRODUCT_STATUS": "2",
-						"PRODUCT_STATUS_DESC": "SUBMIT"
+						"PRODUCT_STATUS_DESC": "SUBMITTED"
+					}],
+					"Form ID": [
+						// 	{
+						// 	"FORM_ID": 0
+						// }, {
+						// 	"FORM_ID": 1
+						// }
+
+					],
+					"SUPPLIER CODE": [{
+						"VENDOR_CODE": 1,
+						"VENDOR_NAME": 'KARSTEL'
+					}, {
+						"VENDOR_CODE": 2,
+						"VENDOR_NAME": 'NESTLE'
 					}],
 					"MONTH": [{
 						"MONTH_ID": 0,
@@ -797,6 +812,7 @@ sap.ui.define([
 					PART_NUMBER: "",
 					PARENT_FLAG: "",
 					RETURN_POLICY: "",
+					RETURN_POLICY_DESC: "",
 					AVG_LEAD_TIME: "",
 					SEL_DEPT_LEVEL1_CODE: "",
 					SEL_DEPT_LEVEL1_DESC: "",
@@ -830,6 +846,7 @@ sap.ui.define([
 						PACK_SIZE: "",
 						PACK_SIZE_UOM: "",
 						COUNTRY_CODE: "",
+						COUNTRY_CODE_DESC: "",
 						COUNTRY_NAME: "",
 						VARIANT_UOM_LIST: [{
 							ID: "1",
@@ -852,6 +869,7 @@ sap.ui.define([
 							MN_GTIN: "",
 							NET_WEIGHT: "",
 							WT_UNIT: "",
+							WT_UNIT_DESC: "",
 							ADD_SALES_UNIT: "",
 							VALID_FROM: "",
 							VALID_TO: "",
@@ -868,11 +886,13 @@ sap.ui.define([
 							DIST_CHANNEL: "",
 							DIST_CHANNEL_DESC: "",
 							PRICE_TYPE: "",
+							PRICE_TYPE_DESC: "",
 							UNIT_COST_PRICE: "",
 							COST_PRICE: "",
 							COST_PRICE_MISC: "",
 							MISC_UNIT_CP: "",
 							CP_CURRENCY: "",
+							CP_CURRENCY_DESC: "",
 							FOREIGN_UNIT_CP: "",
 							FOREIGN_CP: "",
 							UNIT_SALES_PRICE: "",
@@ -889,34 +909,54 @@ sap.ui.define([
 					}],
 					PRODUCT_DATA: {
 						PRODUCT_TREND: "",
+						REQUEST_ID: "",
 						PRODUCT_ORIGINALITY: "",
 						PRODUCT_ID: "",
 						PRODUCT_CODE: "",
 						PRODUCT_SHORT_DESC: "",
 						PRODUCT_FULL_DESC: "",
 						MCH_MAIN_KEY: "",
+						MCH_MAIN_KEY_DESC: "",
 						DEPARTMENT_CODE: "",
+						DEPARTMENT_CODE_DESC: "",
+						PACK_SIZE_UNIT: "",
+						PACK_SIZE_UNIT_DESC: "",
 						CLASS_CODE: "",
+						CLASS_CODE_DESC: "",
 						SUB_CLASS_CODE: "",
+						SUB_CLASS_CODE_DESC: "",
 						PRODUCT_TYPE: "",
+						PRODUCT_TYPE_DESC: "",
 						PRODUCT_STYLE: "",
+						PRODUCT_STYLE_DESC: "",
 						PRODUCT_COLOR: "",
 						PRODUCT_SIZE: "",
+						PRODUCT_SIZE_DESC: "",
 						BRAND_GROUP: "",
+						BRAND_GROUP_DESC: "",
 						BRAND_CODE: "",
+						BRAND_DESC: "",
 						SEASON_YEAR: "",
+						SEASON_YEAR_DESC: "",
 						PRODUCT_LISTING: "",
+						PRODUCT_LISTING_DESC: "",
 						PRODUCT_STATUS: "",
+						PRODUCT_STATUS_DESC: "",
 						PRODUCT_FORMAT: "",
+						PRODUCT_FORMAT_DESC: "",
 						SEASON_CODE: "",
+						SEASON_CODE_DESC: "",
 						PHASE_CODE: "",
+						PHASE_CODE_DESC: "",
 						PRODUCT_CATEGORY: "",
+						PRODUCT_CATEGORY_DESC: "",
 						MFR_CODE: "",
 						MFR_DESC: "",
 						PRIVATE_FLAG: "",
 						MERCHANDISE_FLAG: "",
 						TAX_CODE: "",
 						COUNTRY_OF_ORIGIN: "",
+						COUNTRY_OF_ORIGIN_DESC: "",
 						SHELF_LIFE: "",
 						BUYER_LEVEL1_CODE: "",
 						BUYER_LEVEL2_CODE: "",
@@ -932,6 +972,7 @@ sap.ui.define([
 						PRODUCT_ID: "",
 						VARIANT_ID: "",
 						UOM: "",
+						UOM_DESC: "",
 						UOM_NO_CONV: "",
 						UOM_UNIT: "",
 						EAN_CATEGORY: "",
@@ -948,6 +989,7 @@ sap.ui.define([
 						MN_GTIN: "",
 						NET_WEIGHT: "",
 						WT_UNIT: "",
+						WT_UNIT_DESC: "",
 						ADD_SALES_UNIT: "",
 						VALID_FROM: "",
 						VALID_TO: "",
@@ -969,6 +1011,7 @@ sap.ui.define([
 						COST_PRICE_MISC: "",
 						MISC_UNIT_CP: "",
 						CP_CURRENCY: "",
+						CP_CURRENCY_DESC: "",
 						FOREIGN_UNIT_CP: "",
 						FOREIGN_CP: "",
 						UNIT_SALES_PRICE: "",
@@ -1002,6 +1045,7 @@ sap.ui.define([
 						VENDOR_ID: "",
 						VARIANT_ID: "",
 						ATTACHMENT_TYPE: "",
+						ATTACHMENT_TYPE_DESC: "",
 						DISPLAY_DOCUMENT_NAME: "",
 						DOCUMENT_NAME: "",
 						DOCUMENT_URL: "",
@@ -1042,6 +1086,16 @@ sap.ui.define([
 					}
 				});
 				return oNPI;
+
+			},
+			fnTableData: function () {
+				var oTableData = new JSONModel({
+					Table: [
+
+					],
+					Path: ""
+				});
+				return oTableData;
 
 			},
 		};

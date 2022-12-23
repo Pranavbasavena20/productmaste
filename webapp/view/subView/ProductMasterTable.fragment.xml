@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified">
 	<!-- <ScrollContainer height="{= ${device>/system/phone}?'300px':'700px'}" width="100%" horizontal="false" vertical="true"> -->
-	<Table id="tbUserTable" width="auto" mode="None" items="{path:'ProductMasterModel>/ProductData'}" sticky="HeaderToolbar,ColumnHeaders"
+	<Table id="tbUserTable" width="auto" mode="None" items="{path:'ProductMasterModel>/Table'}" sticky="HeaderToolbar,ColumnHeaders"
 		noDataText="{i18n>noData}" growing="true" growingScrollToLoad="true" growingThreshold="20" updateFinished="onUpdateFinished">
 		<headerToolbar>
 			<Toolbar>
@@ -40,16 +40,17 @@
 		<items>
 			<ColumnListItem type="Active" press=".onPressAction($event,'display')" vAlign="Middle">
 				<cells>
-					<Text text="{ProductMasterModel>PRODUCT_ID}"/>
-					<Text text="{ProductMasterModel>PRODUCT_SHORT_DESC}"/>
-					<Text text="{ProductMasterModel>PACK_SIZE}"/>
-					<Text text="{ProductMasterModel>COUNTRY_OF_ORIGIN}"/>
+					<Text text="{ProductMasterModel>PRODUCT_DATA/REQUEST_ID}"/>
+					<Text text="{ProductMasterModel>PRODUCT_DATA/PRODUCT_SHORT_DESC}"/>
+					<Text text="{ProductMasterModel>PRODUCT_DATA/PACK_SIZE}"/>
+					<Text text="{ProductMasterModel>PRODUCT_DATA/COUNTRY_OF_ORIGIN_DESC}"/>
 					<!--<Text text="{ProductMasterModel>BARCODE}"/>-->
-					<Text text="{ProductMasterModel>BRAND_CODE}"/>
-					<Text text="{ProductMasterModel>PRODUCT_STATUS_DESC}"/>
+					<Text text="{ProductMasterModel>PRODUCT_DATA/BRAND_GROUP_DESC}"/>
+					<Text text="{ProductMasterModel>PRODUCT_DATA/PRODUCT_STATUS_DESC}"/>
 					<HBox wrap="Wrap" alignItems="End">
 						<Button tooltip="{i18n>Edit}" class="sapUiTinyMarginEnd" press=".onPressAction($event,'edit')" icon="sap-icon://edit" type="Transparent"/>
-						<Button tooltip="{i18n>Delete}" press="onDeleteBtnClk" icon="sap-icon://delete" type="Transparent" class="sapUiTinyMarginEnd"/>
+						<Button visible="{=${ProductMasterModel>PRODUCT_DATA/PRODUCT_STATUS_DESC} === 'DRAFT' ? true : false}" tooltip="{i18n>Delete}"
+							icon="sap-icon://delete" type="Transparent" class="sapUiTinyMarginEnd" press="onDeleteItem"/>
 					</HBox>
 				</cells>
 			</ColumnListItem>

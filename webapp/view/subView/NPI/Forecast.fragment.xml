@@ -65,8 +65,8 @@
 					<items>
 						<ColumnListItem>
 							<cells>
-								<ComboBox selectedKey="{oNPI>MONTH_NAME}" items="{oGenericModel>/MONTH}" width="100%" fieldGroupIds="ComboboxField" required="true"
-									editable="true">
+								<ComboBox selectedKey="{oNPI>MONTH_VALUE}" value="{oNPI>MONTH_NAME}" items="{oGenericModel>/MONTH}" width="100%"
+									fieldGroupIds="ComboboxField" required="true" editable="true">
 									<core:Item key="{oGenericModel>MONTH_ID}" text="{oGenericModel>MONTH_NAME}"/>
 								</ComboBox>
 								<Input value="{oNPI>MONTH_VALUE}" fieldGroupIds="InputField" required="true" editable="true" width="100%"/>
@@ -82,47 +82,30 @@
 			<core:Title text="{i18n>CompetingProduct}"/>
 			<VBox>
 				<Label text="{i18n>CompetingProductCode1}" design="Bold" labelFor="ipProductcode1" wrapping="true"/>
-				<!--<Input value="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRSEQID_1}" showValueHelp="true"-->
-				<!--	description="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRSEQID_1_DESC}" id="ipProductcode1" fieldGroupIds="InputField" required="true"-->
-				<!--	editable="true" width="100%"/>-->
-				<Input value="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRSEQID_1}" description="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRSEQID_1_DESC}"
-					showValueHelp="true" id="ipProductcode1" fieldGroupIds="InputField" required="true" editable="true"
-					suggestionItems="{oGenericModel>/COMPETING_PRODUCT}" valueHelpRequest="OnCompetingProductCodeF4" showSuggestion="true">
-					<suggestionItems>
-						<core:Item key="{oGenericModel>PRODUCT_ID}" text="{oGenericModel>PRODUCT_SHORT_DESC}"/>
-					</suggestionItems>
-				</Input>
+				<MultiInput id="ipProductcode1" fieldGroupIds="InputField" required="true" editable="true"
+					suggestionItems="{oGenericModel>/COMPETING_PRODUCT}" valueHelpRequest="OnCompetingProductCodeF4($event,'ipProductcode1')">
+					<core:Item key="{oGenericModel>PRODUCT_ID}" text="{oGenericModel>PRODUCT_SHORT_DESC}"/>
+				</MultiInput>
 				<layoutData>
 					<layout:GridData span="XL6 L6 M6 S12" linebreak="false"/>
 				</layoutData>
 			</VBox>
 			<VBox>
 				<Label text="{i18n>CompetingProductCode2}" design="Bold" labelFor="ipProductcode2" wrapping="true"/>
-				<!--<Input value="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_2}" id="ipProductcode2" showValueHelp="true"-->
-				<!--	description="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_2_DESC}" fieldGroupIds="InputField" required="true" editable="true" width="100%"/>-->
-				<Input value="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_2}" description="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_2_DESC}"
-					showValueHelp="true" id="ipProductcode2" fieldGroupIds="InputField" required="true" editable="true"
-					suggestionItems="{oGenericModel>/COMPETING_PRODUCT}" valueHelpRequest="OnCompetingProductCodeF4" showSuggestion="true">
-					<suggestionItems>
-						<core:Item key="{oGenericModel>PRODUCT_ID}" text="{oGenericModel>PRODUCT_SHORT_DESC}"/>
-					</suggestionItems>
-				</Input>
+				<MultiInput id="ipProductcode2" fieldGroupIds="InputField" required="true" editable="true"
+					suggestionItems="{oGenericModel>/COMPETING_PRODUCT}" valueHelpRequest="OnCompetingProductCodeF4($event,'ipProductcode2')">
+					<core:Item key="{oGenericModel>PRODUCT_ID}" text="{oGenericModel>PRODUCT_SHORT_DESC}"/>
+				</MultiInput>
 				<layoutData>
 					<layout:GridData span="XL6 L6 M6 S12" linebreak="false"/>
 				</layoutData>
 			</VBox>
 			<VBox>
 				<Label text="{i18n>CompetingProductCode3}" design="Bold" labelFor="ipProductcode3" wrapping="true"/>
-				<!--<Input value="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_3}" showValueHelp="true"-->
-				<!--	description="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_3_DESC}" id="ipProductcode3" fieldGroupIds="InputField" required="true"-->
-				<!--	editable="true" width="100%"/>-->
-				<Input value="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_3}" description="{oNPI>/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_3_DESC}"
-					showValueHelp="true" id="ipProductcode3" fieldGroupIds="InputField" required="true" editable="true"
-					suggestionItems="{oGenericModel>/COMPETING_PRODUCT}" valueHelpRequest="OnCompetingProductCodeF4" showSuggestion="true">
-					<suggestionItems>
-						<core:Item key="{oGenericModel>PRODUCT_ID}" text="{oGenericModel>PRODUCT_SHORT_DESC}"/>
-					</suggestionItems>
-				</Input>
+				<MultiInput id="ipProductcode3" fieldGroupIds="InputField" required="true" editable="true"
+					suggestionItems="{oGenericModel>/COMPETING_PRODUCT}" valueHelpRequest="OnCompetingProductCodeF4($event,'ipProductcode3')">
+					<core:Item key="{oGenericModel>PRODUCT_ID}" text="{oGenericModel>PRODUCT_SHORT_DESC}"/>
+				</MultiInput>
 				<layoutData>
 					<layout:GridData span="XL6 L6 M6 S12" linebreak="true"/>
 				</layoutData>
