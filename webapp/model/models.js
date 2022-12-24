@@ -1090,7 +1090,7 @@ sap.ui.define([
 			},
 			fnTableData: function () {
 				var oTableData = new JSONModel({
-					Table: [
+					ProductData: [
 
 					],
 					Path: ""

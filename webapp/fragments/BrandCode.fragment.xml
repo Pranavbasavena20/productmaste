@@ -2,6 +2,6 @@
 	<SelectDialog id="idBrandCodeDialogF4" noDataText="No Brand Code Found" title="Select Brand Code" search=".onBrandCodeSearch"
 		confirm=".onBrandCodeDialogClose" cancel=".onBrandCodeDialogClose" showClearButton="false"
 		items="{ path: 'oGenericModel>/BRAND_CODE', sorter: { path: 'RETAILER_ID', descending: false } }">
-		<StandardListItem title="{oGenericModel>BRAND_CODE}" description="{oGenericModel>BRAND_CODE}" type="Active"/>
+		<StandardListItem title="{oGenericModel>BRAND_LABEL_CODE}" description="{oGenericModel>BRAND_CODE}" type="Active"/>
 	</SelectDialog>
 </core:FragmentDefinition>

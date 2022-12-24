@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified">
 	<!-- <ScrollContainer height="{= ${device>/system/phone}?'300px':'700px'}" width="100%" horizontal="false" vertical="true"> -->
-	<Table id="tbUserTable" width="auto" mode="None" items="{path:'ProductMasterModel>/Table'}" sticky="HeaderToolbar,ColumnHeaders"
+	<Table id="tbUserTable" width="auto" mode="None" items="{path:'ProductMasterModel>/ProductData'}" sticky="HeaderToolbar,ColumnHeaders"
 		noDataText="{i18n>noData}" growing="true" growingScrollToLoad="true" growingThreshold="20" updateFinished="onUpdateFinished">
 		<headerToolbar>
 			<Toolbar>
@@ -44,7 +44,6 @@
 					<Text text="{ProductMasterModel>PRODUCT_DATA/PRODUCT_SHORT_DESC}"/>
 					<Text text="{ProductMasterModel>PRODUCT_DATA/PACK_SIZE}"/>
 					<Text text="{ProductMasterModel>PRODUCT_DATA/COUNTRY_OF_ORIGIN_DESC}"/>
-					<!--<Text text="{ProductMasterModel>BARCODE}"/>-->
 					<Text text="{ProductMasterModel>PRODUCT_DATA/BRAND_GROUP_DESC}"/>
 					<Text text="{ProductMasterModel>PRODUCT_DATA/PRODUCT_STATUS_DESC}"/>
 					<HBox wrap="Wrap" alignItems="End">

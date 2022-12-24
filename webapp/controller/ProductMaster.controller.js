@@ -47,13 +47,17 @@ sap.ui.define([
 			onDownload: function (oEvent) {
 				var aCols, aProducts, oSettings, oSheet;
 				aCols = this.createColumnConfig();
+				aFinalProducts = [];
 				aProducts = this.getView().getModel("ProductMasterModel").getProperty('/ProductData');
+				for (var key in aProducts) {
+					aFinalProducts.push(aProducts[key].PRODUCT_DATA);
+				}
 
 				oSettings = {
 					workbook: {
 						columns: aCols
 					},
-					dataSource: aProducts,
+					dataSource: aFinalProducts,
 					fileName: "Products"
 				};
 
@@ -67,35 +71,40 @@ sap.ui.define([
 
 			createColumnConfig: function () {
 				return [{
-					label: 'Product ID',
-					property: 'PRODUCT_ID',
-					type: EdmType.Number,
-					scale: 0
-				}, {
-					label: 'Product Description',
-					property: 'PRODUCT_SHORT_DESC',
-					type: EdmType.String
-				}, {
-					label: 'Pack Size',
-					property: 'PACK_SIZE',
-					type: EdmType.String
-				}, {
-					label: 'Country Of Origin',
-					property: 'COUNTRY_OF_ORIGIN',
-					type: EdmType.String
-				}, {
-					label: 'Barcode',
-					property: 'BARCODE',
-					type: EdmType.String
-				}, {
-					label: 'Brand',
-					property: 'BRAND_CODE',
-					type: EdmType.String
-				}, {
-					label: 'Status',
-					property: 'PRODUCT_STATUS_DESC',
-					type: EdmType.String
-				}];
+						label: 'Form ID',
+						property: 'REQUEST_ID',
+						type: EdmType.Number,
+						scale: 0
+					}, {
+						label: 'Product Description',
+						property: 'PRODUCT_SHORT_DESC',
+						type: EdmType.String
+					}, {
+						label: 'Pack Size',
+						property: 'PACK_SIZE',
+						type: EdmType.String
+					}, {
+						label: 'Country Of Origin',
+						property: 'COUNTRY_OF_ORIGIN',
+						type: EdmType.String
+					},
+
+					// {
+					// 	label: 'Barcode',
+					// 	property: 'BARCODE',
+					// 	type: EdmType.String
+					// }, 
+
+					{
+						label: 'Brand',
+						property: 'BRAND_GROUP_DESC',
+						type: EdmType.String
+					}, {
+						label: 'Status',
+						property: 'PRODUCT_STATUS_DESC',
+						type: EdmType.String
+					}
+				];
 			},
 			onPressNewProductIntroduction: function (oEvent) {
 				this.getRouter().navTo("NewProductIntroduction", {
@@ -115,15 +124,23 @@ sap.ui.define([
 				var that = this,
 					oView = that.getView(),
 					oViewModel = this.getOwnerComponent().getModel("worklistView"),
-					aStatus = this.getView().byId("idProductStatus").getSelectedKeys();
+
+					aStatus = this.getView().byId("idProductStatus").getSelectedItems();
 				var aTableSearchState = [],
-					aStatusFilter = [];
+					aStatusFilter = [],
+					sFormID = this.getView().byId("FormID").getValue(),
+					sBrandGroup = this.getView().byId("BrandCode").getValue();
+				if (sFormID)
+					aTableSearchState.push(new Filter("PRODUCT_DATA/REQUEST_ID", FilterOperator.EQ, sFormID));
+				if (sBrandGroup)
+					aTableSearchState.push(new Filter("PRODUCT_DATA/BRAND_GROUP_DESC", FilterOperator.EQ, sBrandGroup));
 				if (aStatus && aStatus.length > 0) {
 					for (var i = 0; i < aStatus.length; i++) {
-						aStatusFilter.push(new Filter("PRODUCT_STATUS", FilterOperator.EQ, aStatus[i]));
+						aStatusFilter.push(new Filter("PRODUCT_DATA/PRODUCT_STATUS_DESC", FilterOperator.EQ, aStatus[i].getText()));
 					}
 					aTableSearchState.push(new Filter(aStatusFilter, false));
 				}
+
 				that._applySearch(aTableSearchState);
 
 			},
@@ -183,7 +200,7 @@ sap.ui.define([
 			onDeleteItem: function (oEvent) {
 				var that = this;
 				var sPath = oEvent.getSource().getBindingContext("ProductMasterModel").getPath();
-				that.oData = this.getView().getModel("ProductMasterModel").getData().ProductData;
+				that.oData = oEvent.getSource().getBindingContext("ProductMasterModel").getProperty(sPath);
 				sap.m.MessageBox.confirm("Are you sure, you want to delete?", {
 					onClose: function (sAction) {
 						that.oData.splice(sPath, 1);
@@ -236,9 +253,9 @@ sap.ui.define([
 				var that = this;
 				that.oBrandGroup = oEvent.getSource();
 				if (!that._oBrandGroupF4) {
-					that._FormIDDialog = sap.ui.core.Fragment.load({
+					that._BrandGroupDialog = sap.ui.core.Fragment.load({
 						id: that.createId("_BrandGroupF4"),
-						name: "productmaster.fragments.FormID",
+						name: "productmaster.fragments.BrandGroup",
 						controller: that
 					}).then(function (oDialog) {
 						that._oBrandGroupF4 = oDialog;
@@ -246,15 +263,15 @@ sap.ui.define([
 						that.getView().addDependent(that._oBrandGroupF4);
 					});
 				}
-				that._FormIDDialog.then(function (oDialog) {
+				that._BrandGroupDialog.then(function (oDialog) {
 					that._oBrandGroupF4.open();
 				}.bind(that));
 
 			},
 			onBrandGroupSearch: function (oEvent) {
 				var sValue = oEvent.getParameter("value");
-				var oFilter = new Filter("onFormIDSearch", FilterOperator.Contains, sValue);
-				this._getFragmentText("_BrandGroupF4", "idFormIDDialogF4").getBinding("items").filter([oFilter]);
+				var oFilter = new Filter("BRAND_GROUP_DESC", FilterOperator.Contains, sValue);
+				this._getFragmentText("_BrandGroupF4", "idBrandGroupDialogF4").getBinding("items").filter([oFilter]);
 			},
 			onBrandGroupDialogClose: function (oEvent) {
 				var that = this;

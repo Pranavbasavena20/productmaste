@@ -1,10 +1,10 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
 	<ViewSettingsDialog confirm="handleSortDialogConfirm">
 		<sortItems>
-			<ViewSettingsItem text="Form ID" key="PRODUCT_ID" selected="true"/>
-			<ViewSettingsItem text="Pack Size" key="PACK_SIZE"/>
-			<ViewSettingsItem text="Country of Origin" key="COUNTRY_OF_ORIGIN"/>
-			<ViewSettingsItem text="Status" key="PRODUCT_STATUS_DESC"/>
+			<ViewSettingsItem text="Form ID" key="PRODUCT_DATA/REQUEST_ID" selected="true"/>
+			<ViewSettingsItem text="Pack Size" key="PRODUCT_DATA/PACK_SIZE"/>
+			<ViewSettingsItem text="Country of Origin" key="PRODUCT_DATA/COUNTRY_OF_ORIGIN"/>
+			<ViewSettingsItem text="Status" key="PRODUCT_DATA/PRODUCT_STATUS_DESC"/>
 		</sortItems>
 	</ViewSettingsDialog>
 </core:FragmentDefinition>

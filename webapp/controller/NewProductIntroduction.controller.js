@@ -1197,11 +1197,11 @@ sap.ui.define([
 				var that = this;
 				var oData = this.getView().getModel("oNPI").getData();
 				this.getView().getModel("oNPI").setProperty("/PRODUCT_DATA/PRODUCT_STATUS", "1");
-				var iLength = this.getView().getModel("ProductMasterModel").getData().Table.length;
+				var iLength = this.getView().getModel("ProductMasterModel").getData().ProductData.length;
 				this.getView().getModel("oNPI").setProperty("/PRODUCT_DATA/PRODUCT_STATUS_DESC", "DRAFT");
 				if (oData.PRODUCT_DATA.REQUEST_ID === "") {
 					this.getView().getModel("oNPI").setProperty("/PRODUCT_DATA/REQUEST_ID", iLength + 1);
-					this.getView().getModel("ProductMasterModel").getData().Table.push(oData);
+					this.getView().getModel("ProductMasterModel").getData().ProductData.push(oData);
 				}
 				MessageBox.success("Saved Successfully!", {
 					onClose: function (sAction) {
@@ -1215,11 +1215,11 @@ sap.ui.define([
 				var that = this;
 				var oData = this.getView().getModel("oNPI").getData();
 				this.getView().getModel("oNPI").setProperty("/PRODUCT_DATA/PRODUCT_STATUS", "2");
-				var iLength = this.getView().getModel("ProductMasterModel").getData().Table.length;
+				var iLength = this.getView().getModel("ProductMasterModel").getData().ProductData.length;
 				this.getView().getModel("oNPI").setProperty("/PRODUCT_DATA/PRODUCT_STATUS_DESC", "SUBMITTED");
 				if (oData.PRODUCT_DATA.REQUEST_ID === "") {
 					this.getView().getModel("oNPI").setProperty("/PRODUCT_DATA/REQUEST_ID", iLength + 1);
-					this.getView().getModel("ProductMasterModel").getData().Table.push(oData);
+					this.getView().getModel("ProductMasterModel").getData().ProductData.push(oData);
 				} else {
 
 				}

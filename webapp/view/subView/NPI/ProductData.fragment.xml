@@ -78,9 +78,9 @@
 			</VBox>
 			<VBox>
 				<Label text="{i18n>BrandCode}" design="Bold" wrapping="true" labelFor="ipBrandCode"/>
-				<MultiInput maxTokens="1" fieldGroupIds="InputField" required="true" editable="true" suggestionItems="{oGenericModel>/BRAND_GROUP}"
+				<MultiInput maxTokens="1" fieldGroupIds="InputField" required="true" editable="true" suggestionItems="{oGenericModel>/BRAND_CODE}"
 					valueHelpRequest="OnBrandCodeF4($event,'SectionLevel')">
-					<core:Item key="{oGenericModel>PRODUCT_ID}" text="{oGenericModel>PRODUCT_SHORT_DESC}"/>
+					<core:Item key="{oGenericModel>BRAND_CODE}" text="{oGenericModel>BRAND_LABEL_CODE}"/>
 				</MultiInput>
 				<layoutData>
 					<layout:GridData span="XL12 L12 M6 S12" linebreak="true"/>
