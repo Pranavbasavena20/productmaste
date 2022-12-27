@@ -1,281 +1,261 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
-	<form:SimpleForm width="100%" layout="ResponsiveGridLayout" labelSpanXL="8" labelSpanL="8" labelSpanM="12" columnsXL="2" columnsL="2"
-		columnsM="1" editable="true" adjustLabelSpan="true" singleContainerFullSize="false">
-		<form:content>
-			<core:Title text="{i18n>BasicData}"/>
-			<VBox>
-				<Label text="{i18n>ProductCategory}" wrapping="true" design="Bold" labelFor="cbProductCategory"/>
-				<ComboBox selectedKey="{oNPI>/PRODUCT_DATA/PRODUCT_CATEGORY}" value="{oNPI>/PRODUCT_DATA/PRODUCT_CATEGORY_DESC}"
-					items="{oGenericModel>/PRODUCT_CATEGORY}" width="100%" id="cbProductCategory" fieldGroupIds="ComboboxField" required="true" editable="true"
-					change="onChangeProductCat">
-					<core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}"/>
-				</ComboBox>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="true"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>ProductListingType}" wrapping="true" design="Bold" labelFor="cbProductListingType"/>
-				<ComboBox selectedKey="{oNPI>/PRODUCT_DATA/PRODUCT_LISTING}" value="{oNPI>/PRODUCT_DATA/PRODUCT_LISTING_DESC}"
-					items="{oGenericModel>/PRODUCT_LISTING}" width="100%" id="cbProductListingType" fieldGroupIds="ComboboxField" required="true"
-					editable="true">
-					<core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}"/>
-				</ComboBox>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="false"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>CountryOrigin}" wrapping="true" design="Bold" labelFor="cbCountryOrigin"/>
-				<ComboBox selectedKey="{oNPI>/PRODUCT_DATA/COUNTRY_OF_ORIGIN}" value="{oNPI>/PRODUCT_DATA/COUNTRY_OF_ORIGIN_DESC}"
-					items="{oGenericModel>/countryCode}" width="100%" id="cbCountryOrigin" fieldGroupIds="ComboboxField" required="true" editable="true">
-					<core:Item key="{oGenericModel>COUNTRY_CODE}" text="{oGenericModel>COUNTRY_NAME}"/>
-				</ComboBox>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="true"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>PackSize}" design="Bold" wrapping="true" labelFor="ipPackSize"/>
-				<Input value="{oNPI>/PRODUCT_DATA/PACK_SIZE}" id="ipPackSize" fieldGroupIds="InputField" required="true" editable="true"/>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="false"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>PackSizeUnit}" design="Bold" wrapping="true" labelFor="ipPackSizeUnit"/>
-				<MultiInput maxTokens="1" fieldGroupIds="InputField" required="true" editable="true" suggestionItems="{oGenericModel>/PACK_SIZE_UNIT}"
-					valueHelpRequest="OnPackageSizeUnitF4($event,'ViewLevel')">
-					<core:Item key="{oGenericModel>UOM_CODE}" text="{oGenericModel>UOM_DESC}"/>
-				</MultiInput>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="true"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>ProductShortDesc}" design="Bold" wrapping="true" labelFor="ipProductShortDesc"/>
-				<Input value="{oNPI>/PRODUCT_DATA/PRODUCT_SHORT_DESC}" id="ipProductShortDesc" fieldGroupIds="InputField" required="true" editable="true"/>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="false"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>ProductFullDesc}" design="Bold" wrapping="true" labelFor="ipProductFullDesc"/>
-				<Input value="{oNPI>/PRODUCT_DATA/PRODUCT_FULL_DESC}" id="ipProductFullDesc" fieldGroupIds="InputField" required="true" editable="true"/>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="true"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>BrandGroup}" wrapping="true" design="Bold" labelFor="cbBrandGroup"/>
-				<ComboBox selectedKey="{oNPI>/PRODUCT_DATA/BRAND_GROUP}" value="{oNPI>/PRODUCT_DATA/BRAND_GROUP_DESC}" items="{oGenericModel>/BRAND_GROUP}"
-					width="100%" id="cbBrandGroup" fieldGroupIds="ComboboxField" required="true" editable="true">
-					<core:Item key="{oGenericModel>BRAND_GROUP_CODE}" text="{oGenericModel>BRAND_GROUP_LABEL_CODE}"/>
-				</ComboBox>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="false"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>BrandCode}" design="Bold" wrapping="true" labelFor="ipBrandCode"/>
-				<MultiInput maxTokens="1" fieldGroupIds="InputField" required="true" editable="true" suggestionItems="{oGenericModel>/BRAND_CODE}"
-					valueHelpRequest="OnBrandCodeF4($event,'SectionLevel')">
-					<core:Item key="{oGenericModel>BRAND_CODE}" text="{oGenericModel>BRAND_LABEL_CODE}"/>
-				</MultiInput>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="true"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>SeasonYear}" wrapping="true" design="Bold" labelFor="cbSeasonYear"/>
-				<ComboBox selectedKey="{oNPI>/PRODUCT_DATA/SEASON_YEAR}" value="{oNPI>/PRODUCT_DATA/SEASON_YEAR_DESC}" items="{oGenericModel>/SEASON_YEAR}"
-					width="100%" id="cbSeasonYear" fieldGroupIds="ComboboxField" required="true" editable="true">
-					<core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}"/>
-				</ComboBox>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="false"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>SeasonCode}" wrapping="true" design="Bold" labelFor="cbSeasonCode"/>
-				<ComboBox selectedKey="{oNPI>/PRODUCT_DATA/SEASON_CODE}" value="{oNPI>/PRODUCT_DATA/SEASON_CODE_DESC}" items="{oGenericModel>/SEASON_CODE}"
-					width="100%" id="cbSeasonCode" fieldGroupIds="ComboboxField" required="true" editable="true">
-					<core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}"/>
-				</ComboBox>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="true"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>PhaseCode}" wrapping="true" design="Bold" labelFor="cbPhaseCode"/>
-				<ComboBox selectedKey="{oNPI>/PRODUCT_DATA/PHASE_CODE}" value="{oNPI>/PRODUCT_DATA/PHASE_CODE_DESC}" items="{oGenericModel>/PHASE_CODE}"
-					width="100%" id="cbPhaseCode" fieldGroupIds="ComboboxField" required="true" editable="true">
-					<core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}"/>
-				</ComboBox>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="false"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>ManufacturerCode}" design="Bold" wrapping="true" labelFor="ipManufacturerCode"/>
-				<Input value="{oNPI>/PRODUCT_DATA/MFR_CODE}" id="ipManufacturerCode" fieldGroupIds="InputField" required="true" editable="true"/>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="true"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>ManufacturerName}" design="Bold" wrapping="true" labelFor="ipManufacturerName"/>
-				<Input value="{oNPI>/PRODUCT_DATA/MFR_DESC}" id="ipManufacturerName" fieldGroupIds="InputField" required="true" editable="true"/>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="false"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>PrivateProduct}" design="Bold" labelFor="rbPrivateProduct" wrapping="true"/>
-				<RadioButtonGroup columns="2" width="100%" id="rbPrivateProduct" fieldGroupIds="RadioButtonGroup" editable="true">
-					<RadioButton text="{i18n>Yes}"/>
-					<RadioButton text="{i18n>No}"/>
-				</RadioButtonGroup>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="true"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>MerchandiseProduct}" design="Bold" labelFor="rbMerchandiseProduct" wrapping="true"/>
-				<RadioButtonGroup columns="2" width="100%" id="rbMerchandiseProduct" fieldGroupIds="RadioButtonGroup" editable="true">
-					<RadioButton text="{i18n>Yes}"/>
-					<RadioButton text="{i18n>No}"/>
-				</RadioButtonGroup>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="false"/>
-				</layoutData>
-			</VBox>
-			<core:Title text="{i18n>ProductCategory}"/>
-			<VBox>
-				<Label text="{i18n>MainKey}" design="Bold" wrapping="true" labelFor="ipMainKey"/>
-				<MultiInput maxTokens="1" id="ipMainKey" fieldGroupIds="InputField" required="true" editable="true"
-					suggestionItems="{oGenericModel>/MCH_MAIN_KEY}" valueHelpRequest="OnMainKeyF4">
-					<core:Item key="{oGenericModel>MCH_MAIN_KEY_LABEL_CODE}" text="{oGenericModel>MCH_MAIN_KEY_DESC}"/>
-				</MultiInput>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="true"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>DepartmentCode}" design="Bold" wrapping="true" labelFor="ipDepartmentCode"/>
-				<MultiInput maxTokens="1" id="ipDepartmentCode" fieldGroupIds="InputField" required="true" editable="true"
-					suggestionItems="{oGenericModel>/MCH_DEPARTMENT}" valueHelpRequest="OnDepartMentCodeF4">
-					<core:Item key="{oGenericModel>MCH_DEPT_LABEL_CODE}" text="{oGenericModel>MCH_MAIN_KEY_DESC}"/>
-				</MultiInput>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="false"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>ClassCode}" design="Bold" wrapping="true" labelFor="ipClassCode"/>
-				<MultiInput maxTokens="1" id="ipClassCode" fieldGroupIds="InputField" required="true" editable="true"
-					suggestionItems="{oGenericModel>/MCH_CLASS}" valueHelpRequest="OnClassNodeF4">
-					<core:Item key="{oGenericModel>MCH_CLASS_LABEL_CODE}" text="{oGenericModel>MCH_MAIN_KEY_DESC}"/>
-				</MultiInput>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="true"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>SubClassCode}" wrapping="true" design="Bold" labelFor="cbSubClassCode"/>
-				<ComboBox selectedKey="{oNPI>/PRODUCT_DATA/SUB_CLASS_CODE}" value="{oNPI>/PRODUCT_DATA/SUB_CLASS_CODE_DESC}"
-					items="{oGenericModel>/MCH_SUB_CATEGORY_1}" width="100%" id="cbSubClassCode" fieldGroupIds="ComboboxField" required="true" editable="true">
-					<core:Item key="{oGenericModel>MCH_CLASS_LABEL_CODE}" text="{oGenericModel>MCH_MAIN_KEY_DESC}"/>
-				</ComboBox>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="false"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>ProductType}" wrapping="true" design="Bold" labelFor="cbProductType"/>
-				<ComboBox selectedKey="{oNPI>/PRODUCT_DATA/PRODUCT_TYPE}" value="{oNPI>/PRODUCT_DATA/PRODUCT_TYPE_DESC}"
-					items="{oGenericModel>/MCH_SUB_CATEGORY_2}" width="100%" id="cbProductType" fieldGroupIds="ComboboxField" required="true" editable="true">
-					<core:Item key="{oGenericModel>MCH_CLASS_LABEL_CODE}" text="{oGenericModel>MCH_MAIN_KEY_DESC}"/>
-				</ComboBox>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="true"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>ProductStyle}" wrapping="true" design="Bold" labelFor="cbProductStyle"/>
-				<ComboBox selectedKey="{oNPI>/PRODUCT_DATA/PRODUCT_STYLE}" value="{oNPI>/PRODUCT_DATA/PRODUCT_STYLE_DESC}"
-					items="{oGenericModel>/PRODUCT_STYLE}" width="100%" id="cbProductStyle" fieldGroupIds="ComboboxField" required="true" editable="true">
-					<core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}"/>
-				</ComboBox>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="false"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>ProductSize}" wrapping="true" design="Bold" labelFor="cbProductSize"/>
-				<ComboBox selectedKey="{oNPI>/PRODUCT_DATA/PRODUCT_SIZE}" value="{oNPI>/PRODUCT_DATA/PRODUCT_SIZE_DESC}"
-					items="{oGenericModel>/PRODUCT_SIZE}" width="100%" id="cbProductSize" fieldGroupIds="ComboboxField" required="true" editable="true">
-					<core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}"/>
-				</ComboBox>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="true"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>ProductFormat}" design="Bold" wrapping="true" labelFor="ipProductFormat"/>
-				<MultiInput id="ipProductFormat" suggestionItems="{oGenericModel>/FORMAT}" valueHelpRequest="OnProductFormatF4">
-					<core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}"/>
-				</MultiInput>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="false"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>SupplierCode}" design="Bold" wrapping="true"/>
-				<Text text="{oNPI>/PRODUCT_DATA/VENDOR_CODE}"/>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="false"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>ReturnPolicy}" wrapping="true" design="Bold" labelFor="cbReturnPolicy"/>
-				<ComboBox selectedKey="{oNPI>/PRODUCT_DATA/RETURN_POLICY}" value="{oNPI>/PRODUCT_DATA/RETURN_POLICY_DESC}" items="{oGenericModel>/YESNO}"
-					width="100%" id="cbReturnPolicy" fieldGroupIds="ComboboxField" required="true" editable="true">
-					<core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}"/>
-				</ComboBox>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="true"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>LeadTime}" design="Bold" wrapping="true" labelFor="ipLeadTime"/>
-				<Input value="{oNPI>/PRODUCT_DATA/AVG_LEAD_TIME}" id="ipLeadTime" fieldGroupIds="InputField" required="true" editable="true"/>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="false"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>TaxCode}" design="Bold" wrapping="true" labelFor="ipTaxCode"/>
-				<Input value="{oNPI>/PRODUCT_DATA/TAX_CODE}" id="ipTaxCode" fieldGroupIds="InputField" required="true" editable="true"/>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="true"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>ProductListingNotice}" design="Bold" wrapping="true" labelFor="ipProductListingNotice"/>
-				<Input value="{oNPI>/PRODUCT_DATA/PRODUCT_LISTING_NOTICE}" id="ipProductListingNotice" fieldGroupIds="InputField" required="true"
-					editable="true"/>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="true"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>ShelfLife}" design="Bold" wrapping="true" labelFor="ipShelfLife"/>
-				<Input value="{oNPI>/PRODUCT_DATA/SHELF_LIFE}" id="ipShelfLife" fieldGroupIds="InputField" required="true" editable="true"/>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M6 S12" linebreak="false"/>
-				</layoutData>
-			</VBox>
-		</form:content>
-	</form:SimpleForm>
+    <form:SimpleForm width="100%" layout="ResponsiveGridLayout" labelSpanXL="8" labelSpanL="8" labelSpanM="12" columnsXL="2" columnsL="2" columnsM="1" editable="true" adjustLabelSpan="true" singleContainerFullSize="false">
+        <form:content>
+            <core:Title text="{i18n>BasicData}" />
+            <VBox>
+                <Label text="{i18n>ProductCategory}" wrapping="true" design="Bold" labelFor="cbProductCategory" />
+                <ComboBox selectedKey="{oNPI>/PRODUCT_DATA/PRODUCT_CATEGORY}" value="{oNPI>/PRODUCT_DATA/PRODUCT_CATEGORY_DESC}" items="{oGenericModel>/PRODUCT_CATEGORY}" width="100%" id="cbProductCategory" fieldGroupIds="ComboboxField" required="true" editable="true" change="onChangeProductCat">
+                    <core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}" />
+                </ComboBox>
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="true" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>ProductListingType}" wrapping="true" design="Bold" labelFor="cbProductListingType" />
+                <ComboBox selectedKey="{oNPI>/PRODUCT_DATA/PRODUCT_LISTING}" value="{oNPI>/PRODUCT_DATA/PRODUCT_LISTING_DESC}" items="{oGenericModel>/PRODUCT_LISTING}" width="100%" id="cbProductListingType" fieldGroupIds="ComboboxField" required="true" editable="true">
+                    <core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}" />
+                </ComboBox>
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="false" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>CountryOrigin}" wrapping="true" design="Bold" labelFor="cbCountryOrigin" />
+                <ComboBox selectedKey="{oNPI>/PRODUCT_DATA/COUNTRY_OF_ORIGIN}" value="{oNPI>/PRODUCT_DATA/COUNTRY_OF_ORIGIN_DESC}" items="{oGenericModel>/countryCode}" width="100%" id="cbCountryOrigin" fieldGroupIds="ComboboxField" required="true" editable="true">
+                    <core:Item key="{oGenericModel>COUNTRY_CODE}" text="{oGenericModel>COUNTRY_NAME}" />
+                </ComboBox>
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="true" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>PackSize}" design="Bold" wrapping="true" labelFor="ipPackSize" />
+                <Input value="{oNPI>/PRODUCT_DATA/PACK_SIZE}" id="ipPackSize" fieldGroupIds="InputField" required="true" editable="true" />
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="false" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>PackSizeUnit}" design="Bold" wrapping="true" labelFor="ipPackSizeUnit" />
+                <MultiInput maxTokens="1" fieldGroupIds="InputField" required="true" editable="true" suggestionItems="{oGenericModel>/PACK_SIZE_UNIT}" valueHelpRequest="OnPackageSizeUnitF4($event,'ViewLevel')">
+                    <core:Item key="{oGenericModel>UOM_CODE}" text="{oGenericModel>UOM_DESC}" />
+                </MultiInput>
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="true" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>ProductShortDesc}" design="Bold" wrapping="true" labelFor="ipProductShortDesc" />
+                <Input value="{oNPI>/PRODUCT_DATA/PRODUCT_SHORT_DESC}" id="ipProductShortDesc" fieldGroupIds="InputField" required="true" editable="true" />
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="false" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>ProductFullDesc}" design="Bold" wrapping="true" labelFor="ipProductFullDesc" />
+                <Input value="{oNPI>/PRODUCT_DATA/PRODUCT_FULL_DESC}" id="ipProductFullDesc" fieldGroupIds="InputField" required="true" editable="true" />
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="true" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>BrandGroup}" wrapping="true" design="Bold" labelFor="cbBrandGroup" />
+                <ComboBox selectedKey="{oNPI>/PRODUCT_DATA/BRAND_GROUP}" value="{oNPI>/PRODUCT_DATA/BRAND_GROUP_DESC}" items="{oGenericModel>/BRAND_GROUP}" width="100%" id="cbBrandGroup" fieldGroupIds="ComboboxField" required="true" editable="true">
+                    <core:Item key="{oGenericModel>BRAND_GROUP_CODE}" text="{oGenericModel>BRAND_GROUP_LABEL_CODE}" />
+                </ComboBox>
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="false" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>BrandCode}" design="Bold" wrapping="true" labelFor="ipBrandCode" />
+                <MultiInput maxTokens="1" fieldGroupIds="InputField" required="true" editable="true" suggestionItems="{oGenericModel>/BRAND_CODE}" valueHelpRequest="OnBrandCodeF4($event,'SectionLevel')">
+                    <core:Item key="{oGenericModel>BRAND_CODE}" text="{oGenericModel>BRAND_LABEL_CODE}" />
+                </MultiInput>
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="true" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>SeasonYear}" wrapping="true" design="Bold" labelFor="cbSeasonYear" />
+                <ComboBox selectedKey="{oNPI>/PRODUCT_DATA/SEASON_YEAR}" value="{oNPI>/PRODUCT_DATA/SEASON_YEAR_DESC}" items="{oGenericModel>/SEASON_YEAR}" width="100%" id="cbSeasonYear" fieldGroupIds="ComboboxField" required="true" editable="true">
+                    <core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}" />
+                </ComboBox>
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="false" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>SeasonCode}" wrapping="true" design="Bold" labelFor="cbSeasonCode" />
+                <ComboBox selectedKey="{oNPI>/PRODUCT_DATA/SEASON_CODE}" value="{oNPI>/PRODUCT_DATA/SEASON_CODE_DESC}" items="{oGenericModel>/SEASON_CODE}" width="100%" id="cbSeasonCode" fieldGroupIds="ComboboxField" required="true" editable="true">
+                    <core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}" />
+                </ComboBox>
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="true" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>PhaseCode}" wrapping="true" design="Bold" labelFor="cbPhaseCode" />
+                <ComboBox selectedKey="{oNPI>/PRODUCT_DATA/PHASE_CODE}" value="{oNPI>/PRODUCT_DATA/PHASE_CODE_DESC}" items="{oGenericModel>/PHASE_CODE}" width="100%" id="cbPhaseCode" fieldGroupIds="ComboboxField" required="true" editable="true">
+                    <core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}" />
+                </ComboBox>
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="false" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>ManufacturerCode}" design="Bold" wrapping="true" labelFor="ipManufacturerCode" />
+                <Input value="{oNPI>/PRODUCT_DATA/MFR_CODE}" id="ipManufacturerCode" fieldGroupIds="InputField" required="true" editable="true" />
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="true" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>ManufacturerName}" design="Bold" wrapping="true" labelFor="ipManufacturerName" />
+                <Input value="{oNPI>/PRODUCT_DATA/MFR_DESC}" id="ipManufacturerName" fieldGroupIds="InputField" required="true" editable="true" />
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="false" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>PrivateProduct}" design="Bold" labelFor="rbPrivateProduct" wrapping="true" />
+                <RadioButtonGroup columns="2" width="100%" id="rbPrivateProduct" fieldGroupIds="RadioButtonGroup" editable="true">
+                    <RadioButton text="{i18n>Yes}" />
+                    <RadioButton text="{i18n>No}" />
+                </RadioButtonGroup>
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="true" />
+                </layoutData>
+            </VBox>
+
+            <core:Title text="{i18n>ProductCategory}" />
+            <VBox>
+                <Label text="{i18n>MainKey}" design="Bold" wrapping="true" labelFor="ipMainKey" />
+                <MultiInput maxTokens="1" id="ipMainKey" fieldGroupIds="InputField" required="true" editable="true" suggestionItems="{oGenericModel>/MCH_MAIN_KEY}" valueHelpRequest="OnMainKeyF4">
+                    <core:Item key="{oGenericModel>MCH_MAIN_KEY_LABEL_CODE}" text="{oGenericModel>MCH_MAIN_KEY_DESC}" />
+                </MultiInput>
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="true" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>DepartmentCode}" design="Bold" wrapping="true" labelFor="ipDepartmentCode" />
+                <MultiInput maxTokens="1" id="ipDepartmentCode" fieldGroupIds="InputField" required="true" editable="true" suggestionItems="{oGenericModel>/MCH_DEPARTMENT}" valueHelpRequest="OnDepartMentCodeF4">
+                    <core:Item key="{oGenericModel>MCH_DEPT_LABEL_CODE}" text="{oGenericModel>MCH_MAIN_KEY_DESC}" />
+                </MultiInput>
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="false" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>ClassCode}" design="Bold" wrapping="true" labelFor="ipClassCode" />
+                <MultiInput maxTokens="1" id="ipClassCode" fieldGroupIds="InputField" required="true" editable="true" suggestionItems="{oGenericModel>/MCH_CLASS}" valueHelpRequest="OnClassNodeF4">
+                    <core:Item key="{oGenericModel>MCH_CLASS_LABEL_CODE}" text="{oGenericModel>MCH_MAIN_KEY_DESC}" />
+                </MultiInput>
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="true" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>SubClassCode}" wrapping="true" design="Bold" labelFor="cbSubClassCode" />
+                <ComboBox selectedKey="{oNPI>/PRODUCT_DATA/SUB_CLASS_CODE}" value="{oNPI>/PRODUCT_DATA/SUB_CLASS_CODE_DESC}" items="{oGenericModel>/MCH_SUB_CATEGORY_1}" width="100%" id="cbSubClassCode" fieldGroupIds="ComboboxField" required="true" editable="true">
+                    <core:Item key="{oGenericModel>MCH_CLASS_LABEL_CODE}" text="{oGenericModel>MCH_MAIN_KEY_DESC}" />
+                </ComboBox>
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="false" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>ProductType}" wrapping="true" design="Bold" labelFor="cbProductType" />
+                <ComboBox selectedKey="{oNPI>/PRODUCT_DATA/PRODUCT_TYPE}" value="{oNPI>/PRODUCT_DATA/PRODUCT_TYPE_DESC}" items="{oGenericModel>/MCH_SUB_CATEGORY_2}" width="100%" id="cbProductType" fieldGroupIds="ComboboxField" required="true" editable="true">
+                    <core:Item key="{oGenericModel>MCH_CLASS_LABEL_CODE}" text="{oGenericModel>MCH_MAIN_KEY_DESC}" />
+                </ComboBox>
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="true" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>ProductStyle}" wrapping="true" design="Bold" labelFor="cbProductStyle" />
+                <ComboBox selectedKey="{oNPI>/PRODUCT_DATA/PRODUCT_STYLE}" value="{oNPI>/PRODUCT_DATA/PRODUCT_STYLE_DESC}" items="{oGenericModel>/PRODUCT_STYLE}" width="100%" id="cbProductStyle" fieldGroupIds="ComboboxField" required="true" editable="true">
+                    <core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}" />
+                </ComboBox>
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="false" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>ProductSize}" wrapping="true" design="Bold" labelFor="cbProductSize" />
+                <ComboBox selectedKey="{oNPI>/PRODUCT_DATA/PRODUCT_SIZE}" value="{oNPI>/PRODUCT_DATA/PRODUCT_SIZE_DESC}" items="{oGenericModel>/PRODUCT_SIZE}" width="100%" id="cbProductSize" fieldGroupIds="ComboboxField" required="true" editable="true">
+                    <core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}" />
+                </ComboBox>
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="true" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>ProductFormat}" design="Bold" wrapping="true" labelFor="ipProductFormat" />
+                <MultiInput id="ipProductFormat" suggestionItems="{oGenericModel>/FORMAT}" valueHelpRequest="OnProductFormatF4">
+                    <core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}" />
+                </MultiInput>
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="false" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>SupplierCode}" design="Bold" wrapping="true" />
+                <Text text="{oNPI>/PRODUCT_DATA/VENDOR_CODE}" />
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="false" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>ReturnPolicy}" wrapping="true" design="Bold" labelFor="cbReturnPolicy" />
+                <ComboBox selectedKey="{oNPI>/PRODUCT_DATA/RETURN_POLICY}" value="{oNPI>/PRODUCT_DATA/RETURN_POLICY_DESC}" items="{oGenericModel>/YESNO}" width="100%" id="cbReturnPolicy" fieldGroupIds="ComboboxField" required="true" editable="true">
+                    <core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}" />
+                </ComboBox>
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="true" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>LeadTime}" design="Bold" wrapping="true" labelFor="ipLeadTime" />
+                <Input value="{oNPI>/PRODUCT_DATA/AVG_LEAD_TIME}" id="ipLeadTime" fieldGroupIds="InputField" required="true" editable="true" />
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="false" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>TaxCode}" design="Bold" wrapping="true" labelFor="ipTaxCode" />
+                <Input value="{oNPI>/PRODUCT_DATA/TAX_CODE}" id="ipTaxCode" fieldGroupIds="InputField" required="true" editable="true" />
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="true" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>ProductListingNotice}" design="Bold" wrapping="true" labelFor="ipProductListingNotice" />
+                <Input value="{oNPI>/PRODUCT_DATA/PRODUCT_LISTING_NOTICE}" id="ipProductListingNotice" fieldGroupIds="InputField" required="true" editable="true" />
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="true" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>ShelfLife}" design="Bold" wrapping="true" labelFor="ipShelfLife" />
+                <Input value="{oNPI>/PRODUCT_DATA/SHELF_LIFE}" id="ipShelfLife" fieldGroupIds="InputField" required="true" editable="true" />
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="false" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>MerchandiseProduct}" design="Bold" labelFor="rbMerchandiseProduct" wrapping="true" />
+                <RadioButtonGroup columns="2" width="100%" id="rbMerchandiseProduct" fieldGroupIds="RadioButtonGroup" editable="true">
+                    <RadioButton text="{i18n>Yes}" />
+                    <RadioButton text="{i18n>No}" />
+                </RadioButtonGroup>
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M6 S12" linebreak="true" />
+                </layoutData>
+            </VBox>
+        </form:content>
+    </form:SimpleForm>
 </core:FragmentDefinition>

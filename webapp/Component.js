@@ -3,10 +3,10 @@
  */
 
 sap.ui.define([
-		"sap/ui/core/UIComponent",
-		"sap/ui/Device",
-		"productmaster/model/models"
-	],
+	"sap/ui/core/UIComponent",
+	"sap/ui/Device",
+	"productmaster/model/models"
+],
 	function (UIComponent, Device, models) {
 		"use strict";
 
@@ -29,6 +29,7 @@ sap.ui.define([
 				this.setModel(models.createDeviceModel(), "device");
 				this.setModel(models.fnNPI(), "oNPI");
 				this.setModel(models.fnTableData(), "ProductMasterModel");
+				this.getModel("ProductMasterModel").loadData("./model/ProductData.json", false);
 				this.setModel(models.fnGenericModel(), "oGenericModel");
 			}
 		});
