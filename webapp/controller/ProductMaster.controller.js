@@ -24,10 +24,16 @@ sap.ui.define([
 					tableNoDataText: this.getResourceBundle().getText("tableNoDataText"),
 					Status: "1",
 					FormID: "",
-					Brand: ""
+					Brand: "",
+					bSearch: true
 				});
+				var that = this;
 				this.getOwnerComponent().setModel(oViewModel, "worklistView");
-				this.onSearchTable("onInit");
+				this.getOwnerComponent().getModel("ProductMasterModel").loadData("./model/ProductData.json", true);
+				this.getOwnerComponent().getModel("ProductMasterModel").attachRequestCompleted(function () {
+					that.onSearchTable("onInit");
+				});
+
 			},
 			onUpdateFinished: function (oEvent) {
 				var that = this,
@@ -42,6 +48,7 @@ sap.ui.define([
 				} else {
 					sTitle = that.getResourceBundle().getText("worklistTableTitle");
 				}
+
 				that.getOwnerComponent().getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
 			},
 			onDownload: function (oEvent) {
@@ -155,7 +162,10 @@ sap.ui.define([
 				var that = this;
 				var oTable = that.getView().byId("tbUserTable"),
 					oViewModel = that.getOwnerComponent().getModel("worklistView");
-				oTable.getBinding("items").filter(aTableSearchState, "Application");
+				if (oTable.getBinding("items") !== undefined) {
+					oTable.getBinding("items").filter(aTableSearchState, "Application");
+				}
+
 				// changes the noDataText of the list in case there are no filter results
 				if (aTableSearchState.length !== 0) {
 					oViewModel.setProperty("/tableNoDataText", that.getResourceBundle().getText("worklistNoDataWithSearchText"));

@@ -29,7 +29,7 @@ sap.ui.define([
 				this.setModel(models.createDeviceModel(), "device");
 				this.setModel(models.fnNPI(), "oNPI");
 				this.setModel(models.fnTableData(), "ProductMasterModel");
-				this.getModel("ProductMasterModel").loadData("./model/ProductData.json", false);
+
 				this.setModel(models.fnGenericModel(), "oGenericModel");
 			}
 		});
