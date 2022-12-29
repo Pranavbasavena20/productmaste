@@ -195,7 +195,7 @@
             </VBox>
             <VBox>
                 <Label text="{i18n>ProductFormat}" design="Bold" wrapping="true" labelFor="ipProductFormat" />
-                <MultiInput id="ipProductFormat" suggestionItems="{oGenericModel>/FORMAT}" valueHelpRequest="OnProductFormatF4">
+                <MultiInput tokenUpdate="tokenUpdate" id="ipProductFormat" suggestionItems="{oGenericModel>/FORMAT}" valueHelpRequest="OnProductFormatF4">
                     <core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}" />
                 </MultiInput>
                 <layoutData>
