@@ -62,7 +62,7 @@
                                 <Input value="{oNPI>FREQUENCY}" fieldGroupIds="InputField" required="true" editable="true" width="100%" />
                                 <DatePicker value="{oNPI>PERIOD_START_DATE}" fieldGroupIds="DateField" required="true" editable="true" width="100%" />
                                 <DatePicker value="{oNPI>PERIOD_END_DATE}" fieldGroupIds="DateField" required="true" editable="true" width="100%" />
-                                <Button icon="sap-icon://delete" press="onDeleteMarketingTable" />
+                                <Button visible="{NPIView>/bSubmitted}" icon="sap-icon://delete" press="onDeleteMarketingTable" />
                             </cells>
                         </ColumnListItem>
                     </items>
@@ -102,7 +102,7 @@
                                 <Input value="{oNPI>RETAILER_NAME}" fieldGroupIds="InputField" required="true" editable="true" width="100%" />
                                 <Input value="{oNPI>SELLING_PRICE}" fieldGroupIds="InputField" required="true" editable="true" width="100%" />
                                 <DatePicker value="{oNPI>START_DATE}" fieldGroupIds="DateField" required="true" editable="true" width="100%" />
-                                <Button icon="sap-icon://delete" press="onDeleteProposedListingTable" />
+                                <Button visible="{NPIView>/bSubmitted}" icon="sap-icon://delete" press="onDeleteProposedListingTable" />
                             </cells>
                         </ColumnListItem>
                     </items>

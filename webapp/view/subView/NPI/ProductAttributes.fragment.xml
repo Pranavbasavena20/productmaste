@@ -59,7 +59,9 @@
                             <content>
                                 <Title text="{i18n>ProductComp}" />
                                 <ToolbarSpacer />
-                                <Button icon="sap-icon://add" text="{i18n>btnAdd}" type="Emphasized" press="AddComparsion" visible="{NPIView>/bComparsion}" />
+                                <VBox visible="{NPIView>/bSubmitted}">
+                                    <Button icon="sap-icon://add" text="{i18n>btnAdd}" type="Emphasized" press="AddComparsion" visible="{NPIView>/bComparsion}" />
+                                </VBox>
                             </content>
                         </OverflowToolbar>
                     </headerToolbar>

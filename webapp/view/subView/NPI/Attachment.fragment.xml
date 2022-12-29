@@ -70,7 +70,7 @@
                                 <Text text="" />
                                 <DatePicker value="{oNPI>DOC_EXPIRY_DATE}" fieldGroupIds="DateField" required="true" editable="true" width="100%" />
                                 <Text text="" />
-                                <Button icon="sap-icon://delete" press="onDeleteAttachmentTable" />
+                                <Button visible="{NPIView>/bSubmitted}" icon="sap-icon://delete" press="onDeleteAttachmentTable" />
                             </cells>
                         </ColumnListItem>
                     </items>

@@ -30,7 +30,7 @@
                             <cells>
                                 <Input value="{oNPI>FORECAST_ATTRIBUTE_NAME}" fieldGroupIds="InputField" required="true" editable="true" width="100%" />
                                 <Input value="{oNPI>FORECAST_ATTRIBUTE_VALUE}" fieldGroupIds="InputField" required="true" editable="true" width="100%" />
-                                <Button icon="sap-icon://delete" press="onDeleteForcastTable" />
+                                <Button visible="{NPIView>/bSubmitted}" icon="sap-icon://delete" press="onDeleteForcastTable" />
                             </cells>
                         </ColumnListItem>
                     </items>
@@ -46,7 +46,9 @@
                             <content>
                                 <Title text="{i18n>ForecastMonth}" />
                                 <ToolbarSpacer />
-                                <Button icon="sap-icon://add" text="{i18n>btnAdd}" press="AddForeCast" type="Emphasized" visible="{NPIView>/bForcastMonthAdd}" />
+                                <VBox visible="{NPIView>/bSubmitted}">
+                                    <Button icon="sap-icon://add" text="{i18n>btnAdd}" press="AddForeCast" type="Emphasized" visible="{NPIView>/bForcastMonthAdd}" />
+                                </VBox>
                             </content>
                         </OverflowToolbar>
                     </headerToolbar>
@@ -68,7 +70,7 @@
                                     <core:Item key="{oGenericModel>MONTH_ID}" text="{oGenericModel>MONTH_NAME}" />
                                 </ComboBox>
                                 <Input value="{oNPI>MONTH_VALUE}" fieldGroupIds="InputField" required="true" editable="true" width="100%" />
-                                <Button icon="sap-icon://delete" press="onDeleteForeCastTable" />
+                                <Button visible="{NPIView>/bSubmitted}" icon="sap-icon://delete" press="onDeleteForeCastTable" />
                             </cells>
                         </ColumnListItem>
                     </items>
