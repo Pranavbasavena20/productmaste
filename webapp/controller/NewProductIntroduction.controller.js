@@ -1,14 +1,14 @@
 sap.ui.define([
-		"sap/ui/core/mvc/Controller",
-		"sap/ui/model/json/JSONModel",
-		"productmaster/utils/dataUtil",
-		"sap/ui/core/UIComponent",
-		"sap/ui/core/Fragment",
-		"sap/ui/model/Filter",
-		"sap/ui/model/FilterOperator",
-		"sap/m/MessageBox",
-		"productmaster/model/models"
-	],
+	"sap/ui/core/mvc/Controller",
+	"sap/ui/model/json/JSONModel",
+	"productmaster/utils/dataUtil",
+	"sap/ui/core/UIComponent",
+	"sap/ui/core/Fragment",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator",
+	"sap/m/MessageBox",
+	"productmaster/model/models"
+],
 	/**
 	 * @param {typeof sap.ui.core.mvc.Controller} Controller
 	 */
@@ -258,7 +258,38 @@ sap.ui.define([
 					SALES_ORG_DESC: "",
 					DIST_CHANNEL: "",
 					DIST_CHANNEL_DESC: "",
-					PRICE_TYPE: "",
+					PRICE_TYPE: "Normal",
+					PRICE_TYPE_DESC: "Actual Price Type",
+					UNIT_COST_PRICE: "",
+					COST_PRICE: "",
+					COST_PRICE_MISC: "",
+					MISC_UNIT_CP: "",
+					CP_CURRENCY: "",
+					CP_CURRENCY_DESC: "",
+					FOREIGN_UNIT_CP: "",
+					FOREIGN_CP: "",
+					UNIT_SALES_PRICE: "",
+					SP_NO_GST: "",
+					SP_W_GST: "",
+					GP: "",
+					GP_PERCENT: "",
+					INTRO_PERIOD_FROM: "",
+					INTRO_PERIOD_TO: "",
+					CP_UOM: "",
+					SP_UOM: "",
+					Button: true
+				};
+				var object2 = {
+					ID: "",
+					PRODUCT_ID: "",
+					VENDOR_ID: "",
+					VARIANT_ID: "",
+					SALES_ORG: "",
+					SALES_ORG_DESC: "",
+					DIST_CHANNEL: "",
+					DIST_CHANNEL_DESC: "",
+					PRICE_TYPE: "Introductory",
+					PRICE_TYPE_DESC: "Initial Offer for Product",
 					UNIT_COST_PRICE: "",
 					COST_PRICE: "",
 					COST_PRICE_MISC: "",
@@ -279,6 +310,7 @@ sap.ui.define([
 					Button: true
 				};
 				oModel.getData().PRODUCT_PRICING_LIST.push(object);
+				oModel.getData().PRODUCT_PRICING_LIST.push(object2);
 				oModel.updateBindings(true);
 			},
 			onDeletePricing: function (oEvent) {
@@ -468,7 +500,7 @@ sap.ui.define([
 				this.iPath = this.Path.split("/")[2];
 				if (parseInt(this.iPath) !== 0) {
 					this._AddProductUOM();
-					this._onProductVariant();
+					//this._onProductVariant();
 				}
 				this._fnAllTableItems("productmaster.view.subView.NPI.ProductUOM", "tbProductUOM", "/VARIANT_UOM_LIST");
 				this._fnAllTableItems("productmaster.view.subView.NPI.ProductPricing", "tbVariantPricing", "/VARIANRT_PRICING_LIST");
@@ -599,12 +631,44 @@ sap.ui.define([
 					SALES_ORG_DESC: "",
 					DIST_CHANNEL: "",
 					DIST_CHANNEL_DESC: "",
-					PRICE_TYPE: "",
+					PRICE_TYPE: "Normal",
+					PRICE_TYPE_DESC: "Actual Price Type",
 					UNIT_COST_PRICE: "",
 					COST_PRICE: "",
 					COST_PRICE_MISC: "",
 					MISC_UNIT_CP: "",
 					CP_CURRENCY: "",
+					CP_CURRENCY_DESC: "",
+					FOREIGN_UNIT_CP: "",
+					FOREIGN_CP: "",
+					UNIT_SALES_PRICE: "",
+					SP_NO_GST: "",
+					SP_W_GST: "",
+					GP: "",
+					GP_PERCENT: "",
+					INTRO_PERIOD_FROM: "",
+					INTRO_PERIOD_TO: "",
+					CP_UOM: "",
+					SP_UOM: "",
+					Button: true
+				};
+				var object2 = {
+					ID: "",
+					PRODUCT_ID: "",
+					VENDOR_ID: "",
+					VARIANT_ID: "",
+					SALES_ORG: "",
+					SALES_ORG_DESC: "",
+					DIST_CHANNEL: "",
+					DIST_CHANNEL_DESC: "",
+					PRICE_TYPE: "Introductory",
+					PRICE_TYPE_DESC: "Initial Offer for Product",
+					UNIT_COST_PRICE: "",
+					COST_PRICE: "",
+					COST_PRICE_MISC: "",
+					MISC_UNIT_CP: "",
+					CP_CURRENCY: "",
+					CP_CURRENCY_DESC: "",
 					FOREIGN_UNIT_CP: "",
 					FOREIGN_CP: "",
 					UNIT_SALES_PRICE: "",
@@ -619,6 +683,7 @@ sap.ui.define([
 					Button: true
 				};
 				oModel.getData().PRODUCT_VARIANT_LIST[this.iPath].VARIANRT_PRICING_LIST.push(object);
+				oModel.getData().PRODUCT_VARIANT_LIST[this.iPath].VARIANRT_PRICING_LIST.push(object2);
 				oModel.updateBindings(true);
 			},
 			onDeletevariantUOM: function (oEvent) {
@@ -759,6 +824,7 @@ sap.ui.define([
 				if (aSelectedItems.length === 0) {
 					oMultiInput.setTokens([]);
 				}
+				this.onPricing();
 				if (that._oProductFormatF4) {
 					that._oProductFormatF4.destroy();
 					that._oProductFormatF4 = undefined;
@@ -949,20 +1015,20 @@ sap.ui.define([
 					var sTitle = oEvent.getParameter("selectedItem").getTitle();
 					var sDescription = oEvent.getParameter("selectedItem").getDescription();
 					switch (that.oCompetingProduct) {
-					case "ipProductcode1":
-						oModel.setProperty("/PRODUCT_FORECAST/COMPETING_PRODMSTRSEQID_1_DESC", sTitle);
-						oModel.setProperty("/PRODUCT_FORECAST/COMPETING_PRODMSTRSEQID_1", sDescription);
-						break;
-					case "ipProductcode2":
-						oModel.setProperty("/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_2_DESC", sTitle);
-						oModel.setProperty("/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_2", sDescription);
-						break;
-					case "ipProductcode3":
-						oModel.setProperty("/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_3_DESC", sTitle);
-						oModel.setProperty("/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_3", sDescription);
-						break;
-					default:
-						break;
+						case "ipProductcode1":
+							oModel.setProperty("/PRODUCT_FORECAST/COMPETING_PRODMSTRSEQID_1_DESC", sTitle);
+							oModel.setProperty("/PRODUCT_FORECAST/COMPETING_PRODMSTRSEQID_1", sDescription);
+							break;
+						case "ipProductcode2":
+							oModel.setProperty("/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_2_DESC", sTitle);
+							oModel.setProperty("/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_2", sDescription);
+							break;
+						case "ipProductcode3":
+							oModel.setProperty("/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_3_DESC", sTitle);
+							oModel.setProperty("/PRODUCT_FORECAST/COMPETING_PRODMSTRQID_3", sDescription);
+							break;
+						default:
+							break;
 					}
 					var aSelectedItems = oEvent.getParameter("selectedItems");
 					if (aSelectedItems && aSelectedItems.length > 0) {

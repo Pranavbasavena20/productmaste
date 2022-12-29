@@ -1,78 +1,72 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:micro="sap.suite.ui.commons"
-	xmlns:core="sap.ui.core">
-	<VBox>
-		<Toolbar>
-			<ToolbarSpacer/>
-			<Button icon="sap-icon://add" text="{i18n>BtnPricing}" type="Emphasized" press="onPricing"/>
-		</Toolbar>
-		<ScrollContainer height="100%" width="100%" vertical="true" focusable="true">
-			<Table id="tbPricing" class="columnTable" items="{oNPI>/PRODUCT_PRICING_LIST}" growing="true" growingThreshold="10"
-				growingScrollToLoad="true" noDataText="{i18n>TxtRemarkNoDataText}" updateFinished="onUpdateFinished">
-				<columns>
-					<Column width="{= ${device>/system/phone} ? '' : '6rem'}" hAlign="Center">
-						<Text text="{i18n>SalesOrg}" wrapping="true"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '6rem'}" hAlign="Center">
-						<Text text="{i18n>DistributionChannel}" wrapping="true"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '6rem'}" hAlign="Center">
-						<Text text="{i18n>PriceType}" wrapping="true"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '6rem'}" hAlign="Center">
-						<Text text="{i18n>CostPrice}" wrapping="true"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '6rem'}" hAlign="Center">
-						<Text text="{i18n>CostPriceCurrency}" wrapping="true"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '6rem'}" hAlign="Center">
-						<Text text="{i18n>RSP_W_GST}" wrapping="true"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '6rem'}" hAlign="Center">
-						<Text text=" {i18n>RSP_No_GST}" wrapping="true"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '3rem'}" hAlign="Center">
-						<Text text="{i18n>GP}" wrapping="true"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '3rem'}" hAlign="Center">
-						<Text text="{i18n>GPPercentage}" wrapping="true"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '5rem'}" hAlign="Center">
-						<Text text="{i18n>BaseUnitRSP}" wrapping="true"/>
-					</Column>
-					<Column hAlign="End" width="{= ${device>/system/phone} ? '' : '3rem'}">
-						<Text text=""/>
-					</Column>
-				</columns>
-				<items>
-					<ColumnListItem type="Active">
-						<cells>
-							<ComboBox selectedKey="{oNPI>SALES_ORG}" value="{oNPI>SALES_ORG_DESC}" items="{oGenericModel>/SALES_ORG}" width="100%"
-								fieldGroupIds="ComboboxField" required="true" editable="true">
-								<core:Item key="{oGenericModel>SALES_ORG_ID}" text="{oGenericModel>SALES_ORG_DESC}"/>
-							</ComboBox>
-							<ComboBox selectedKey="{oNPI>DIST_CHANNEL}" value="{oNPI>DIST_CHANNEL_DESC}" items="{oGenericModel>/DC}" width="100%"
-								fieldGroupIds="ComboboxField" required="true" editable="true">
-								<core:Item key="{oGenericModel>DC_ID}" text="{oGenericModel>SALES_ORG_ID}"/>
-							</ComboBox>
-							<ComboBox selectedKey="{oNPI>PRICE_TYPE}" value="{oNPI>PRICE_TYPE_DESC}" items="{oGenericModel>/PRICE_TYPE}" width="100%"
-								fieldGroupIds="ComboboxField" required="true" editable="true">
-								<core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}"/>
-							</ComboBox>
-							<Input value="{oNPI>UNIT_COST_PRICE}"/>
-							<MultiInput fieldGroupIds="InputField" required="true" editable="true" suggestionItems="{oGenericModel>/CURRENCY}"
-								valueHelpRequest="OnCurrencyF4">
-								<core:Item key="{oGenericModel>CURRENCY_CODE}" text="{oGenericModel>CURRENCY_DESC}"/>
-							</MultiInput>
-							<Input value="{oNPI>SP_W_GST}"/>
-							<Text text="{oNPI>SP_NO_GST}"/>
-							<Text text="{oNPI>GP}"/>
-							<Text text="{oNPI>GP_PERCENT}"/>
-							<Text text="{oNPI>UNIT_SALES_PRICE}"/>
-							<Button icon="sap-icon://delete" visible="{oNPI>Button}" press="onDeletePricing"/>
-						</cells>
-					</ColumnListItem>
-				</items>
-			</Table>
-		</ScrollContainer>
-	</VBox>
+<core:FragmentDefinition xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:micro="sap.suite.ui.commons" xmlns:core="sap.ui.core">
+    <VBox>
+        <Toolbar>
+            <ToolbarSpacer />
+            <!-- <Button icon="sap-icon://add" text="{i18n>BtnPricing}" type="Emphasized" press="onPricing"/> -->
+        </Toolbar>
+        <ScrollContainer height="100%" width="100%" vertical="true" focusable="true">
+            <Table id="tbPricing" class="columnTable" items="{oNPI>/PRODUCT_PRICING_LIST}" growing="true" growingThreshold="10" growingScrollToLoad="true" noDataText="{i18n>TxtRemarkNoDataText}" updateFinished="onUpdateFinished">
+                <columns>
+                    <Column width="{= ${device>/system/phone} ? '' : '6rem'}" hAlign="Center">
+                        <Text text="{i18n>SalesOrg}" wrapping="true" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '6rem'}" hAlign="Center">
+                        <Text text="{i18n>DistributionChannel}" wrapping="true" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '6rem'}" hAlign="Center">
+                        <Text text="{i18n>PriceType}" wrapping="true" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '6rem'}" hAlign="Center">
+                        <Text text="{i18n>CostPrice}" wrapping="true" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '6rem'}" hAlign="Center">
+                        <Text text="{i18n>CostPriceCurrency}" wrapping="true" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '6rem'}" hAlign="Center">
+                        <Text text="{i18n>RSP_W_GST}" wrapping="true" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '6rem'}" hAlign="Center">
+                        <Text text=" {i18n>RSP_No_GST}" wrapping="true" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '3rem'}" hAlign="Center">
+                        <Text text="{i18n>GP}" wrapping="true" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '3rem'}" hAlign="Center">
+                        <Text text="{i18n>GPPercentage}" wrapping="true" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '5rem'}" hAlign="Center">
+                        <Text text="{i18n>BaseUnitRSP}" wrapping="true" />
+                    </Column>
+                    <Column hAlign="End" width="{= ${device>/system/phone} ? '' : '3rem'}">
+                        <Text text="" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Active">
+                        <cells>
+                            <ComboBox selectedKey="{oNPI>SALES_ORG}" value="{oNPI>SALES_ORG_DESC}" items="{oGenericModel>/SALES_ORG}" width="100%" fieldGroupIds="ComboboxField" required="true" editable="true">
+                                <core:Item key="{oGenericModel>SALES_ORG_ID}" text="{oGenericModel>SALES_ORG_DESC}" />
+                            </ComboBox>
+                            <ComboBox selectedKey="{oNPI>DIST_CHANNEL}" value="{oNPI>DIST_CHANNEL_DESC}" items="{oGenericModel>/DC}" width="100%" fieldGroupIds="ComboboxField" required="true" editable="true">
+                                <core:Item key="{oGenericModel>DC_ID}" text="{oGenericModel>SALES_ORG_ID}" />
+                            </ComboBox>
+                            <ComboBox enabled="false" selectedKey="{oNPI>PRICE_TYPE}" value="{oNPI>PRICE_TYPE_DESC}" items="{oGenericModel>/PRICE_TYPE}" width="100%" fieldGroupIds="ComboboxField" required="true" editable="true">
+                                <core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}" />
+                            </ComboBox>
+                            <Input value="{oNPI>UNIT_COST_PRICE}" />
+                            <MultiInput fieldGroupIds="InputField" required="true" editable="true" suggestionItems="{oGenericModel>/CURRENCY}" valueHelpRequest="OnCurrencyF4">
+                                <core:Item key="{oGenericModel>CURRENCY_CODE}" text="{oGenericModel>CURRENCY_DESC}" />
+                            </MultiInput>
+                            <Input value="{oNPI>SP_W_GST}" />
+                            <Text text="{oNPI>SP_NO_GST}" />
+                            <Text text="{oNPI>GP}" />
+                            <Text text="{oNPI>GP_PERCENT}" />
+                            <Text text="{oNPI>UNIT_SALES_PRICE}" />
+                            <Button icon="sap-icon://delete" visible="{oNPI>Button}" press="onDeletePricing" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </ScrollContainer>
+    </VBox>
 </core:FragmentDefinition>

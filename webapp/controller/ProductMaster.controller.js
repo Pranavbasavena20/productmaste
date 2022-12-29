@@ -1,16 +1,16 @@
 sap.ui.define([
-		"sap/ui/core/mvc/Controller",
-		"sap/ui/model/json/JSONModel",
-		"../model/models",
-		"sap/ui/export/Spreadsheet",
-		'sap/ui/export/library',
-		"sap/ui/model/Filter",
-		"sap/ui/model/FilterOperator",
-		"sap/ui/core/Fragment",
-		'sap/m/MessageToast',
-		"sap/ui/core/UIComponent",
-		'sap/ui/model/Sorter',
-	],
+	"sap/ui/core/mvc/Controller",
+	"sap/ui/model/json/JSONModel",
+	"../model/models",
+	"sap/ui/export/Spreadsheet",
+	'sap/ui/export/library',
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator",
+	"sap/ui/core/Fragment",
+	'sap/m/MessageToast',
+	"sap/ui/core/UIComponent",
+	'sap/ui/model/Sorter',
+],
 	/**
 	 * @param {typeof sap.ui.core.mvc.Controller} Controller
 	 */
@@ -27,7 +27,7 @@ sap.ui.define([
 					Brand: ""
 				});
 				this.getOwnerComponent().setModel(oViewModel, "worklistView");
-				//	this.onSearchTable("onInit");
+				this.onSearchTable("onInit");
 			},
 			onUpdateFinished: function (oEvent) {
 				var that = this,
@@ -71,39 +71,39 @@ sap.ui.define([
 
 			createColumnConfig: function () {
 				return [{
-						label: 'Form ID',
-						property: 'REQUEST_ID',
-						type: EdmType.Number,
-						scale: 0
-					}, {
-						label: 'Product Description',
-						property: 'PRODUCT_SHORT_DESC',
-						type: EdmType.String
-					}, {
-						label: 'Pack Size',
-						property: 'PACK_SIZE',
-						type: EdmType.String
-					}, {
-						label: 'Country Of Origin',
-						property: 'COUNTRY_OF_ORIGIN',
-						type: EdmType.String
-					},
+					label: 'Form ID',
+					property: 'REQUEST_ID',
+					type: EdmType.Number,
+					scale: 0
+				}, {
+					label: 'Product Description',
+					property: 'PRODUCT_SHORT_DESC',
+					type: EdmType.String
+				}, {
+					label: 'Pack Size',
+					property: 'PACK_SIZE',
+					type: EdmType.String
+				}, {
+					label: 'Country Of Origin',
+					property: 'COUNTRY_OF_ORIGIN',
+					type: EdmType.String
+				},
 
-					// {
-					// 	label: 'Barcode',
-					// 	property: 'BARCODE',
-					// 	type: EdmType.String
-					// }, 
+				// {
+				// 	label: 'Barcode',
+				// 	property: 'BARCODE',
+				// 	type: EdmType.String
+				// }, 
 
-					{
-						label: 'Brand',
-						property: 'BRAND_GROUP_DESC',
-						type: EdmType.String
-					}, {
-						label: 'Status',
-						property: 'PRODUCT_STATUS_DESC',
-						type: EdmType.String
-					}
+				{
+					label: 'Brand',
+					property: 'BRAND_GROUP_DESC',
+					type: EdmType.String
+				}, {
+					label: 'Status',
+					property: 'PRODUCT_STATUS_DESC',
+					type: EdmType.String
+				}
 				];
 			},
 			onPressNewProductIntroduction: function (oEvent) {

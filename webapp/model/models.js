@@ -1,7 +1,7 @@
 sap.ui.define([
-		"sap/ui/model/json/JSONModel",
-		"sap/ui/Device"
-	],
+	"sap/ui/model/json/JSONModel",
+	"sap/ui/Device"
+],
 	/**
 	 * provide app-view type models (as in the first "V" in MVVC)
 	 * 
