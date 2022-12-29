@@ -1,119 +1,116 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:micro="sap.suite.ui.commons"
-	xmlns:core="sap.ui.core">
-	<form:SimpleForm width="100%" class="removingBeginEndPaddingForSimpleForm" layout="ResponsiveGridLayout" labelSpanXL="8" labelSpanL="8"
-		labelSpanM="12" columnsXL="1" columnsL="1" columnsM="1" editable="true" adjustLabelSpan="true" singleContainerFullSize="false">
-		<form:content>
-			<VBox>
-				<Label text="{i18n>TotalExpenditure}" design="Bold" labelFor="ipTotalExpen" wrapping="true"/>
-				<Input value="{oNPI>/MARKET_EXP_AMOUNT}" id="ipTotalExpen" fieldGroupIds="InputField" required="true" editable="true" width="100%"/>
-				<layoutData>
-					<layout:GridData span="XL6 L6 M6 S12" linebreak="false"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>PeriodStartDate}" design="Bold" labelFor="dpPeriodStDate" wrapping="true"/>
-				<DatePicker value="{oNPI>/MARKET_START_DATE}" id="dpPeriodStDate" fieldGroupIds="DateField" required="true" editable="true" width="100%"/>
-				<layoutData>
-					<layout:GridData span="XL6 L6 M6 S12" linebreak="false"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>PeriodEndDate}" design="Bold" labelFor="dpPeriodEtDate" wrapping="true"/>
-				<DatePicker value="{oNPI>/MARKET_END_DATE}" id="dpPeriodEtDate" fieldGroupIds="DateField" required="true" editable="true" width="100%"/>
-				<layoutData>
-					<layout:GridData span="XL6 L6 M6 S12" linebreak="true"/>
-				</layoutData>
-			</VBox>
-			<VBox width="100%">
-				<Table class="columnTable" id="idNPIMarketing" inset="false" mode="MultiSelect" items="{oNPI>/PRODUCT_MARKETING_LIST}">
-					<headerToolbar>
-						<OverflowToolbar>
-							<content>
-								<ToolbarSpacer/>
-								<Button icon="sap-icon://add" text="{i18n>btnAdd}" type="Emphasized" press="AddMarketing"/>
-							</content>
-						</OverflowToolbar>
-					</headerToolbar>
-					<columns>
-						<Column hAlign="Center">
-							<Text text="{i18n>Media}"/>
-						</Column>
-						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
-							<Text text="{i18n>Amount}"/>
-						</Column>
-						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
-							<Text text="{i18n>NoOfSpots}"/>
-						</Column>
-						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
-							<Text text="{i18n>PeriodStartDate}"/>
-						</Column>
-						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
-							<Text text="{i18n>PeriodEndDate}"/>
-						</Column>
-						<Column hAlign="End">
-							<Text text=""/>
-						</Column>
-					</columns>
-					<items>
-						<ColumnListItem>
-							<cells>
-								<ComboBox selectedKey="{oNPI>MEDIA_TYPE}" value="{oNPI>MEDIA_TYPE_DESC}" items="{oGenericModel>/MEDIA_TYPE}" width="100%"
-									fieldGroupIds="ComboboxField" required="true" editable="true">
-									<core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}"/>
-								</ComboBox>
-								<Input value="{oNPI>AMOUNT}" fieldGroupIds="InputField" required="true" editable="true" width="100%"/>
-								<Input value="{oNPI>FREQUENCY}" fieldGroupIds="InputField" required="true" editable="true" width="100%"/>
-								<DatePicker value="{oNPI>PERIOD_START_DATE}" fieldGroupIds="DateField" required="true" editable="true" width="100%"/>
-								<DatePicker value="{oNPI>PERIOD_END_DATE}" fieldGroupIds="DateField" required="true" editable="true" width="100%"/>
-								<Button icon="sap-icon://delete" press="onDeleteMarketingTable"/>
-							</cells>
-						</ColumnListItem>
-					</items>
-				</Table>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M12 S12" linebreak="true"/>
-				</layoutData>
-			</VBox>
-			<VBox width="100%">
-				<Table class="columnTable" id="idNPIMarketing2" inset="false" mode="MultiSelect" items="{oNPI>/PRODUCT_PROPOSED_LISTING}">
-					<headerToolbar>
-						<OverflowToolbar>
-							<content>
-								<Title text="{i18n>ProductListingWithOtherRetailer}" level="H2"/>
-								<ToolbarSpacer/>
-								<Button icon="sap-icon://add" text="{i18n>btnAdd}" type="Emphasized" press="AddProposedListing"/>
-							</content>
-						</OverflowToolbar>
-					</headerToolbar>
-					<columns>
-						<Column hAlign="Center">
-							<Text text="{i18n>NameOfRetailer}"/>
-						</Column>
-						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
-							<Text text="{i18n>RSP}"/>
-						</Column>
-						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
-							<Text text="{i18n>StartDate}"/>
-						</Column>
-						<Column hAlign="End">
-							<Text text=""/>
-						</Column>
-					</columns>
-					<items>
-						<ColumnListItem>
-							<cells>
-								<Input value="{oNPI>RETAILER_NAME}" fieldGroupIds="InputField" required="true" editable="true" width="100%"/>
-								<Input value="{oNPI>SELLING_PRICE}" fieldGroupIds="InputField" required="true" editable="true" width="100%"/>
-								<DatePicker value="{oNPI>START_DATE}" fieldGroupIds="DateField" required="true" editable="true" width="100%"/>
-								<Button icon="sap-icon://delete" press="onDeleteProposedListingTable"/>
-							</cells>
-						</ColumnListItem>
-					</items>
-				</Table>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M12 S12" linebreak="true"/>
-				</layoutData>
-			</VBox>
-		</form:content>
-	</form:SimpleForm>
+<core:FragmentDefinition xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:micro="sap.suite.ui.commons" xmlns:core="sap.ui.core">
+    <form:SimpleForm width="100%" class="removingBeginEndPaddingForSimpleForm" layout="ResponsiveGridLayout" labelSpanXL="8" labelSpanL="8" labelSpanM="12" columnsXL="1" columnsL="1" columnsM="1" editable="true" adjustLabelSpan="true" singleContainerFullSize="false">
+        <form:content>
+            <VBox>
+                <Label text="{i18n>TotalExpenditure}" design="Bold" labelFor="ipTotalExpen" wrapping="true" />
+                <Input value="{oNPI>/MARKET_EXP_AMOUNT}" id="ipTotalExpen" fieldGroupIds="InputField" required="true" editable="true" width="100%" />
+                <layoutData>
+                    <layout:GridData span="XL6 L6 M6 S12" linebreak="false" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>PeriodStartDate}" design="Bold" labelFor="dpPeriodStDate" wrapping="true" />
+                <DatePicker value="{oNPI>/MARKET_START_DATE}" id="dpPeriodStDate" fieldGroupIds="DateField" required="true" editable="true" width="100%" />
+                <layoutData>
+                    <layout:GridData span="XL6 L6 M6 S12" linebreak="false" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>PeriodEndDate}" design="Bold" labelFor="dpPeriodEtDate" wrapping="true" />
+                <DatePicker value="{oNPI>/MARKET_END_DATE}" id="dpPeriodEtDate" fieldGroupIds="DateField" required="true" editable="true" width="100%" />
+                <layoutData>
+                    <layout:GridData span="XL6 L6 M6 S12" linebreak="true" />
+                </layoutData>
+            </VBox>
+            <VBox width="100%">
+                <Table class="columnTable" id="idNPIMarketing" inset="false" mode="MultiSelect" items="{oNPI>/PRODUCT_MARKETING_LIST}">
+                    <headerToolbar>
+                        <OverflowToolbar>
+                            <content>
+                                <ToolbarSpacer />
+                                <Button icon="sap-icon://add" text="{i18n>btnAdd}" type="Emphasized" press="AddMarketing" visible="{NPIView>/bSubmitted}" />
+                            </content>
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column hAlign="Center">
+                            <Text text="{i18n>Media}" />
+                        </Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                            <Text text="{i18n>Amount}" />
+                        </Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                            <Text text="{i18n>NoOfSpots}" />
+                        </Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                            <Text text="{i18n>PeriodStartDate}" />
+                        </Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                            <Text text="{i18n>PeriodEndDate}" />
+                        </Column>
+                        <Column hAlign="End">
+                            <Text text="" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <ComboBox selectedKey="{oNPI>MEDIA_TYPE}" value="{oNPI>MEDIA_TYPE_DESC}" items="{oGenericModel>/MEDIA_TYPE}" width="100%" fieldGroupIds="ComboboxField" required="true" editable="true">
+                                    <core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}" />
+                                </ComboBox>
+                                <Input value="{oNPI>AMOUNT}" fieldGroupIds="InputField" required="true" editable="true" width="100%" />
+                                <Input value="{oNPI>FREQUENCY}" fieldGroupIds="InputField" required="true" editable="true" width="100%" />
+                                <DatePicker value="{oNPI>PERIOD_START_DATE}" fieldGroupIds="DateField" required="true" editable="true" width="100%" />
+                                <DatePicker value="{oNPI>PERIOD_END_DATE}" fieldGroupIds="DateField" required="true" editable="true" width="100%" />
+                                <Button icon="sap-icon://delete" press="onDeleteMarketingTable" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M12 S12" linebreak="true" />
+                </layoutData>
+            </VBox>
+            <VBox width="100%">
+                <Table class="columnTable" id="idNPIMarketing2" inset="false" mode="MultiSelect" items="{oNPI>/PRODUCT_PROPOSED_LISTING}">
+                    <headerToolbar>
+                        <OverflowToolbar>
+                            <content>
+                                <Title text="{i18n>ProductListingWithOtherRetailer}" level="H2" />
+                                <ToolbarSpacer />
+                                <Button icon="sap-icon://add" text="{i18n>btnAdd}" type="Emphasized" press="AddProposedListing" visible="{NPIView>/bSubmitted}" />
+                            </content>
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column hAlign="Center">
+                            <Text text="{i18n>NameOfRetailer}" />
+                        </Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                            <Text text="{i18n>RSP}" />
+                        </Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                            <Text text="{i18n>StartDate}" />
+                        </Column>
+                        <Column hAlign="End">
+                            <Text text="" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Input value="{oNPI>RETAILER_NAME}" fieldGroupIds="InputField" required="true" editable="true" width="100%" />
+                                <Input value="{oNPI>SELLING_PRICE}" fieldGroupIds="InputField" required="true" editable="true" width="100%" />
+                                <DatePicker value="{oNPI>START_DATE}" fieldGroupIds="DateField" required="true" editable="true" width="100%" />
+                                <Button icon="sap-icon://delete" press="onDeleteProposedListingTable" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M12 S12" linebreak="true" />
+                </layoutData>
+            </VBox>
+        </form:content>
+    </form:SimpleForm>
 </core:FragmentDefinition>

@@ -1,90 +1,84 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:upload="sap.m.upload" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form"
-	xmlns:core="sap.ui.core">
-	<form:SimpleForm width="100%" layout="ResponsiveGridLayout" labelSpanXL="8" labelSpanL="8" labelSpanM="12" columnsXL="1" columnsL="1"
-		columnsM="1" editable="true" adjustLabelSpan="true" singleContainerFullSize="false">
-		<form:content>
-			<VBox>
-				<Label text="{i18n>AttachmentType}" design="Bold" labelFor="ipAttType" wrapping="true"/>
-				<ComboBox selectedKey="{oNPI>/PRODUCT_ATTACHMENT_FORM/ATTACHMENT_TYPE}" value="{oNPI>/PRODUCT_ATTACHMENT_FORM/ATTACHMENT_TYPE_DESC}"
-					items="{oGenericModel>/ATTACHMENT_TYPE}" width="100%" id="ipAttType" fieldGroupIds="ComboboxField" required="true" editable="true">
-					<core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}"/>
-				</ComboBox>
-				<layoutData>
-					<layout:GridData span="XL6 L6 M6 S12" linebreak="false"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>DisplayName}" design="Bold" labelFor="ipDisplayName" wrapping="true"/>
-				<Input value="{oNPI>/PRODUCT_ATTACHMENT_FORM/DISPLAY_DOCUMENT_NAME}" id="ipDisplayName" fieldGroupIds="InputField" required="true"
-					editable="true" width="100%"/>
-				<layoutData>
-					<layout:GridData span="XL6 L6 M6 S12" linebreak="false"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<Label text="{i18n>DocuementExpiryDate}" design="Bold" labelFor="dpDocumentExpiry" wrapping="true"/>
-				<DatePicker value="{oNPI>/PRODUCT_ATTACHMENT_FORM/DOC_EXPIRY_DATE}" id="dpDocumentExpiry" fieldGroupIds="DateField" required="true"
-					editable="true" width="100%"/>
-				<layoutData>
-					<layout:GridData span="XL6 L6 M6 S12" linebreak="true"/>
-				</layoutData>
-			</VBox>
-			<VBox>
-				<upload:UploadSet class="button1 header2" multiple="true"/>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M12 S12" linebreak="false"/>
-				</layoutData>
-			</VBox>
-			<VBox width="100%">
-				<Table class="columnTable" id="idNPIDcoument" inset="false" mode="MultiSelect" items="{oNPI>/PRODUCT_ATTACHMENT}">
-					<headerToolbar>
-						<OverflowToolbar>
-							<content>
-								<Title text="Attachments" level="H2"/>
-								<ToolbarSpacer/>
-							</content>
-						</OverflowToolbar>
-					</headerToolbar>
-					<columns>
-						<Column hAlign="Center">
-							<Text text="{i18n>AttachmentType}"/>
-						</Column>
-						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
-							<Text text="{i18n>DisplayName}"/>
-						</Column>
-						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
-							<Text text="{i18n>DocumentName}"/>
-						</Column>
-						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
-							<Text text="{i18n>DocuementExpiryDate}"/>
-						</Column>
-						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
-							<Text text="{i18n>File}"/>
-						</Column>
-						<Column hAlign="End">
-							<Text text=""/>
-						</Column>
-					</columns>
-					<items>
-						<ColumnListItem>
-							<cells>
-								<ComboBox selectedKey="{oNPI>ATTACHMENT_TYPE}" items="{oMainModel>/businessCode}" width="100%" fieldGroupIds="ComboboxField" required="true"
-									editable="true">
-									<core:Item key="{oMainModel>BUS_CODE}" text="{oMainModel>CODE_DESC}"/>
-								</ComboBox>
-								<Input value="{oNPI>DISPLAY_DOCUMENT_NAME}" fieldGroupIds="InputField" required="true" editable="true" width="100%"/>
-								<Text text=""/>
-								<DatePicker value="{oNPI>DOC_EXPIRY_DATE}" fieldGroupIds="DateField" required="true" editable="true" width="100%"/>
-								<Text text=""/>
-								<Button icon="sap-icon://delete" press="onDeleteAttachmentTable"/>
-							</cells>
-						</ColumnListItem>
-					</items>
-				</Table>
-				<layoutData>
-					<layout:GridData span="XL12 L12 M12 S12" linebreak="true"/>
-				</layoutData>
-			</VBox>
-		</form:content>
-	</form:SimpleForm>
+<core:FragmentDefinition xmlns="sap.m" xmlns:upload="sap.m.upload" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+    <form:SimpleForm width="100%" layout="ResponsiveGridLayout" labelSpanXL="8" labelSpanL="8" labelSpanM="12" columnsXL="1" columnsL="1" columnsM="1" editable="true" adjustLabelSpan="true" singleContainerFullSize="false">
+        <form:content>
+            <VBox>
+                <Label text="{i18n>AttachmentType}" design="Bold" labelFor="ipAttType" wrapping="true" />
+                <ComboBox selectedKey="{oNPI>/PRODUCT_ATTACHMENT_FORM/ATTACHMENT_TYPE}" value="{oNPI>/PRODUCT_ATTACHMENT_FORM/ATTACHMENT_TYPE_DESC}" items="{oGenericModel>/ATTACHMENT_TYPE}" width="100%" id="ipAttType" fieldGroupIds="ComboboxField" required="true" editable="true">
+                    <core:Item key="{oGenericModel>LABEL_CODE}" text="{oGenericModel>CODE_DESC}" />
+                </ComboBox>
+                <layoutData>
+                    <layout:GridData span="XL6 L6 M6 S12" linebreak="false" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>DisplayName}" design="Bold" labelFor="ipDisplayName" wrapping="true" />
+                <Input value="{oNPI>/PRODUCT_ATTACHMENT_FORM/DISPLAY_DOCUMENT_NAME}" id="ipDisplayName" fieldGroupIds="InputField" required="true" editable="true" width="100%" />
+                <layoutData>
+                    <layout:GridData span="XL6 L6 M6 S12" linebreak="false" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <Label text="{i18n>DocuementExpiryDate}" design="Bold" labelFor="dpDocumentExpiry" wrapping="true" />
+                <DatePicker value="{oNPI>/PRODUCT_ATTACHMENT_FORM/DOC_EXPIRY_DATE}" id="dpDocumentExpiry" fieldGroupIds="DateField" required="true" editable="true" width="100%" />
+                <layoutData>
+                    <layout:GridData span="XL6 L6 M6 S12" linebreak="true" />
+                </layoutData>
+            </VBox>
+            <VBox>
+                <upload:UploadSet class="button1 header2" />
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M12 S12" linebreak="false" />
+                </layoutData>
+            </VBox>
+            <VBox width="100%">
+                <Table class="columnTable" id="idNPIDcoument" inset="false" mode="MultiSelect" items="{oNPI>/PRODUCT_ATTACHMENT}">
+                    <headerToolbar>
+                        <OverflowToolbar>
+                            <content>
+                                <Title text="Attachments" level="H2" />
+                                <ToolbarSpacer />
+                            </content>
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column hAlign="Center">
+                            <Text text="{i18n>AttachmentType}" />
+                        </Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                            <Text text="{i18n>DisplayName}" />
+                        </Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                            <Text text="{i18n>DocumentName}" />
+                        </Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                            <Text text="{i18n>DocuementExpiryDate}" />
+                        </Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                            <Text text="{i18n>File}" />
+                        </Column>
+                        <Column hAlign="End">
+                            <Text text="" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <ComboBox selectedKey="{oNPI>ATTACHMENT_TYPE}" items="{oMainModel>/businessCode}" width="100%" fieldGroupIds="ComboboxField" required="true" editable="true">
+                                    <core:Item key="{oMainModel>BUS_CODE}" text="{oMainModel>CODE_DESC}" />
+                                </ComboBox>
+                                <Input value="{oNPI>DISPLAY_DOCUMENT_NAME}" fieldGroupIds="InputField" required="true" editable="true" width="100%" />
+                                <Text text="" />
+                                <DatePicker value="{oNPI>DOC_EXPIRY_DATE}" fieldGroupIds="DateField" required="true" editable="true" width="100%" />
+                                <Text text="" />
+                                <Button icon="sap-icon://delete" press="onDeleteAttachmentTable" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+                <layoutData>
+                    <layout:GridData span="XL12 L12 M12 S12" linebreak="true" />
+                </layoutData>
+            </VBox>
+        </form:content>
+    </form:SimpleForm>
 </core:FragmentDefinition>

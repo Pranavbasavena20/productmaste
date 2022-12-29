@@ -1,176 +1,170 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:upload="sap.m.upload" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form"
-	xmlns:core="sap.ui.core">
-	<Panel headerText="Variant" expandable="true">
-		<content>
-			<Table id="tbProductVariant" class="columnTable" items="{oNPI>/PRODUCT_VARIANT_LIST}" growing="true" growingThreshold="10"
-				growingScrollToLoad="true" noDataText="{i18n>TxtRemarkNoDataText}" updateFinished="onUpdateVariantTableFinished">
-				<headerToolbar>
-					<OverflowToolbar>
-						<ToolbarSpacer/>
-						<Button icon="sap-icon://add" text="{i18n>BtnVariant}" type="Emphasized" press="onAddVariant"/>
-					</OverflowToolbar>
-				</headerToolbar>
-				<columns>
-					<Column hAlign="Center">
-						<Text text="{i18n>S_NO}" wrapping="true"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
-						<Text text="{i18n>FULL_VARIANT_DESC}" wrapping="true"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
-						<Text text="{i18n>SHORT_VARIANT_DESC}" wrapping="true"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
-						<Text text="{i18n>PACK_SIZE}" wrapping="true"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
-						<Text text="{i18n>PACK_SIZE_UOM}" wrapping="true"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
-						<Text text="{i18n>COUNTRY_CODE}" wrapping="true"/>
-					</Column>
-					<Column hAlign="End">
-						<Text text=""/>
-					</Column>
-				</columns>
-				<items>
-					<ColumnListItem type="Active">
-						<cells>
-							<Label text="{oNPI>S_NO}"/>
-							<Input value="{oNPI>FULL_VARIANT_DESC}"/>
-							<Input value="{oNPI>SHORT_VARIANT_DESC}"/>
-							<Input value="{oNPI>PACK_SIZE}"/>
-							<MultiInput maxTokens="1" fieldGroupIds="InputField" required="true" editable="true" suggestionItems="{oGenericModel>/PACK_SIZE_UNIT}"
-								valueHelpRequest="OnPackageSizeUnitF4($event,'TableLevel')">
-								<core:Item key="{oGenericModel>UOM_CODE}" text="{oGenericModel>UOM_DESC}"/>
-							</MultiInput>
-							<!--<Input value="{oNPI>COUNTRY_CODE}" showValueHelp="true" fieldGroupIds="InputField" required="true" editable="true"-->
-							<!--	suggestionItems="{oGenericModel>/countryCode}" valueHelpRequest="OnCountryF4" showSuggestion="true">-->
-							<!--	<suggestionItems>-->
-							<!--		<core:Item key="{oGenericModel>COUNTRY_CODE}" text="{oGenericModel>COUNTRY_NAME}"/>-->
-							<!--	</suggestionItems>-->
-							<!--</Input>-->
-							<MultiInput maxTokens="1" fieldGroupIds="InputField" required="true" editable="true" suggestionItems="{oGenericModel>/countryCode}"
-								valueHelpRequest="OnCountryF4">
-								<core:Item key="{oGenericModel>COUNTRY_CODE}" text="{oGenericModel>COUNTRY_NAME}"/>
-							</MultiInput>
-							<OverflowToolbar >
-								<Button icon="sap-icon://display" press="onDisplayvariant"/>
-								<Button icon="sap-icon://delete" press="onDeleteVariant"/>
-							</OverflowToolbar>
-						</cells>
-					</ColumnListItem>
-				</items>
-			</Table>
-			<Panel headerText="UOM" visible="{NPIView>/bVariantLength}" expandable="true">
-				<content>
-					<ScrollContainer height="100%" width="100%" vertical="true" focusable="true">
-						<Table class="columnTable" id="tbProductUOM" growing="true" growingThreshold="10" growingScrollToLoad="true"
-							noDataText="{i18n>TxtRemarkNoDataText}" updateFinished="onUpdateFinished">
-							<headerToolbar>
-								<OverflowToolbar>
-									<ToolbarSpacer/>
-									<Button icon="sap-icon://add" text="{i18n>BtnUOM}" type="Emphasized" press="onProductUOM"/>
-								</OverflowToolbar>
-							</headerToolbar>
-							<columns>
-								<Column hAlign="Center">
-									<Text text="{i18n>Uom}" wrapping="true"/>
-								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
-									<Text text="{i18n>UoMQuantity}" wrapping="true"/>
-								</Column>
-								<Column minScreenWidth="Tablet" hAlign="Center" demandPopin="true" width="{= ${device>/system/phone} ? '' : '5rem'}">
-									<Text text="{i18n>LowerUnit}" wrapping="true"/>
-								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
-									<Text text="{i18n>BaseUnit}" wrapping="true"/>
-								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
-									<Text text="{i18n>OrderUnit}" wrapping="true"/>
-								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
-									<Text text="{i18n>Barcode}" wrapping="true"/>
-								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
-									<Text text=" {i18n>GrossWeight}" wrapping="true"/>
-								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '5rem'}">
-									<Text text="{i18n>NetWeight}" wrapping="true"/>
-								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
-									<Text text="{i18n>NetWeightUnit}" wrapping="true"/>
-								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
-									<Text text="{i18n>Depth}" wrapping="true"/>
-								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
-									<Text text="{i18n>Width}" wrapping="true"/>
-								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
-									<Text text="{i18n>Height}" wrapping="true"/>
-								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
-									<Text text="{i18n>Volume}" wrapping="true"/>
-								</Column>
-								<Column hAlign="End" width="{= ${device>/system/phone} ? '' : '3rem'}">
-									<Text text=""/>
-								</Column>
-							</columns>
-						</Table>
-					</ScrollContainer>
-				</content>
-			</Panel>
-			<Panel headerText="Pricing" visible="{NPIView>/bVariantLength}" expandable="true">
-				<content>
-					<ScrollContainer height="100%" width="100%" vertical="true" focusable="true">
-						<Table id="tbVariantPricing" class="columnTable" growing="true" growingThreshold="10" growingScrollToLoad="true"
-							noDataText="{i18n>TxtRemarkNoDataText}" updateFinished="onUpdateFinished">
-							<headerToolbar>
-								<OverflowToolbar>
-									<ToolbarSpacer/>
-									<Button icon="sap-icon://add" text="{i18n>BtnPricing}" type="Emphasized" press="onProductPricing"/>
-								</OverflowToolbar>
-							</headerToolbar>
-							<columns>
-								<Column width="{= ${device>/system/phone} ? '' : '6rem'}" hAlign="Center">
-									<Text text="{i18n>SalesOrg}" wrapping="true"/>
-								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '6rem'}">
-									<Text text="{i18n>DistributionChannel}" wrapping="true"/>
-								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '6rem'}">
-									<Text text="{i18n>PriceType}" wrapping="true"/>
-								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '6rem'}">
-									<Text text="{i18n>CostPrice}" wrapping="true"/>
-								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '6rem'}">
-									<Text text="{i18n>CostPriceCurrency}" wrapping="true"/>
-								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '6rem'}">
-									<Text text="{i18n>RSP_W_GST}" wrapping="true"/>
-								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '6rem'}">
-									<Text text=" {i18n>RSP_No_GST}" wrapping="true"/>
-								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '6rem'}">
-									<Text text="{i18n>GP}" wrapping="true"/>
-								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '6rem'}">
-									<Text text="{i18n>GPPercentage}" wrapping="true"/>
-								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '6rem'}">
-									<Text text="{i18n>BaseUnitRSP}" wrapping="true"/>
-								</Column>
-								<Column hAlign="End" width="{= ${device>/system/phone} ? '' : '6rem'}">
-									<Text text=""/>
-								</Column>
-							</columns>
-						</Table>
-					</ScrollContainer>
-				</content>
-			</Panel>
-		</content>
-	</Panel>
+<core:FragmentDefinition xmlns="sap.m" xmlns:upload="sap.m.upload" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+    <Panel headerText="Variant" expandable="true">
+        <content>
+            <Table id="tbProductVariant" class="columnTable" items="{oNPI>/PRODUCT_VARIANT_LIST}" growing="true" growingThreshold="10" growingScrollToLoad="true" noDataText="{i18n>TxtRemarkNoDataText}" updateFinished="onUpdateVariantTableFinished">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <ToolbarSpacer />
+                        <Button visible="{NPIView>/bSubmitted}" icon="sap-icon://add" text="{i18n>BtnVariant}" type="Emphasized" press="onAddVariant" />
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column hAlign="Center">
+                        <Text text="{i18n>S_NO}" wrapping="true" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                        <Text text="{i18n>FULL_VARIANT_DESC}" wrapping="true" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                        <Text text="{i18n>SHORT_VARIANT_DESC}" wrapping="true" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                        <Text text="{i18n>PACK_SIZE}" wrapping="true" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                        <Text text="{i18n>PACK_SIZE_UOM}" wrapping="true" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                        <Text text="{i18n>COUNTRY_CODE}" wrapping="true" />
+                    </Column>
+                    <Column hAlign="End">
+                        <Text text="" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Active">
+                        <cells>
+                            <Label text="{oNPI>S_NO}" />
+                            <Input value="{oNPI>FULL_VARIANT_DESC}" />
+                            <Input value="{oNPI>SHORT_VARIANT_DESC}" />
+                            <Input value="{oNPI>PACK_SIZE}" />
+                            <MultiInput maxTokens="1" fieldGroupIds="InputField" required="true" editable="true" suggestionItems="{oGenericModel>/PACK_SIZE_UNIT}" valueHelpRequest="OnPackageSizeUnitF4($event,'TableLevel')">
+                                <core:Item key="{oGenericModel>UOM_CODE}" text="{oGenericModel>UOM_DESC}" />
+                            </MultiInput>
+                            <!--<Input value="{oNPI>COUNTRY_CODE}" showValueHelp="true" fieldGroupIds="InputField" required="true" editable="true"-->
+                            <!--	suggestionItems="{oGenericModel>/countryCode}" valueHelpRequest="OnCountryF4" showSuggestion="true">-->
+                            <!--	<suggestionItems>-->
+                            <!--		<core:Item key="{oGenericModel>COUNTRY_CODE}" text="{oGenericModel>COUNTRY_NAME}"/>-->
+                            <!--	</suggestionItems>-->
+                            <!--</Input>-->
+                            <MultiInput maxTokens="1" fieldGroupIds="InputField" required="true" editable="true" suggestionItems="{oGenericModel>/countryCode}" valueHelpRequest="OnCountryF4">
+                                <core:Item key="{oGenericModel>COUNTRY_CODE}" text="{oGenericModel>COUNTRY_NAME}" />
+                            </MultiInput>
+                            <OverflowToolbar>
+                                <Button icon="sap-icon://display" press="onDisplayvariant" />
+                                <Button icon="sap-icon://delete" press="onDeleteVariant" />
+                            </OverflowToolbar>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+            <Panel headerText="UOM" visible="{NPIView>/bVariantLength}" expandable="true">
+                <content>
+                    <ScrollContainer height="100%" width="100%" vertical="true" focusable="true">
+                        <Table class="columnTable" id="tbProductUOM" growing="true" growingThreshold="10" growingScrollToLoad="true" noDataText="{i18n>TxtRemarkNoDataText}" updateFinished="onUpdateFinished">
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <ToolbarSpacer />
+                                    <Button icon="sap-icon://add" text="{i18n>BtnUOM}" type="Emphasized" press="onProductUOM" />
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column hAlign="Center">
+                                    <Text text="{i18n>Uom}" wrapping="true" />
+                                </Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
+                                    <Text text="{i18n>UoMQuantity}" wrapping="true" />
+                                </Column>
+                                <Column minScreenWidth="Tablet" hAlign="Center" demandPopin="true" width="{= ${device>/system/phone} ? '' : '5rem'}">
+                                    <Text text="{i18n>LowerUnit}" wrapping="true" />
+                                </Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
+                                    <Text text="{i18n>BaseUnit}" wrapping="true" />
+                                </Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
+                                    <Text text="{i18n>OrderUnit}" wrapping="true" />
+                                </Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
+                                    <Text text="{i18n>Barcode}" wrapping="true" />
+                                </Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
+                                    <Text text=" {i18n>GrossWeight}" wrapping="true" />
+                                </Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true" width="{= ${device>/system/phone} ? '' : '5rem'}">
+                                    <Text text="{i18n>NetWeight}" wrapping="true" />
+                                </Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
+                                    <Text text="{i18n>NetWeightUnit}" wrapping="true" />
+                                </Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
+                                    <Text text="{i18n>Depth}" wrapping="true" />
+                                </Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
+                                    <Text text="{i18n>Width}" wrapping="true" />
+                                </Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
+                                    <Text text="{i18n>Height}" wrapping="true" />
+                                </Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '5rem'}">
+                                    <Text text="{i18n>Volume}" wrapping="true" />
+                                </Column>
+                                <Column hAlign="End" width="{= ${device>/system/phone} ? '' : '3rem'}">
+                                    <Text text="" />
+                                </Column>
+                            </columns>
+                        </Table>
+                    </ScrollContainer>
+                </content>
+            </Panel>
+            <Panel headerText="Pricing" visible="{NPIView>/bVariantLength}" expandable="true">
+                <content>
+                    <ScrollContainer height="100%" width="100%" vertical="true" focusable="true">
+                        <Table id="tbVariantPricing" class="columnTable" growing="true" growingThreshold="10" growingScrollToLoad="true" noDataText="{i18n>TxtRemarkNoDataText}" updateFinished="onUpdateFinished">
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <ToolbarSpacer />
+                                    <Button icon="sap-icon://add" text="{i18n>BtnPricing}" type="Emphasized" press="onProductPricing" />
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column width="{= ${device>/system/phone} ? '' : '6rem'}" hAlign="Center">
+                                    <Text text="{i18n>SalesOrg}" wrapping="true" />
+                                </Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '6rem'}">
+                                    <Text text="{i18n>DistributionChannel}" wrapping="true" />
+                                </Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '6rem'}">
+                                    <Text text="{i18n>PriceType}" wrapping="true" />
+                                </Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '6rem'}">
+                                    <Text text="{i18n>CostPrice}" wrapping="true" />
+                                </Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '6rem'}">
+                                    <Text text="{i18n>CostPriceCurrency}" wrapping="true" />
+                                </Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '6rem'}">
+                                    <Text text="{i18n>RSP_W_GST}" wrapping="true" />
+                                </Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '6rem'}">
+                                    <Text text=" {i18n>RSP_No_GST}" wrapping="true" />
+                                </Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '6rem'}">
+                                    <Text text="{i18n>GP}" wrapping="true" />
+                                </Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '6rem'}">
+                                    <Text text="{i18n>GPPercentage}" wrapping="true" />
+                                </Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="{= ${device>/system/phone} ? '' : '6rem'}">
+                                    <Text text="{i18n>BaseUnitRSP}" wrapping="true" />
+                                </Column>
+                                <Column hAlign="End" width="{= ${device>/system/phone} ? '' : '6rem'}">
+                                    <Text text="" />
+                                </Column>
+                            </columns>
+                        </Table>
+                    </ScrollContainer>
+                </content>
+            </Panel>
+        </content>
+    </Panel>
 </core:FragmentDefinition>

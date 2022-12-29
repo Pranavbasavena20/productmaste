@@ -32,7 +32,8 @@ sap.ui.define([
 					bForcastMonthAdd: true,
 					bComparsion: true,
 					bProductVarainat: false,
-					bMerchandise: false
+					bMerchandise: false,
+					bSubmitted: true
 				});
 				this.getOwnerComponent().setModel(oViewModel, "NPIView");
 				var oModelSizes = new sap.ui.model.json.JSONModel({
@@ -160,6 +161,11 @@ sap.ui.define([
 					var sPath = this.getView().getModel("ProductMasterModel").getProperty("/Path");
 					var oData = this.getView().getModel("ProductMasterModel").getProperty(sPath);
 					this.getView().getModel("oNPI").setProperty("/", oData);
+				}
+				if (this.getView().getModel("oNPI").getData().PRODUCT_DATA.PRODUCT_STATUS === "2") {
+					this.getView().getModel("NPIView").setProperty("/bSubmitted", false);
+				} else {
+					this.getView().getModel("NPIView").setProperty("/bSubmitted", true);
 				}
 			},
 			onChangeProductCat: function (oEvent) {
